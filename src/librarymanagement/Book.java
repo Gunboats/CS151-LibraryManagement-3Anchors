@@ -3,21 +3,33 @@ package librarymanagement;
 public class Book {
     private String bookTitle;
     private String author;
-    private long ISBN;
+    private int ISBN;
     private boolean borrowed;
 
+    
+    /**
+     * Default constructor for a Book object
+     */
     Book() {
-        this.bookTitle = "Default Book Name";
+        this.bookTitle = "Book Name";
         this.author = "John Doe";
-        this.ISBN = 1111111111111;
+        this.ISBN = 1111111111;
         this.borrowed = false;
     }
 
-    
-    Book(String bookTitle, String author, long ISBN) {
+    /**
+     * Parameterized constructor for a Book object
+     * By default, all books created are not borrowed, so
+     * borrowed is set to false;
+     * @param bookTitle Title of Book
+     * @param author Author first and last name
+     * @param ISBN A 10 digit long, basically a book ID number
+     */
+    Book(String bookTitle, String author, int ISBN) {
         this.bookTitle = bookTitle;
         this.author = author;
         this.ISBN = ISBN;
+        this.borrowed = false;
     }
 
     public String getBookTitle() {
@@ -36,7 +48,22 @@ public class Book {
         return borrowed;
     }
 
-
+    public void setBookTitle(String newBookTitle) {
+    	this.bookTitle = newBookTitle;
+    }
+    
+    public void setAuthor(String newAuthor) {
+    	this.author = newAuthor;
+    }
+    
+    public void setISBN(int newISBN) {
+    	this.ISBN = newISBN;
+    }
+    
+    public void setBorrowed(boolean borrowedStatus) {
+    	this.borrowed = borrowedStatus;
+    }
+    
     @Override
     public String toString() {
         return "Book Title: " + bookTitle + "\nAuthor: " + author + "\nISBN: "

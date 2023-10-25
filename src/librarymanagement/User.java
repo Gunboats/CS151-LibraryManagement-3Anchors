@@ -21,7 +21,7 @@ public class User {
     User() {
         this.name = "John Doe";
         this.cardNumber = "SM-123456789";
-        this.borrowedBooks = new ArrayList<>();
+        this.borrowedBooks = new ArrayList<Book>();
     }
 
     public void checkOut() {

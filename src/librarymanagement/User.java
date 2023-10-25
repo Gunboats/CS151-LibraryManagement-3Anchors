@@ -3,7 +3,6 @@ package librarymanagement;
 import java.util.ArrayList;
 import java.util.List;
 // 10/24/23
-// We don't have to use an array
 // We may need to limit the amount of objects a user can check out
 
 public class User {
@@ -21,17 +20,22 @@ public class User {
     User() {
         this.name = "John Doe";
         this.cardNumber = "SM-123456789";
-        this.borrowedBooks = new ArrayList<>();
+        this.borrowedBooks = new ArrayList<Book>();
     }
 
     public void checkOut() {
     	// TODO should add a book for borrowedBooks,
     	// update borrowedBook to true
-    	
     }
     
     public void checkIn() {
-   
+    	// update book(s) to false...
+    }
+    public String getName() {
+    	return this.name;
+    }
+    public String getCardNumber() {
+    	return this.cardNumber;
     }
     
 }

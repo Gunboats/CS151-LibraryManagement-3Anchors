@@ -23,13 +23,33 @@ public class User {
         this.borrowedBooks = new ArrayList<Book>();
     }
 
-    public void checkOut() {
+    public void checkOut(Book book) {
     	// TODO should add a book for borrowedBooks,
     	// update borrowedBook to true
+
+        if (!book.isBorrowed()){
+            borrowedBooks.add(book);
+            book.setBorrowed(true);
+            System.out.println("User: " + name + ",borrows book: " + book.getBookTitle());
+        }
+        else {
+            System.out.println( "The book has been borrowed");
+    }
     }
     
-    public void checkIn() {
+    public void checkIn(Book book) {
     	// update book(s) to false...
+
+        if(borrowedBooks.contains(book)){
+            borrowedBooks.remove(book);
+             book.setBorrowed(false);
+            System.out.println(("User: " + name + ", cardNumber: " + cardNumber + ",return book: "+ book.getBookTitle() + ", Thank you for your shopping.");
+        }
+        else {
+            System.out.println(("User: " + name + ", cardNumber: " + cardNumber);
+        }
+
+        
     }
     public String getName() {
     	return this.name;
@@ -38,15 +58,16 @@ public class User {
     	return this.cardNumber;
     }
     
-    public List<Book> getBorrowedBooks(){
-        return BorrowedBooks;
+/*    public List<Book> getBorrowedBooks(){
+        return borrowedBooks;
     }
 
     public void borrowBook(Book book){
-        BorrowedBooks.add(book);
+        borrowedBooks.add(book);
     }
 
     public void returnBook(Book book){
-        BorrowedBooks.remove(book);
-    }
+        borrowedBooks.remove(book);
+    }  */ 
+        //can be deleted if repeat the code above
 }

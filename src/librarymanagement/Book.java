@@ -1,6 +1,6 @@
 package librarymanagement;
 
-public class Book {
+public class Book implements Comparable<Book> {
     private String bookTitle;
     private String author;
     private int ISBN;
@@ -70,5 +70,9 @@ public class Book {
         + ISBN + "\nBorrowed: " + borrowed;
     }
 
+    @Override
+    public int compareTo(Book o) {
+        return bookTitle.compareTo(o.bookTitle);
+    }
 
 }

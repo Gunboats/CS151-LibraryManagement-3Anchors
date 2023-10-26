@@ -38,4 +38,15 @@ public class User {
     	return this.cardNumber;
     }
     
+    public List<Book> getBorrowedBooks(){
+        return BorrowedBooks;
+    }
+
+    public void borrowBook(Book book){
+        BorrowedBooks.add(book);
+    }
+
+    public void returnBook(Book book){
+        BorrowedBooks.remove(book);
+    }
 }

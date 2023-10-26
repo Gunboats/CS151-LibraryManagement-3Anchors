@@ -1,10 +1,7 @@
 package librarymanagement;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.HashSet;
 
 public class Library {
     private String name;
@@ -12,8 +9,7 @@ public class Library {
     // ArrayList for sorting books
     // Map for tracking quantity
     private List<Book> bookList = new ArrayList<Book>();
-    private Map<Book, Integer> bookListMap = new HashMap<Book, Integer>();
-    private HashSet<User> userList = new HashSet<User>();
+    private List<User> userList = new ArrayList<User>();
 
     /**
      * Default constructor
@@ -40,17 +36,43 @@ public class Library {
 
     public void addUser(User user) {
         userList.add(user);
+        user.addCard(new LibraryCard(name, (int) (Math.random() * 90000) + 10000));
     }
 
     public void removeUser(User user) {
         userList.remove(user);
+        
     }
 
     public void displayBooks() {
-
+        bookList.sort(null);
+        for (Book b : bookList) {
+            System.out.println(b);
+        }
     }
 
     public void displayUsers() {
-        
+        userList.sort(null);
+        for (User user : userList) {
+            System.out.println(user);
+        }
+    }
+
+    public Book checkOutBook(User user, String title) {
+        int index = 0;
+        while (index < bookList.size() && !bookList.get(index).getBookTitle().equals(title)) {
+            index++;
+        }
+        if (index >= bookList.size()) {
+            System.out.println("Book not found");
+            return null;
+        }
+        Book book = bookList.remove(index);
+        if (!book.getBorrowed()){
+            user.borrowBook(book);
+            book.setBorrowed(true);
+            System.out.println("User: " + name + ",borrows book: " + book.getBookTitle() + ", Thank you for your shopping.");
+        }
+        return book;
     }
 }

@@ -5,9 +5,9 @@ import java.util.List;
 // 10/24/23
 // We may need to limit the amount of objects a user can check out
 
-public class User {
+public class User implements Comparable<User> {
     private String name;
-    private String cardNumber;
+    private List<LibraryCard> libraryCards;
     private List<Book> borrowedBooks;
 
     
@@ -19,7 +19,7 @@ public class User {
      */
     public User() {
         this.name = "John Doe";
-        this.cardNumber = "SM-123456789";
+        libraryCards = new ArrayList<LibraryCard>();
         this.borrowedBooks = new ArrayList<Book>();
     }
 
@@ -28,9 +28,9 @@ public class User {
      * @param name the user's name
      * @param cardNumber the card's ID
      */
-    public User(String name, String cardNumber) {
+    public User(String name) {
         this.name = name;
-        this.cardNumber = cardNumber;
+        libraryCards = new ArrayList<LibraryCard>();
         borrowedBooks = new ArrayList<Book>();
     }
 
@@ -38,19 +38,12 @@ public class User {
     	// TODO should add a book for borrowedBooks,
     	// update borrowedBook to true
 
-        if (!book.getBorrowed()){
-            borrowedBooks.add(book);
-            book.setBorrowed(true);
-            System.out.println("User: " + name + ",borrows book: " + book.getBookTitle() + ", Thank you for your shopping.");
-        }
-        else {
-            System.out.println( "The book has been borrowed");
-    }
+        
     }
     
     public void checkIn(Book book) {
     	// update book(s) to false...
- System.out.println(("User: " + name + ", cardNumber: " + cardNumber + ", is checking book: " + book.getBookTitle()));
+ System.out.println(("User: " + name + ", cards: " + getCardsAsString() + ", is checking book: " + book.getBookTitle()));
         if(borrowedBooks.contains(book)){
             borrowedBooks.remove(book);
              book.setBorrowed(false);
@@ -65,12 +58,32 @@ public class User {
     public String getName() {
     	return this.name;
     }
-    public String getCardNumber() {
-    	return this.cardNumber;
+    public List<LibraryCard> getCards() {
+    	List<LibraryCard> list = new ArrayList<LibraryCard>(libraryCards);
+        return list;
+    }
+
+    public String getCardsAsString() {
+        if (libraryCards.size() == 0) {
+            return "";
+        }
+        String str = libraryCards.get(0).toString();
+        for (int i = 1; i < libraryCards.size(); i++) {
+            str += ", " + libraryCards.get(i).toString();
+        }
+        return str;
     }
     
-/*    public List<Book> getBorrowedBooks(){
+    public List<Book> getBorrowedBooks(){
         return borrowedBooks;
+    }
+
+    public String getBooksAsString() {
+        String str = "";
+        for (Book book : borrowedBooks) {
+            str += book.toString() + "\n";
+        }
+        return str;
     }
 
     public void borrowBook(Book book){
@@ -79,6 +92,21 @@ public class User {
 
     public void returnBook(Book book){
         borrowedBooks.remove(book);
-    }  */ 
+    }
         //can be deleted if repeat the code above
+
+    public void addCard(LibraryCard c) {
+        libraryCards.add(c);
+    }
+
+    @Override
+    public int compareTo(User o) {
+        return name.compareTo(o.name);
+    }
+
+    @Override
+    public String toString() {
+        return "User: " + name + ", cards: " + getCardsAsString() +
+        "\nBooks: \n" + getBooksAsString(); 
+    }
 }

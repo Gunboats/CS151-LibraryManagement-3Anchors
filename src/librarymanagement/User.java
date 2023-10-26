@@ -30,7 +30,7 @@ public class User {
         if (!book.isBorrowed()){
             borrowedBooks.add(book);
             book.setBorrowed(true);
-            System.out.println("User: " + name + ",borrows book: " + book.getBookTitle());
+            System.out.println("User: " + name + ",borrows book: " + book.getBookTitle() + ", Thank you for your shopping.");
         }
         else {
             System.out.println( "The book has been borrowed");
@@ -39,14 +39,14 @@ public class User {
     
     public void checkIn(Book book) {
     	// update book(s) to false...
-
+ System.out.println(("User: " + name + ", cardNumber: " + cardNumber + ", is checking book: " + book.getBookTitle());
         if(borrowedBooks.contains(book)){
             borrowedBooks.remove(book);
              book.setBorrowed(false);
-            System.out.println(("User: " + name + ", cardNumber: " + cardNumber + ",return book: "+ book.getBookTitle() + ", Thank you for your shopping.");
+            System.out.println(("return book: "+ book.getBookTitle() + ", Thank you for your shopping.");
         }
         else {
-            System.out.println(("User: " + name + ", cardNumber: " + cardNumber);
+            System.out.println(("you didn't borrow this book.");
         }
 
         

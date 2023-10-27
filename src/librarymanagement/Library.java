@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Library {
     private String name;
-    
+    private String cardPrefix;
     // ArrayList for sorting books
     // Map for tracking quantity
     private List<Book> bookList = new ArrayList<Book>();
@@ -22,8 +22,9 @@ public class Library {
      * Parameterized constructor
      * @param name the library's name
      */
-    public Library(String name) {
+    public Library(String name, String cardPrefix) {
         this.name = name;
+        this.cardPrefix = cardPrefix;
     }
 
     public void addBook(Book book) {
@@ -36,7 +37,7 @@ public class Library {
 
     public void addUser(User user) {
         userList.add(user);
-        user.addCard(new LibraryCard(name, (int) (Math.random() * 90000) + 10000));
+        user.addCard(new LibraryCard(name, cardPrefix, (int) (Math.random() * 90000) + 10000));
     }
 
     public void removeUser(User user) {
@@ -71,7 +72,7 @@ public class Library {
         if (!book.getBorrowed()){
             user.borrowBook(book);
             book.setBorrowed(true);
-            System.out.println("User: " + name + ",borrows book: " + book.getBookTitle() + ", Thank you for your shopping.");
+            System.out.println("User: " + user.getName() + ",borrows book: " + book.getBookTitle() + ", Thank you for your shopping.");
         }
         return book;
     }

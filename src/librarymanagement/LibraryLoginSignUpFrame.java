@@ -67,7 +67,7 @@ public class LibraryLoginSignUpFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new EnterInformationButton("Sign up", true);
+				new EnterInformationFrame("Sign up", true);
 				
 				
 			}

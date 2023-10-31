@@ -25,6 +25,6 @@ public class LibraryGUI {
 	// The Window for displaying content
 		
 		
-		LibraryLoginSignUpGUI loginScreen = new LibraryLoginSignUpGUI();
+		LibraryLoginSignUpFrame loginScreen = new LibraryLoginSignUpFrame();
 	}
 }

@@ -49,17 +49,22 @@ public class LibraryLoginSignUpFrame {
 		labelLibName.setFont(new Font("Arial", Font.PLAIN, 20));
 		panelCenter.add(labelLibName);
 		
-		
-		
 		JButton signUp = new JButton("Sign up");
 		signUp.setAlignmentX(JButton.CENTER_ALIGNMENT);
-		
-
 		
 		JButton login = new JButton("  Login ");	
 		login.setAlignmentX(JButton.CENTER_ALIGNMENT);
 		
-		
+		login.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new EnterInformationFrame("Login", false);
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		
 		// signUp creates a new JFrame for the user to
 		// enter their information
@@ -68,8 +73,6 @@ public class LibraryLoginSignUpFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new EnterInformationFrame("Sign up", true);
-				
-				
 			}
 			
 		});
@@ -79,7 +82,6 @@ public class LibraryLoginSignUpFrame {
 		panelCenter.add(signUp);
 		panelCenter.add(Box.createVerticalGlue());
 		panelCenter.add(Box.createHorizontalGlue());
-		
 		
 		frame.add(panelSouth, BorderLayout.SOUTH);
 		frame.add(panelWest, BorderLayout.WEST);

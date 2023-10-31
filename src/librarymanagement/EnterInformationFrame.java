@@ -34,31 +34,77 @@ public class EnterInformationFrame {
 		panelNorth.setPreferredSize(new Dimension(600,230));
 		panelNorth.setBackground(Color.red);
 		
-		
 		enterInfoFrame.add(panelNorth, BorderLayout.NORTH);
 
 		if(!needsSignIn) {
+			
+			JButton loginButton = new JButton("Login");
+			loginButton.addActionListener(new ActionListener() {
+		
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					// Create user
+				}
+				
+			});
+			
+			JPanel panelWest = new JPanel();
 
+			
+			JPanel panelEast = new JPanel();
+			JPanel panelSouth = new JPanel();
+			
+			JLabel usernameLabel = new JLabel("Username: ");
+			JTextField usernameField = new JTextField();
+			JLabel passwordLabel = new JLabel("Password: ");
+			JTextField passwordField = new JTextField();
+			JPanel panelCenter = new JPanel(new GridLayout(2,2,5,40));
+		
+			panelWest.setPreferredSize(new Dimension(175,200));
+			panelEast.setPreferredSize(new Dimension(175,200));
+			panelSouth.setPreferredSize(new Dimension(200,230));
+			
+			panelCenter.add(usernameLabel);
+			panelCenter.add(usernameField);
+			panelCenter.add(passwordLabel);
+			panelCenter.add(passwordField);
+			
+			panelSouth.add(loginButton);
+			
+			enterInfoFrame.add(panelCenter, BorderLayout.CENTER);
+			enterInfoFrame.add(panelWest, BorderLayout.WEST);
+			enterInfoFrame.add(panelEast, BorderLayout.EAST);
+			
+			enterInfoFrame.add(panelSouth, BorderLayout.SOUTH);
+			
 		}
 		
 		
 		if (needsSignIn) {
 
-//			JButton button = new JButton();
-//			button.addActionListener(this);
+			JButton registerButton = new JButton("Register");
+			registerButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					// Create user
+				}
+				
+			});
 			
-			JPanel panelCenter = new JPanel(new GridLayout(2,2,5,40));
+			
+			
 			
 			JLabel firstNameLabel = new JLabel("First name: ");
 			JTextField firstNameField = new JTextField();
-			
-
 			JLabel lastNameLabel = new JLabel("Last name: ");
 			JTextField lastNameField = new JTextField();
 			
-			JPanel panelWest = new JPanel();
-
 			
+			JPanel panelCenter = new JPanel(new GridLayout(2,2,5,40));
+			JPanel panelWest = new JPanel();
 			JPanel panelEast = new JPanel();
 			JPanel panelSouth = new JPanel();
 			
@@ -75,23 +121,13 @@ public class EnterInformationFrame {
 			panelCenter.add(firstNameField);
 			panelCenter.add(lastNameLabel);
 			panelCenter.add(lastNameField);
+			panelSouth.add(registerButton);
+			
 			enterInfoFrame.add(panelCenter, BorderLayout.CENTER);
 			enterInfoFrame.add(panelWest, BorderLayout.WEST);
 			enterInfoFrame.add(panelEast, BorderLayout.EAST);
 			enterInfoFrame.add(panelSouth, BorderLayout.SOUTH);
 			
-			JButton registerButton = new JButton("Register");
-			registerButton.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					// Create user
-				}
-				
-			});
-			
-
 		}
 		enterInfoFrame.setVisible(true);
 		

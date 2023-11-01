@@ -20,11 +20,19 @@ public class EnterInformationFrame {
 	private String buttonName;
 	private String windowName;
 	
+	
+	//10/31/2023 I can take out some common elements like the panels in the frame and then
+	// reduce duplicate code
+	
 	EnterInformationFrame(String windowName, boolean needsSignIn) {
 		JFrame enterInfoFrame = new JFrame(windowName);
 		enterInfoFrame.setSize(600, 600);
 		enterInfoFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		JPanel panelWest = new JPanel();
+		JPanel panelEast = new JPanel();
+		JPanel panelSouth = new JPanel();
 		JPanel panelNorth = new JPanel();
+		
 		JLabel title = new JLabel(windowName);
 		title.setFont(new Font("Arial", Font.PLAIN, 20));
 		
@@ -33,6 +41,7 @@ public class EnterInformationFrame {
 		panelNorth.setAlignmentY(JPanel.BOTTOM_ALIGNMENT);
 		panelNorth.setPreferredSize(new Dimension(600,230));
 		panelNorth.setBackground(Color.red);
+		panelNorth.add(Box.createRigidArea(new Dimension(0,350)));
 		
 		enterInfoFrame.add(panelNorth, BorderLayout.NORTH);
 
@@ -44,16 +53,19 @@ public class EnterInformationFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					// Create user
+					// Compare user username and password
+					// create exceptions
+//					try {
+//						
+//					} catch() {
+//						
+//					}
+					
 				}
 				
 			});
 			
-			JPanel panelWest = new JPanel();
 
-			
-			JPanel panelEast = new JPanel();
-			JPanel panelSouth = new JPanel();
 			
 			JLabel usernameLabel = new JLabel("Username: ");
 			JTextField usernameField = new JTextField();
@@ -61,8 +73,8 @@ public class EnterInformationFrame {
 			JTextField passwordField = new JTextField();
 			JPanel panelCenter = new JPanel(new GridLayout(2,2,5,40));
 		
-			panelWest.setPreferredSize(new Dimension(175,200));
-			panelEast.setPreferredSize(new Dimension(175,200));
+			panelWest.setPreferredSize(new Dimension(195,200));
+			panelEast.setPreferredSize(new Dimension(195,200));
 			panelSouth.setPreferredSize(new Dimension(200,230));
 			
 			panelCenter.add(usernameLabel);
@@ -75,7 +87,6 @@ public class EnterInformationFrame {
 			enterInfoFrame.add(panelCenter, BorderLayout.CENTER);
 			enterInfoFrame.add(panelWest, BorderLayout.WEST);
 			enterInfoFrame.add(panelEast, BorderLayout.EAST);
-			
 			enterInfoFrame.add(panelSouth, BorderLayout.SOUTH);
 			
 		}
@@ -83,20 +94,6 @@ public class EnterInformationFrame {
 		
 		if (needsSignIn) {
 
-			JButton registerButton = new JButton("Register");
-			registerButton.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					// Create user
-				}
-				
-			});
-			
-			
-			
-			
 			JLabel firstNameLabel = new JLabel("First name: ");
 			JTextField firstNameField = new JTextField();
 			JLabel lastNameLabel = new JLabel("Last name: ");
@@ -104,15 +101,11 @@ public class EnterInformationFrame {
 			
 			
 			JPanel panelCenter = new JPanel(new GridLayout(2,2,5,40));
-			JPanel panelWest = new JPanel();
-			JPanel panelEast = new JPanel();
-			JPanel panelSouth = new JPanel();
-			
 
 			// These panels dimensions are used to squash the components into place because
 			// I don't know any other way with the default Java Swing layouts
-			panelWest.setPreferredSize(new Dimension(175,200));
-			panelEast.setPreferredSize(new Dimension(175,200));
+			panelWest.setPreferredSize(new Dimension(195,200));
+			panelEast.setPreferredSize(new Dimension(195,200));
 			panelSouth.setPreferredSize(new Dimension(200,230));
 			
 			panelWest.setBackground(Color.cyan);
@@ -121,12 +114,34 @@ public class EnterInformationFrame {
 			panelCenter.add(firstNameField);
 			panelCenter.add(lastNameLabel);
 			panelCenter.add(lastNameField);
-			panelSouth.add(registerButton);
 			
 			enterInfoFrame.add(panelCenter, BorderLayout.CENTER);
 			enterInfoFrame.add(panelWest, BorderLayout.WEST);
 			enterInfoFrame.add(panelEast, BorderLayout.EAST);
 			enterInfoFrame.add(panelSouth, BorderLayout.SOUTH);
+			
+			JButton registerButton = new JButton("Register");
+			registerButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					// Create user
+					String userFirstName = firstNameField.getText();
+					String userLastName = lastNameField.getText();
+					
+					
+//					try {
+//						
+//					} catch() {
+//						
+//					}
+					
+				}
+				
+			});
+			
+			panelSouth.add(registerButton);
 			
 		}
 		enterInfoFrame.setVisible(true);

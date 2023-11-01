@@ -32,6 +32,7 @@ public class LibraryLoginSignUpFrame {
 		// These panels dimensions are used to squash the components into place because
 		// I don't know any other way with the default Java Swing layouts
 		panelNorth.setPreferredSize(new Dimension(400,100));
+		
 		panelCenter.setLayout(new BoxLayout(panelCenter, BoxLayout.Y_AXIS));
 		panelCenter.add(Box.createVerticalGlue());
 		panelCenter.add(Box.createHorizontalGlue());
@@ -60,8 +61,6 @@ public class LibraryLoginSignUpFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new EnterInformationFrame("Login", false);
-				// TODO Auto-generated method stub
-				
 			}
 			
 		});
@@ -76,6 +75,9 @@ public class LibraryLoginSignUpFrame {
 			}
 			
 		});
+		
+		panelNorth.add(Box.createRigidArea(new Dimension(0,150)));
+		
 		panelCenter.add(Box.createRigidArea(new Dimension(100,20)));
 		panelCenter.add(login);
 		panelCenter.add(Box.createRigidArea(new Dimension(100,20)));

@@ -1,7 +1,9 @@
 package librarymanagement;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Library {
     private String name;
@@ -9,7 +11,8 @@ public class Library {
     // ArrayList for sorting books
     // Map for tracking quantity
     private List<Book> bookList = new ArrayList<Book>();
-    private List<User> userList = new ArrayList<User>();
+    private List<User> userList = new ArrayList<User>();  
+    private Map<String, User> cardNumAndUserMap = new HashMap<String, User>();
 
     /**
      * Default constructor
@@ -37,7 +40,7 @@ public class Library {
 
     public void addUser(User user) {
         userList.add(user);
-        user.addCard(new LibraryCard(name, cardPrefix, (int) (Math.random() * 90000) + 10000));
+        user.addCard(new LibraryCard(name, cardPrefix, (int) (Math.random() * 9000000) + 1000000));
     }
 
     public void removeUser(User user) {

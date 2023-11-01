@@ -9,7 +9,7 @@ public class User implements Comparable<User> {
     private String name;
     private List<LibraryCard> libraryCards;
     private List<Book> borrowedBooks;
-
+    private String phoneNumber;
     
     /**
      * Default constructor
@@ -21,6 +21,7 @@ public class User implements Comparable<User> {
         this.name = "John Doe";
         libraryCards = new ArrayList<LibraryCard>();
         this.borrowedBooks = new ArrayList<Book>();
+        this.phoneNumber = "555123456789";
     }
 
     /**
@@ -28,10 +29,11 @@ public class User implements Comparable<User> {
      * @param name the user's name
      * @param cardNumber the card's ID
      */
-    public User(String name) {
+    public User(String name, String phoneNumber) {
         this.name = name;
         libraryCards = new ArrayList<LibraryCard>();
         borrowedBooks = new ArrayList<Book>();
+        this.phoneNumber = phoneNumber;
     }
 
     public void checkOut(Book book) {
@@ -85,6 +87,10 @@ public class User implements Comparable<User> {
         }
         return str;
     }
+    
+    public String getPhoneNumber() {
+    	return this.phoneNumber;
+    }
 
     public void borrowBook(Book book){
         borrowedBooks.add(book);
@@ -98,6 +104,27 @@ public class User implements Comparable<User> {
     public void addCard(LibraryCard c) {
         libraryCards.add(c);
     }
+    
+    public boolean findLibraryCard(String libPrefix) {
+    	for (LibraryCard card : libraryCards) {
+    		if (card.getLibraryPrefix().equals(libPrefix)) {
+    			return true;
+    		} 
+    	}
+    	return false;
+    }
+    
+    public LibraryCard GetLibraryCard(String libPrefix) {
+    	if(findLibraryCard(libPrefix)) {
+    		for (LibraryCard card : libraryCards) {
+        		if (card.getLibraryPrefix().equals(libPrefix)) {
+        			return card;
+        		} 
+    		}
+    	}
+		return null;
+    }
+    
 
     @Override
     public int compareTo(User o) {

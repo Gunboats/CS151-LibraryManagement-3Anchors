@@ -24,7 +24,7 @@ public class EnterInformationFrame {
 	//10/31/2023 I can take out some common elements like the panels in the frame and then
 	// reduce duplicate code
 	
-	EnterInformationFrame(String windowName, boolean needsSignIn) {
+	EnterInformationFrame(String windowName, boolean needsSignUp) {
 		JFrame enterInfoFrame = new JFrame(windowName);
 		enterInfoFrame.setSize(600, 600);
 		enterInfoFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -40,13 +40,14 @@ public class EnterInformationFrame {
 		panelNorth.setAlignmentX(JPanel.CENTER_ALIGNMENT);
 		panelNorth.setAlignmentY(JPanel.BOTTOM_ALIGNMENT);
 		panelNorth.setPreferredSize(new Dimension(600,230));
-		panelNorth.setBackground(Color.red);
+//		panelNorth.setBackground(Color.red);
 		panelNorth.add(Box.createRigidArea(new Dimension(0,350)));
 		
 		enterInfoFrame.add(panelNorth, BorderLayout.NORTH);
 
-		if(!needsSignIn) {
+		if(!needsSignUp) {
 			
+
 			JButton loginButton = new JButton("Login");
 			loginButton.addActionListener(new ActionListener() {
 		
@@ -55,6 +56,8 @@ public class EnterInformationFrame {
 					// TODO Auto-generated method stub
 					// Compare user username and password
 					// create exceptions
+					
+					// work here
 //					try {
 //						
 //					} catch() {
@@ -92,28 +95,31 @@ public class EnterInformationFrame {
 		}
 		
 		
-		if (needsSignIn) {
+		if (needsSignUp) {
 
 			JLabel firstNameLabel = new JLabel("First name: ");
 			JTextField firstNameField = new JTextField();
 			JLabel lastNameLabel = new JLabel("Last name: ");
 			JTextField lastNameField = new JTextField();
+			JLabel phoneNumberLabel = new JLabel("Phone number: ");
+			JTextField phoneNumberField = new JTextField();
 			
-			
-			JPanel panelCenter = new JPanel(new GridLayout(2,2,5,40));
+			JPanel panelCenter = new JPanel(new GridLayout(3,2,5,40));
 
 			// These panels dimensions are used to squash the components into place because
 			// I don't know any other way with the default Java Swing layouts
 			panelWest.setPreferredSize(new Dimension(195,200));
 			panelEast.setPreferredSize(new Dimension(195,200));
-			panelSouth.setPreferredSize(new Dimension(200,230));
+			panelSouth.setPreferredSize(new Dimension(200,160));
 			
-			panelWest.setBackground(Color.cyan);
+//			panelWest.setBackground(Color.cyan);
 			
 			panelCenter.add(firstNameLabel);
 			panelCenter.add(firstNameField);
 			panelCenter.add(lastNameLabel);
 			panelCenter.add(lastNameField);
+			panelCenter.add(phoneNumberLabel);
+			panelCenter.add(phoneNumberField);
 			
 			enterInfoFrame.add(panelCenter, BorderLayout.CENTER);
 			enterInfoFrame.add(panelWest, BorderLayout.WEST);
@@ -130,7 +136,7 @@ public class EnterInformationFrame {
 					String userFirstName = firstNameField.getText();
 					String userLastName = lastNameField.getText();
 					
-					
+					// work here
 //					try {
 //						
 //					} catch() {

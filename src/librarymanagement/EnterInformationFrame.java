@@ -101,7 +101,9 @@ public class EnterInformationFrame {
 			JTextField firstNameField = new JTextField();
 			JLabel lastNameLabel = new JLabel("Last name: ");
 			JTextField lastNameField = new JTextField();
-			JLabel phoneNumberLabel = new JLabel("Phone number: ");
+			
+			// wow this works thats cool
+			JLabel phoneNumberLabel = new JLabel("<html>Phone number: <br/>(9 digits only)<html>");
 			JTextField phoneNumberField = new JTextField();
 			
 			JPanel panelCenter = new JPanel(new GridLayout(3,2,5,40));
@@ -135,13 +137,45 @@ public class EnterInformationFrame {
 					// Create user
 					String userFirstName = firstNameField.getText();
 					String userLastName = lastNameField.getText();
-					
+					String userPhoneNumber = phoneNumberField.getText();
+					boolean notDigit = false;
+					for (Character c: userPhoneNumber.toCharArray()) {
+						if (!Character.isDigit(c)) {
+							notDigit = true;
+							break;
+						}
+					}
 					// work here
-//					try {
-//						
-//					} catch() {
-//						
-//					}
+					try {
+						
+						
+						if(userFirstName.length() < 1) {
+							throw new LoginSignUpException.EmptyFirstName();
+						} else if(userLastName.length() < 1) {
+							throw new LoginSignUpException.EmptyLastName();
+						} else if (userPhoneNumber.length() < 1) {
+							throw new LoginSignUpException.EmptyPhoneNumber();
+						} else if (notDigit) {
+							throw new LoginSignUpException.InvalidPhoneNumber();
+						} else if (userPhoneNumber.length() != 9) {
+							throw new LoginSignUpException.InvalidPhoneNumberLength();
+						}
+						// check if phone number has non digits
+						// check if phone number is 9 digits
+						
+						
+					} catch(LoginSignUpException.EmptyFirstName emptyFirstName) {
+						
+						emptyFirstName.getMessage();
+					} catch(LoginSignUpException.EmptyLastName emptyLastName) {
+						emptyLastName.getMessage();
+					} catch(LoginSignUpException.EmptyPhoneNumber emptyPhoneNumber) {
+						emptyPhoneNumber.getMessage();
+					} catch(LoginSignUpException.InvalidPhoneNumber invalidNumber) {
+						invalidNumber.getMessage();
+					} catch(LoginSignUpException.InvalidPhoneNumberLength invalidNumberLength) {
+						invalidNumberLength.getMessage();
+					}
 					
 				}
 				

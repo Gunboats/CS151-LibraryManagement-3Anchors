@@ -33,7 +33,7 @@ public class SignUpException extends Exception {
 	
 	public static class InvalidPhoneNumber extends SignUpException {
 		public InvalidPhoneNumber() {
-			super("Exception: Phone number contains non-digits");
+			super("Exception: Phone number is not 9 digits long");
 		}
 	}
 	
@@ -41,6 +41,24 @@ public class SignUpException extends Exception {
 		public InvalidPhoneNumberLength() {
 			super("Exception: Phone number contains non-digits");
 		}
+	}
+	
+	public static class InvalidFirstName extends SignUpException {
+
+		public InvalidFirstName() {
+			super("Exception: First name contains non-letters");
+			// TODO Auto-generated constructor stub
+		}
+		
+	}
+	
+	public static class InvalidLastName extends SignUpException {
+
+		public InvalidLastName() {
+			super("Exception: Last name contains non-letters");
+			// TODO Auto-generated constructor stub
+		}
+		
 	}
 	
 }

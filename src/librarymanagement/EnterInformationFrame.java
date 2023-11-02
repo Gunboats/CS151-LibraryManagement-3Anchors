@@ -47,7 +47,12 @@ public class EnterInformationFrame {
 
 		if(!needsSignUp) {
 			
-
+			JLabel usernameLabel = new JLabel("Username: ");
+			JTextField usernameField = new JTextField();
+			JLabel passwordLabel = new JLabel("Password: ");
+			JTextField passwordField = new JTextField();
+			JPanel panelCenter = new JPanel(new GridLayout(2,2,5,40));
+		
 			JButton loginButton = new JButton("Login");
 			loginButton.addActionListener(new ActionListener() {
 		
@@ -56,8 +61,8 @@ public class EnterInformationFrame {
 					// TODO Auto-generated method stub
 					// Compare user username and password
 					// create exceptions
-					
-					
+					String copyUsername = usernameField.getText();
+					String copyPassword = passwordField.getText();
 					// work here
 //					try {
 //						
@@ -69,14 +74,6 @@ public class EnterInformationFrame {
 				
 			});
 			
-
-			
-			JLabel usernameLabel = new JLabel("Username: ");
-			JTextField usernameField = new JTextField();
-			JLabel passwordLabel = new JLabel("Password: ");
-			JTextField passwordField = new JTextField();
-			JPanel panelCenter = new JPanel(new GridLayout(2,2,5,40));
-		
 			panelWest.setPreferredSize(new Dimension(195,200));
 			panelEast.setPreferredSize(new Dimension(195,200));
 			panelSouth.setPreferredSize(new Dimension(200,230));
@@ -140,6 +137,24 @@ public class EnterInformationFrame {
 					String userLastName = lastNameField.getText();
 					String userPhoneNumber = phoneNumberField.getText();
 					boolean notDigit = false;
+					boolean invalidNameFirst = false;
+					boolean invalidNameLast = false;
+					
+					
+					for (Character c: userFirstName.toCharArray()) {
+						if (!Character.isLetter(c) && !c.equals('-') && 
+								!c.equals(' ') && !c.equals('\'') && !c.equals('.')) {
+							invalidNameFirst = true;
+							break;
+						}
+					}
+					for (Character c: userLastName.toCharArray()) {
+						if (!Character.isLetter(c) && !c.equals('-') && 
+								!c.equals(' ') && !c.equals('\'') && !c.equals('.')) {
+							invalidNameLast = true;
+							break;
+						}
+					}
 					for (Character c: userPhoneNumber.toCharArray()) {
 						if (!Character.isDigit(c)) {
 							notDigit = true;
@@ -151,10 +166,7 @@ public class EnterInformationFrame {
 					JPanel registrationExceptionPanel = new JPanel();
 					registrationExceptionPanel.add(Box.createRigidArea(new Dimension(0,150)));
 					
-					// work here
 					try {
-
-						
 						
 						if(userFirstName.length() < 1) {
 							throw new SignUpException.EmptyFirstName();
@@ -166,38 +178,57 @@ public class EnterInformationFrame {
 							throw new SignUpException.InvalidPhoneNumber();
 						} else if (userPhoneNumber.length() != 9) {
 							throw new SignUpException.InvalidPhoneNumberLength();
+						} else if (invalidNameFirst) {
+							throw new SignUpException.InvalidFirstName();
+						} else if (invalidNameLast) {
+							throw new SignUpException.InvalidLastName();
 						}
-						// check if phone number has non digits
-						// check if phone number is 9 digits
 						
 						
 					} catch(SignUpException.EmptyFirstName emptyFirstName) {
 						JLabel exceptionMessage = new JLabel(emptyFirstName.getMessage());
 						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
 						registrationExceptionPanel.add(exceptionMessage);
-						
+						registrationExceptionFrame.add(registrationExceptionPanel);
+						registrationExceptionFrame.setVisible(true);
 					} catch(SignUpException.EmptyLastName emptyLastName) {
 						JLabel exceptionMessage = new JLabel(emptyLastName.getMessage());
 						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
 						registrationExceptionPanel.add(exceptionMessage);
-						
+						registrationExceptionFrame.add(registrationExceptionPanel);
+						registrationExceptionFrame.setVisible(true);
 					} catch(SignUpException.EmptyPhoneNumber emptyPhoneNumber) {
 						JLabel exceptionMessage = new JLabel(emptyPhoneNumber.getMessage());
 						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
 						registrationExceptionPanel.add(exceptionMessage);
-						
+						registrationExceptionFrame.add(registrationExceptionPanel);
+						registrationExceptionFrame.setVisible(true);
 					} catch(SignUpException.InvalidPhoneNumber invalidNumber) {
 						JLabel exceptionMessage = new JLabel(invalidNumber.getMessage());
 						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
 						registrationExceptionPanel.add(exceptionMessage);
-						
+						registrationExceptionFrame.add(registrationExceptionPanel);
+						registrationExceptionFrame.setVisible(true);
 					} catch(SignUpException.InvalidPhoneNumberLength invalidNumberLength) {
 						JLabel exceptionMessage = new JLabel(invalidNumberLength.getMessage());
 						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
 						registrationExceptionPanel.add(exceptionMessage);
+						registrationExceptionFrame.add(registrationExceptionPanel);
+						registrationExceptionFrame.setVisible(true);
+					} catch(SignUpException.InvalidFirstName invalidFirstName) {
+						JLabel exceptionMessage = new JLabel(invalidFirstName.getMessage());
+						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
+						registrationExceptionPanel.add(exceptionMessage);
+						registrationExceptionFrame.add(registrationExceptionPanel);
+						registrationExceptionFrame.setVisible(true);
+					} catch(SignUpException.InvalidLastName invalidLastName) {
+						JLabel exceptionMessage = new JLabel(invalidLastName.getMessage());
+						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
+						registrationExceptionPanel.add(exceptionMessage);
+						registrationExceptionFrame.add(registrationExceptionPanel);
+						registrationExceptionFrame.setVisible(true);
 					}
-					registrationExceptionFrame.add(registrationExceptionPanel);
-					registrationExceptionFrame.setVisible(true);
+					
 				}
 				
 			});

@@ -1,11 +1,11 @@
 package librarymanagement;
 
-public class LoginSignUpException extends Exception {
-	public LoginSignUpException(String error) {
+public class SignUpException extends Exception {
+	public SignUpException(String error) {
 		super(error);
 	}
 	
-	public static class EmptyFirstName extends LoginSignUpException {
+	public static class EmptyFirstName extends SignUpException {
 
 		public EmptyFirstName() {
 			super("Exception: Empty first name field");
@@ -13,7 +13,7 @@ public class LoginSignUpException extends Exception {
 		}
 		
 	}
-	public static class EmptyLastName extends LoginSignUpException {
+	public static class EmptyLastName extends SignUpException {
 
 		public EmptyLastName() {
 			super("Exception: Empty last name field");
@@ -22,7 +22,7 @@ public class LoginSignUpException extends Exception {
 		
 	}
 	
-	public static class EmptyPhoneNumber extends LoginSignUpException {
+	public static class EmptyPhoneNumber extends SignUpException {
 
 		public EmptyPhoneNumber() {
 			super("Exception: Empty phone number field");
@@ -31,13 +31,13 @@ public class LoginSignUpException extends Exception {
 		
 	}
 	
-	public static class InvalidPhoneNumber extends LoginSignUpException {
+	public static class InvalidPhoneNumber extends SignUpException {
 		public InvalidPhoneNumber() {
 			super("Exception: Phone number contains non-digits");
 		}
 	}
 	
-	public static class InvalidPhoneNumberLength extends LoginSignUpException {
+	public static class InvalidPhoneNumberLength extends SignUpException {
 		public InvalidPhoneNumberLength() {
 			super("Exception: Phone number contains non-digits");
 		}

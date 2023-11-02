@@ -157,41 +157,41 @@ public class EnterInformationFrame {
 						
 						
 						if(userFirstName.length() < 1) {
-							throw new LoginSignUpException.EmptyFirstName();
+							throw new SignUpException.EmptyFirstName();
 						} else if(userLastName.length() < 1) {
-							throw new LoginSignUpException.EmptyLastName();
+							throw new SignUpException.EmptyLastName();
 						} else if (userPhoneNumber.length() < 1) {
-							throw new LoginSignUpException.EmptyPhoneNumber();
+							throw new SignUpException.EmptyPhoneNumber();
 						} else if (notDigit) {
-							throw new LoginSignUpException.InvalidPhoneNumber();
+							throw new SignUpException.InvalidPhoneNumber();
 						} else if (userPhoneNumber.length() != 9) {
-							throw new LoginSignUpException.InvalidPhoneNumberLength();
+							throw new SignUpException.InvalidPhoneNumberLength();
 						}
 						// check if phone number has non digits
 						// check if phone number is 9 digits
 						
 						
-					} catch(LoginSignUpException.EmptyFirstName emptyFirstName) {
+					} catch(SignUpException.EmptyFirstName emptyFirstName) {
 						JLabel exceptionMessage = new JLabel(emptyFirstName.getMessage());
 						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
 						registrationExceptionPanel.add(exceptionMessage);
 						
-					} catch(LoginSignUpException.EmptyLastName emptyLastName) {
+					} catch(SignUpException.EmptyLastName emptyLastName) {
 						JLabel exceptionMessage = new JLabel(emptyLastName.getMessage());
 						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
 						registrationExceptionPanel.add(exceptionMessage);
 						
-					} catch(LoginSignUpException.EmptyPhoneNumber emptyPhoneNumber) {
+					} catch(SignUpException.EmptyPhoneNumber emptyPhoneNumber) {
 						JLabel exceptionMessage = new JLabel(emptyPhoneNumber.getMessage());
 						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
 						registrationExceptionPanel.add(exceptionMessage);
 						
-					} catch(LoginSignUpException.InvalidPhoneNumber invalidNumber) {
+					} catch(SignUpException.InvalidPhoneNumber invalidNumber) {
 						JLabel exceptionMessage = new JLabel(invalidNumber.getMessage());
 						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
 						registrationExceptionPanel.add(exceptionMessage);
 						
-					} catch(LoginSignUpException.InvalidPhoneNumberLength invalidNumberLength) {
+					} catch(SignUpException.InvalidPhoneNumberLength invalidNumberLength) {
 						JLabel exceptionMessage = new JLabel(invalidNumberLength.getMessage());
 						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
 						registrationExceptionPanel.add(exceptionMessage);

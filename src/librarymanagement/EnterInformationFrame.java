@@ -57,6 +57,7 @@ public class EnterInformationFrame {
 					// Compare user username and password
 					// create exceptions
 					
+					
 					// work here
 //					try {
 //						
@@ -145,8 +146,14 @@ public class EnterInformationFrame {
 							break;
 						}
 					}
+					JFrame registrationExceptionFrame = new JFrame("Registration Error");
+					registrationExceptionFrame.setSize(new Dimension(600,200));
+					JPanel registrationExceptionPanel = new JPanel();
+					registrationExceptionPanel.add(Box.createRigidArea(new Dimension(0,150)));
+					
 					// work here
 					try {
+
 						
 						
 						if(userFirstName.length() < 1) {
@@ -165,18 +172,32 @@ public class EnterInformationFrame {
 						
 						
 					} catch(LoginSignUpException.EmptyFirstName emptyFirstName) {
+						JLabel exceptionMessage = new JLabel(emptyFirstName.getMessage());
+						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
+						registrationExceptionPanel.add(exceptionMessage);
 						
-						emptyFirstName.getMessage();
 					} catch(LoginSignUpException.EmptyLastName emptyLastName) {
-						emptyLastName.getMessage();
+						JLabel exceptionMessage = new JLabel(emptyLastName.getMessage());
+						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
+						registrationExceptionPanel.add(exceptionMessage);
+						
 					} catch(LoginSignUpException.EmptyPhoneNumber emptyPhoneNumber) {
-						emptyPhoneNumber.getMessage();
+						JLabel exceptionMessage = new JLabel(emptyPhoneNumber.getMessage());
+						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
+						registrationExceptionPanel.add(exceptionMessage);
+						
 					} catch(LoginSignUpException.InvalidPhoneNumber invalidNumber) {
-						invalidNumber.getMessage();
+						JLabel exceptionMessage = new JLabel(invalidNumber.getMessage());
+						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
+						registrationExceptionPanel.add(exceptionMessage);
+						
 					} catch(LoginSignUpException.InvalidPhoneNumberLength invalidNumberLength) {
-						invalidNumberLength.getMessage();
+						JLabel exceptionMessage = new JLabel(invalidNumberLength.getMessage());
+						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
+						registrationExceptionPanel.add(exceptionMessage);
 					}
-					
+					registrationExceptionFrame.add(registrationExceptionPanel);
+					registrationExceptionFrame.setVisible(true);
 				}
 				
 			});

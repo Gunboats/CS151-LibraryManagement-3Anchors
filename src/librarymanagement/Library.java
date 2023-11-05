@@ -13,7 +13,8 @@ public class Library {
     private List<Book> bookList = new ArrayList<Book>();
     private List<User> userList = new ArrayList<User>();  
     private Map<String, User> cardNumAndUserMap = new HashMap<String, User>();
-
+    private Map<String, User> phoneNumAndUserMap = new HashMap<String,User>();
+    
     /**
      * Default constructor
      */
@@ -37,14 +38,33 @@ public class Library {
     public void removeBook(Book book) {
         bookList.remove(book);
     }
-
+    public boolean containsNumber(String number) {
+    	if(!phoneNumAndUserMap.containsKey(number)) {
+    		return false;
+    	}
+    	return true;
+    }
+    
+    public Map<String, User> getPhoneNumAndUserMap()  {
+    	return phoneNumAndUserMap;
+    }
+    
     public void addUser(User user) {
-        userList.add(user);
-        user.addCard(new LibraryCard(name, cardPrefix, (int) (Math.random() * 9000000) + 1000000));
+    	if(!containsNumber(user.getPhoneNumber())) {
+            userList.add(user);
+            
+            phoneNumAndUserMap.put(user.getPhoneNumber(), user);
+            
+            user.addCard(new LibraryCard(name, cardPrefix, (int) (Math.random() * 9000000) + 1000000));
+            cardNumAndUserMap.put(user.getLibraryCard(cardPrefix).getFullCardID(), user);
+    	}
+
     }
 
     public void removeUser(User user) {
         userList.remove(user);
+        phoneNumAndUserMap.remove(user.getPhoneNumber());
+        cardNumAndUserMap.remove(user.getLibraryCard(cardPrefix).getFullCardID());
         
     }
 
@@ -75,8 +95,15 @@ public class Library {
         if (!book.getBorrowed()){
             user.borrowBook(book);
             book.setBorrowed(true);
-            System.out.println("User: " + user.getName() + ",borrows book: " + book.getBookTitle() + ", Thank you for your shopping.");
+            System.out.println("User: " + user.getName() + ",borrows book: " + book.getBookTitle() + ", Thank you for your support.");
         }
         return book;
     }
+    public String getName() {
+        return this.name;
+    }
+    public String getCardPrefix() {
+    	return cardPrefix;
+    }
+    
 }

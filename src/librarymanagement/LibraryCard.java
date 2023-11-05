@@ -4,11 +4,13 @@ public class LibraryCard {
     private String libraryPrefix;
     private int cardNumber;
     private String libraryName;
-
+    private String fullCardID;
+    
     public LibraryCard(String libName, String prefix, int num) {
         libraryPrefix = prefix;
         libraryName = libName;
         cardNumber = num;
+        fullCardID = prefix + "-" + num;
     }
 
     public String getLibraryPrefix() {
@@ -17,6 +19,11 @@ public class LibraryCard {
     public int getCardNumber() {
     	return cardNumber;
     }
+    
+    public String getFullCardID() {
+    	return fullCardID;
+    }
+    
     public String getLibraryName() {
         return libraryName;
     }

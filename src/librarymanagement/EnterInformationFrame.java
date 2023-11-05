@@ -16,6 +16,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import librarymanagement.LoginException.EmptyPassword;
+import librarymanagement.LoginException.IncorrectUsernamePasswordCombo;
+
 public class EnterInformationFrame {
 	private String buttonName;
 	private String windowName;
@@ -23,9 +26,24 @@ public class EnterInformationFrame {
 	
 	//10/31/2023 I can take out some common elements like the panels in the frame and then
 	// reduce duplicate code
-	
-	EnterInformationFrame(String windowName, boolean needsSignUp) {
+
+		/**
+		 * EnterInformationFrame creates 2 types of windows based on the boolean
+		 * if boolean is True: Create a window for signing up
+		 * if false: Create a window for logging in
+		 * Users can enter their first name, last name, and phone number to sign up
+		 * Signing up requires at least one character letter for first name and last name
+		 * Phone numbers are unique and only used once
+		 * Users enter their username and password to log in, their library card string
+		 * and their phone number
+		 * 
+		 * @param windowName The name of the login or signup window
+		 * @param needsSignUp True for sign up window, false for login window
+		 */
+	EnterInformationFrame(String windowName, boolean needsSignUp, Library library) {
+
 		JFrame enterInfoFrame = new JFrame(windowName);
+		enterInfoFrame.setResizable(false);
 		enterInfoFrame.setSize(600, 600);
 		enterInfoFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JPanel panelWest = new JPanel();
@@ -56,6 +74,18 @@ public class EnterInformationFrame {
 			JButton loginButton = new JButton("Login");
 			loginButton.addActionListener(new ActionListener() {
 		
+				
+				/**
+				 * Login button creates a window for the user to enter their information
+				 * There are 2 fields they use to enter their information
+				 * One is for password (phone number), one is for username (library card id)
+				 * If users incorrectly enter their information, there will be a popup 
+				 * explaining that something went wrong like an empty field, incorrect info
+				 * 
+				 * Not incorporated yet: I need to open a window on successful login for users
+				 * to access the library catalog
+				 * 
+				 */
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
@@ -64,11 +94,42 @@ public class EnterInformationFrame {
 					String copyUsername = usernameField.getText();
 					String copyPassword = passwordField.getText();
 					// work here
-//					try {
-//						
-//					} catch() {
-//						
-//					}
+					JFrame incorrectLogin = new JFrame("Incorrect Login");
+					JPanel incorrectPanel = new JPanel();
+					incorrectPanel.add(Box.createRigidArea(new Dimension(0,150)));
+					incorrectLogin.setSize(new Dimension(600,200));
+					
+					try {
+						if (copyUsername.length() < 1) {
+							throw new LoginException.EmptyUsername();
+						}
+						if (copyPassword.length() < 1) {
+							throw new LoginException.EmptyPassword();
+						}
+						if (!library.getPhoneNumAndUserMap().containsKey(copyPassword) || 
+						!library.getPhoneNumAndUserMap().get(copyPassword)
+						.getLibraryCard(library.getCardPrefix()).getFullCardID().equals(copyUsername)) {
+							throw new LoginException.IncorrectUsernamePasswordCombo();
+						}
+						
+						
+						
+					} catch(LoginException.EmptyUsername emptyUsername) {
+						JLabel exceptionMessage = new JLabel(emptyUsername.getMessage());
+						incorrectPanel.add(exceptionMessage);
+						incorrectLogin.add(incorrectPanel);
+						incorrectLogin.setVisible(true);
+					} catch (LoginException.EmptyPassword emptyPassword) {
+						JLabel exceptionMessage = new JLabel(emptyPassword.getMessage());
+						incorrectPanel.add(exceptionMessage);
+						incorrectLogin.add(incorrectPanel);
+						incorrectLogin.setVisible(true);
+					} catch (IncorrectUsernamePasswordCombo incorrectUserPass) {
+						JLabel exceptionMessage = new JLabel(incorrectUserPass.getMessage());
+						incorrectPanel.add(exceptionMessage);
+						incorrectLogin.add(incorrectPanel);
+						incorrectLogin.setVisible(true);
+					} 
 					
 				}
 				
@@ -91,7 +152,6 @@ public class EnterInformationFrame {
 			enterInfoFrame.add(panelSouth, BorderLayout.SOUTH);
 			
 		}
-		
 		
 		if (needsSignUp) {
 
@@ -129,6 +189,14 @@ public class EnterInformationFrame {
 			JButton registerButton = new JButton("Register");
 			registerButton.addActionListener(new ActionListener() {
 
+				
+				/**
+				 * Checks first name and last name if there are non-letters
+				 * or nonvalid characters, and throws exceptions to tell user
+				 * what went wrong with registering
+				 * Phone numbers must be all digits and 9 digits in total
+				 * 
+				 */
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
@@ -139,7 +207,6 @@ public class EnterInformationFrame {
 					boolean notDigit = false;
 					boolean invalidNameFirst = false;
 					boolean invalidNameLast = false;
-					
 					
 					for (Character c: userFirstName.toCharArray()) {
 						if (!Character.isLetter(c) && !c.equals('-') && 
@@ -161,6 +228,7 @@ public class EnterInformationFrame {
 							break;
 						}
 					}
+					
 					JFrame registrationExceptionFrame = new JFrame("Registration Error");
 					registrationExceptionFrame.setSize(new Dimension(600,200));
 					JPanel registrationExceptionPanel = new JPanel();
@@ -182,6 +250,34 @@ public class EnterInformationFrame {
 							throw new SignUpException.InvalidFirstName();
 						} else if (invalidNameLast) {
 							throw new SignUpException.InvalidLastName();
+						}
+						
+						User newUser = new User(userFirstName, userLastName, userPhoneNumber);
+						if(library.containsNumber(userPhoneNumber)) {
+							throw new SignUpException.PhoneNumberAlreadyUsed();
+						} else {
+							library.addUser(newUser);
+							enterInfoFrame.dispose();
+							JFrame registered = new JFrame("Registered");
+							registered.setSize(new Dimension(600,200));
+							JPanel registeredPanel = new JPanel();
+							registeredPanel.setLayout(new BoxLayout(registeredPanel, BoxLayout.Y_AXIS));
+							JLabel registrationMessage = new JLabel("You registered successfully!");
+							JLabel registrationUsername = new JLabel("Your username/library card is: " +
+									newUser.getLibraryCard(library.getCardPrefix()).getFullCardID());
+							JLabel registrationPassword = new JLabel("Your password is: " +
+									newUser.getPhoneNumber());
+							registeredPanel.add(Box.createRigidArea(new Dimension(0,75)));
+							registrationMessage.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+							registrationUsername.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+							registrationPassword.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+//							registeredPanel.add(Box.createRigidArea(new Dimension(0,150)));
+							registeredPanel.add(registrationMessage, BorderLayout.NORTH);
+							
+							registeredPanel.add(registrationUsername);
+							registeredPanel.add(registrationPassword);
+							registered.add(registeredPanel);
+							registered.setVisible(true);
 						}
 						
 						
@@ -227,6 +323,12 @@ public class EnterInformationFrame {
 						registrationExceptionPanel.add(exceptionMessage);
 						registrationExceptionFrame.add(registrationExceptionPanel);
 						registrationExceptionFrame.setVisible(true);
+					} catch(SignUpException.PhoneNumberAlreadyUsed numAlreadyUsed) {
+						JLabel exceptionMessage = new JLabel(numAlreadyUsed.getMessage());
+						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
+						registrationExceptionPanel.add(exceptionMessage);
+						registrationExceptionFrame.add(registrationExceptionPanel);
+						registrationExceptionFrame.setVisible(true);
 					}
 					
 				}
@@ -245,3 +347,4 @@ public class EnterInformationFrame {
 	
 	
 }
+x

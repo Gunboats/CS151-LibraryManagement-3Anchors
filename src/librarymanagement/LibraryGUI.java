@@ -24,7 +24,8 @@ public class LibraryGUI {
 	public static void main(String[] args) {
 	// The Window for displaying content
 		
-		
-		LibraryLoginSignUpFrame loginScreen = new LibraryLoginSignUpFrame();
+		Library library = new Library("a", "a");
+		// write to file..
+		LibraryLoginSignUpFrame loginScreen = new LibraryLoginSignUpFrame(library);
 	}
 }

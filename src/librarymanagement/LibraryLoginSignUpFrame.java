@@ -14,10 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class LibraryLoginSignUpFrame {
-	LibraryLoginSignUpFrame() {
+	LibraryLoginSignUpFrame(Library library) {
 		// Frame for logging in and signing in 
 		JFrame frame = new JFrame("Library Management System");
 		frame.setSize(new Dimension(800, 600));
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panelNorth = new JPanel();
@@ -60,7 +61,7 @@ public class LibraryLoginSignUpFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new EnterInformationFrame("Login", false);
+				new EnterInformationFrame("Login", false, library);
 			}
 			
 		});
@@ -71,7 +72,7 @@ public class LibraryLoginSignUpFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new EnterInformationFrame("Sign up", true);
+				new EnterInformationFrame("Sign up", true, library);
 			}
 			
 		});

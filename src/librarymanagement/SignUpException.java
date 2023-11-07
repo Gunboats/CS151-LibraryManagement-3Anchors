@@ -33,13 +33,13 @@ public class SignUpException extends Exception {
 	
 	public static class InvalidPhoneNumber extends SignUpException {
 		public InvalidPhoneNumber() {
-			super("Exception: Phone number is not 9 digits long");
+			super("Exception: Phone number contains non-digits");
 		}
 	}
 	
 	public static class InvalidPhoneNumberLength extends SignUpException {
 		public InvalidPhoneNumberLength() {
-			super("Exception: Phone number contains non-digits");
+			super("Exception: Phone number is not 9 digits");
 		}
 	}
 	
@@ -60,5 +60,14 @@ public class SignUpException extends Exception {
 		}
 		
 	}
+	public static class PhoneNumberAlreadyUsed extends SignUpException {
+
+		public PhoneNumberAlreadyUsed() {
+			super("Exception: This phone number is already registered");
+			// TODO Auto-generated constructor stub
+		}
+		
+	}
+	
 	
 }

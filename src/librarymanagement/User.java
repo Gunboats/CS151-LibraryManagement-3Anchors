@@ -1,14 +1,19 @@
 package librarymanagement;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 // 10/24/23
 // We may need to limit the amount of objects a user can check out
+import java.util.Map;
 
 public class User implements Comparable<User> {
-    private String name;
+    private String firstName;
+    private String lastName;
     private List<LibraryCard> libraryCards;
+    private Map<String, LibraryCard> passwordAndCards = new HashMap<String, LibraryCard>();
     private List<Book> borrowedBooks;
+    private String phoneNumber;
 
     
     /**
@@ -18,9 +23,11 @@ public class User implements Comparable<User> {
      * We don't have to use an ArrayList for borrowed books
      */
     public User() {
-        this.name = "John Doe";
+        this.firstName = "John";
+        this.lastName = "Doe";
         libraryCards = new ArrayList<LibraryCard>();
         this.borrowedBooks = new ArrayList<Book>();
+        this.phoneNumber = "123456789";
     }
 
     /**
@@ -28,26 +35,27 @@ public class User implements Comparable<User> {
      * @param name the user's name
      * @param cardNumber the card's ID
      */
-    public User(String name) {
-        this.name = name;
+    public User(String firstName, String lastName, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         libraryCards = new ArrayList<LibraryCard>();
         borrowedBooks = new ArrayList<Book>();
+        this.phoneNumber = phoneNumber;
     }
 
     public void checkOut(Book book) {
     	// TODO should add a book for borrowedBooks,
     	// update borrowedBook to true
-
         
     }
     
     public void checkIn(Book book) {
     	// update book(s) to false...
- System.out.println(("User: " + name + ", cards: " + getCardsAsString() + ", is checking book: " + book.getBookTitle()));
+ System.out.println(("User: " + this.firstName + " " + this.lastName + ", cards: " + getCardsAsString() + ", is checking book: " + book.getBookTitle()));
         if(borrowedBooks.contains(book)){
             borrowedBooks.remove(book);
              book.setBorrowed(false);
-            System.out.println("return book: "+ book.getBookTitle() + ", Thank you for your shopping.");
+            System.out.println("return book: "+ book.getBookTitle() + ", Thank you for your support.");
         }
         else {
             System.out.println("you didn't borrow this book.");
@@ -55,9 +63,16 @@ public class User implements Comparable<User> {
 
         
     }
-    public String getName() {
-    	return this.name;
+    public String getFirstName() {
+    	return this.firstName;
     }
+    public String getLastName() {
+    	return this.lastName;
+    }
+    public String getName() {
+    	return firstName + " " + lastName;
+    }
+    
     public List<LibraryCard> getCards() {
     	List<LibraryCard> list = new ArrayList<LibraryCard>(libraryCards);
         return list;
@@ -85,6 +100,10 @@ public class User implements Comparable<User> {
         }
         return str;
     }
+    
+    public String getPhoneNumber() {
+    	return this.phoneNumber;
+    }
 
     public void borrowBook(Book book){
         borrowedBooks.add(book);
@@ -98,15 +117,36 @@ public class User implements Comparable<User> {
     public void addCard(LibraryCard c) {
         libraryCards.add(c);
     }
-
+    
+    public boolean findLibraryCard(String libPrefix) {
+    	for (LibraryCard card : libraryCards) {
+    		if (card.getLibraryPrefix().equals(libPrefix)) {
+    			return true;
+    		} 
+    	}
+    	return false;
+    }
+    
+    public LibraryCard getLibraryCard(String libPrefix) {
+    	if(findLibraryCard(libPrefix)) {
+    		for (LibraryCard card : libraryCards) {
+        		if (card.getLibraryPrefix().equals(libPrefix)) {
+        			return card;
+        		} 
+    		}
+    	}
+		return null;
+    }
+    
     @Override
     public int compareTo(User o) {
-        return name.compareTo(o.name);
+    	String name = this.getName();
+        return name.compareTo(o.getName());
     }
 
     @Override
     public String toString() {
-        return "User: " + name + ", cards: " + getCardsAsString() +
+        return "User: " + getName() + ", cards: " + getCardsAsString() +
         "\nBooks: \n" + getBooksAsString(); 
     }
 }

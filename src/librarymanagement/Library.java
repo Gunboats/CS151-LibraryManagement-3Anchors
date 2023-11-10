@@ -82,20 +82,18 @@ public class Library {
         }
     }
 
-    public Book checkOutBook(User user, String title) {
-        int index = 0;
-        while (index < bookList.size() && !bookList.get(index).getBookTitle().equals(title)) {
-            index++;
-        }
-        if (index >= bookList.size()) {
-            System.out.println("Book not found");
-            return null;
-        }
-        Book book = bookList.remove(index);
+    public List<Book> getBookList() {
+    	return bookList;
+    }
+    
+    // I AM GONNA CHANGE CHECKOUTBOOK SO IT USES A BOOK OBJ INSTEAD
+    
+    public Book checkOutBook(User user, Book book) {
+        
         if (!book.getBorrowed()){
             user.borrowBook(book);
             book.setBorrowed(true);
-            System.out.println("User: " + user.getName() + ",borrows book: " + book.getBookTitle() + ", Thank you for your support.");
+            
         }
         return book;
     }

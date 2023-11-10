@@ -25,6 +25,10 @@ public class LibraryGUI {
 	// The Window for displaying content
 		
 		Library library = new Library("a", "a");
+		library.addBook(new Book());
+		library.addBook(new Book());
+		library.addBook(new Book());
+		library.addBook(new Book());
 		// write to file..
 		LibraryLoginSignUpFrame loginScreen = new LibraryLoginSignUpFrame(library);
 	}

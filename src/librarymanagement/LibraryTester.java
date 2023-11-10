@@ -10,7 +10,7 @@ public class LibraryTester {
         System.out.println("-----");
         library.displayUsers();
         System.out.println("-----");
-        library.checkOutBook(u, "Book");
+//        library.checkOutBook(u, "Book");
         System.out.println("-----");
         library.displayBooks();
         System.out.println("-----");

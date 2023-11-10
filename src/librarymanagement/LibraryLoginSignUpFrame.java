@@ -29,7 +29,8 @@ public class LibraryLoginSignUpFrame {
 		JPanel panelSouth = new JPanel();
 		JLabel labelLibName = new JLabel("Library Name");
 		
-		
+		JButton adminLogin = new JButton("Admin login");
+		adminLogin.setAlignmentX(JButton.RIGHT_ALIGNMENT);
 		// These panels dimensions are used to squash the components into place because
 		// I don't know any other way with the default Java Swing layouts
 		panelNorth.setPreferredSize(new Dimension(400,100));
@@ -51,17 +52,30 @@ public class LibraryLoginSignUpFrame {
 		labelLibName.setFont(new Font("Arial", Font.PLAIN, 20));
 		panelCenter.add(labelLibName);
 		
+		panelSouth.add(adminLogin);
+		
+		
+		
 		JButton signUp = new JButton("Sign up");
 		signUp.setAlignmentX(JButton.CENTER_ALIGNMENT);
 		
 		JButton login = new JButton("  Login ");	
 		login.setAlignmentX(JButton.CENTER_ALIGNMENT);
 		
+		
+		
+		// Creates a login window when the user presses the button
+		
 		login.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new EnterInformationFrame("Login", false, library);
+				EnterInformationFrame loginFrame = new EnterInformationFrame("Login", false, library, frame);
+				
+				if(loginFrame.login) {
+					
+					frame.dispose();
+				}
 			}
 			
 		});
@@ -72,7 +86,18 @@ public class LibraryLoginSignUpFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new EnterInformationFrame("Sign up", true, library);
+				new EnterInformationFrame("Sign up", true, library, frame);
+			}
+			
+		});
+		
+		
+		adminLogin.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
 			}
 			
 		});

@@ -22,7 +22,7 @@ import librarymanagement.LoginException.IncorrectUsernamePasswordCombo;
 public class EnterInformationFrame {
 	private String buttonName;
 	private String windowName;
-	
+	public boolean login;
 	
 	//10/31/2023 I can take out some common elements like the panels in the frame and then
 	// reduce duplicate code
@@ -40,8 +40,8 @@ public class EnterInformationFrame {
 		 * @param windowName The name of the login or signup window
 		 * @param needsSignUp True for sign up window, false for login window
 		 */
-	EnterInformationFrame(String windowName, boolean needsSignUp, Library library) {
-
+	public EnterInformationFrame(String windowName, boolean needsSignUp, Library library, JFrame frame) {
+		login = false;
 		JFrame enterInfoFrame = new JFrame(windowName);
 		enterInfoFrame.setResizable(false);
 		enterInfoFrame.setSize(600, 600);
@@ -88,9 +88,7 @@ public class EnterInformationFrame {
 				 */
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					// Compare user username and password
-					// create exceptions
+
 					String copyUsername = usernameField.getText();
 					String copyPassword = passwordField.getText();
 					// work here
@@ -112,7 +110,14 @@ public class EnterInformationFrame {
 							throw new LoginException.IncorrectUsernamePasswordCombo();
 						}
 						
-						
+						if(library.getPhoneNumAndUserMap().containsKey(copyPassword) && 
+								library.getPhoneNumAndUserMap().get(copyPassword).getLibraryCard(library.getCardPrefix()).getFullCardID().equals(copyUsername)) {
+							frame.dispose();
+							enterInfoFrame.dispose();
+							
+							User copyUser = library.getPhoneNumAndUserMap().get(copyPassword);
+							new LibraryCatalogMenu(library, copyUser);
+						}
 						
 					} catch(LoginException.EmptyUsername emptyUsername) {
 						JLabel exceptionMessage = new JLabel(emptyUsername.getMessage());
@@ -340,6 +345,13 @@ public class EnterInformationFrame {
 		}
 		enterInfoFrame.setVisible(true);
 		
+	}
+	
+	public boolean getLogin() {
+		return login;
+	}
+	public void setLogin() {
+		login = true;
 	}
 	
 

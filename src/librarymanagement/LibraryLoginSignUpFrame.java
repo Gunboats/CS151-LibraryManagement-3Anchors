@@ -70,7 +70,7 @@ public class LibraryLoginSignUpFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				EnterInformationFrame loginFrame = new EnterInformationFrame("Login", false, library, frame);
+				EnterInformationFrame loginFrame = new EnterLoginFrame("Login", library, frame);
 				
 				if(loginFrame.login) {
 					
@@ -86,7 +86,7 @@ public class LibraryLoginSignUpFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new EnterInformationFrame("Sign up", true, library, frame);
+				new EnterSignUpFrame("Sign up", library, frame);
 			}
 			
 		});

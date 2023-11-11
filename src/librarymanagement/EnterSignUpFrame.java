@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 
 public class EnterSignUpFrame extends EnterInformationFrame{
 
-	public EnterSignUpFrame(String windowName, Library library, JFrame frame) {
+	public EnterSignUpFrame(String windowName, Library library, JFrame frame, boolean refresh) {
 		super(windowName, library, frame);
 		// TODO Auto-generated constructor stub
 
@@ -35,9 +35,9 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 
 			// These panels dimensions are used to squash the components into place because
 			// I don't know any other way with the default Java Swing layouts
-			panelWest.setPreferredSize(new Dimension(195,200));
-			panelEast.setPreferredSize(new Dimension(195,200));
-			panelSouth.setPreferredSize(new Dimension(200,160));
+			getPanelWest().setPreferredSize(new Dimension(195,200));
+			getPanelEast().setPreferredSize(new Dimension(195,200));
+			getPanelSouth().setPreferredSize(new Dimension(200,160));
 			
 //			panelWest.setBackground(Color.cyan);
 			
@@ -49,9 +49,9 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 			panelCenter.add(phoneNumberField);
 			
 			enterInfoFrame.add(panelCenter, BorderLayout.CENTER);
-			enterInfoFrame.add(panelWest, BorderLayout.WEST);
-			enterInfoFrame.add(panelEast, BorderLayout.EAST);
-			enterInfoFrame.add(panelSouth, BorderLayout.SOUTH);
+			enterInfoFrame.add(getPanelWest(), BorderLayout.WEST);
+			enterInfoFrame.add(getPanelEast(), BorderLayout.EAST);
+			enterInfoFrame.add(getPanelSouth(), BorderLayout.SOUTH);
 			
 			JButton registerButton = new JButton("Register");
 			registerButton.addActionListener(new ActionListener() {
@@ -100,6 +100,7 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 					registrationExceptionFrame.setSize(new Dimension(600,200));
 					JPanel registrationExceptionPanel = new JPanel();
 					registrationExceptionPanel.add(Box.createRigidArea(new Dimension(0,150)));
+
 					
 					try {
 						
@@ -123,8 +124,16 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 						if(library.containsNumber(userPhoneNumber)) {
 							throw new SignUpException.PhoneNumberAlreadyUsed();
 						} else {
+
 							library.addUser(newUser);
 							enterInfoFrame.dispose();
+							
+							if (refresh) {
+								frame.dispose();
+								new LibraryUserMenu(library);
+							}
+							
+							
 							JFrame registered = new JFrame("Registered");
 							registered.setSize(new Dimension(600,200));
 							JPanel registeredPanel = new JPanel();
@@ -145,6 +154,7 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 							registeredPanel.add(registrationPassword);
 							registered.add(registeredPanel);
 							registered.setVisible(true);
+
 						}
 						
 						
@@ -202,7 +212,7 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 				
 			});
 			
-			panelSouth.add(registerButton);
+			getPanelSouth().add(registerButton);
 			enterInfoFrame.setVisible(true);
 		
 	}

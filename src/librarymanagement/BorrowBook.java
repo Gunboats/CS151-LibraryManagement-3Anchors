@@ -14,4 +14,13 @@ public class BorrowBook extends Exception {
 		}
 		
 	}
+	
+	public static class NoBorrowedBooks extends BorrowBook {
+
+		NoBorrowedBooks() {
+			super("Exception: No books were borrowed");
+			// TODO Auto-generated constructor stub
+		}
+		
+	}
 }

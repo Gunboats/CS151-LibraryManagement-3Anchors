@@ -29,7 +29,21 @@ public class LibraryGUI {
 		library.addBook(new Book());
 		library.addBook(new Book());
 		library.addBook(new Book());
+		library.addBook(new Book());
+		library.addBook(new Book());
+		library.addBook(new Book());
+		library.addBook(new Book());
+		library.addBook(new Book());
+		library.addBook(new Book());
+		library.addBook(new Book());
+		library.addBook(new Book());
 		// write to file..
+		library.addUser(new User("a", "a", "123123126"));
+		library.addUser(new User("a", "a", "123123122"));
+		library.addUser(new User("a", "a", "123123121"));
+		library.addUser(new User("a", "a", "123123124"));
+		library.addUser(new User("a", "a", "123123125"));
 		LibraryLoginSignUpFrame loginScreen = new LibraryLoginSignUpFrame(library);
+		
 	}
 }

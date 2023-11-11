@@ -72,7 +72,7 @@ public class LibraryLoginSignUpFrame {
 			public void actionPerformed(ActionEvent e) {
 				EnterInformationFrame loginFrame = new EnterLoginFrame("Login", library, frame);
 				
-				if(loginFrame.login) {
+				if(loginFrame.getLogin()) {
 					
 					frame.dispose();
 				}
@@ -86,7 +86,7 @@ public class LibraryLoginSignUpFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new EnterSignUpFrame("Sign up", library, frame);
+				new EnterSignUpFrame("Sign up", library, frame, false);
 			}
 			
 		});
@@ -96,7 +96,7 @@ public class LibraryLoginSignUpFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				new EnterLoginAdminFrame("Admin login", library, frame);
 				
 			}
 			

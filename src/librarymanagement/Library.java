@@ -14,7 +14,8 @@ public class Library {
     private List<User> userList = new ArrayList<User>();  
     private Map<String, User> cardNumAndUserMap = new HashMap<String, User>();
     private Map<String, User> phoneNumAndUserMap = new HashMap<String,User>();
-    
+    private String adminUsername = "admin";
+    private String adminPassword = "password";
     /**
      * Default constructor
      */
@@ -86,6 +87,10 @@ public class Library {
     	return bookList;
     }
     
+    public List<User> getuserList() {
+    	return userList;
+    }
+    
     // I AM GONNA CHANGE CHECKOUTBOOK SO IT USES A BOOK OBJ INSTEAD
     
     public Book checkOutBook(User user, Book book) {
@@ -97,6 +102,15 @@ public class Library {
         }
         return book;
     }
+    
+    public String getAdminUsername() {
+    	return adminUsername;
+    }
+    
+    public String getAdminPassword() {
+    	return adminPassword;
+    }
+    
     public String getName() {
         return this.name;
     }

@@ -2,6 +2,7 @@ package librarymanagement;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,20 +26,27 @@ public class LibraryCatalogMenu {
 		JScrollPane bookCatalog = new JScrollPane(bookPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		bookCatalog.getVerticalScrollBar().setUnitIncrement(15);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		bookPanel.setPreferredSize(new Dimension(400,600));
+		
 		
 		ArrayList<Book> toBorrowList = new ArrayList<Book>();
 		
-		int length = library.getBookList().size()/2 + library.getBookList().size() %2 ;
 		
-		GridLayout panelLayout = new GridLayout(length, 4);
+		JPanel southPanel = new JPanel();
+		
+		
+		FlowLayout panelLayout = new FlowLayout(FlowLayout.LEFT, 25, 5);
+		bookPanel.setLayout(panelLayout);
 		JButton borrowBooks = new JButton("Borrow");
-		borrowBooks.setSize(new Dimension(100,40));
+		borrowBooks.setPreferredSize(new Dimension(100,40));
+		
+		southPanel.add(borrowBooks);
 		
 		for(Book b: library.getBookList()) {
 			JLabel label = new JLabel("<html>" + b.getBookTitle() + "<br/>" + 
 		b.getAuthor() + "<br/>" + (b.getBorrowed() ? "Borrowed" : "Available") + "<html>");
 			
-			label.setSize(new Dimension(150,60));
+			label.setSize(new Dimension(180,60));
 			JCheckBox borrowCheckBox = new JCheckBox();
 			borrowCheckBox.addItemListener(new ItemListener() {
 
@@ -75,18 +83,20 @@ public class LibraryCatalogMenu {
 						} 
 					}
 				
+					if(toBorrowList.isEmpty()) {
+						throw new BorrowBook.NoBorrowedBooks();
+					}
+					
 					for (Book b: toBorrowList) {
 //						ok actually borrow this time
 						
 						library.checkOutBook(user, b);
 					}
 					frame.dispose();
-					
+					new LibraryCatalogMenu(library, user);
 					// TO BE ADDED
 					// show user's entire borrowed book list
-					// admin login
-					// admin remove and add users
-					
+					// admin add users
 					
 					JFrame thanksFrame = new JFrame("Thank you");
 					thanksFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -118,6 +128,11 @@ public class LibraryCatalogMenu {
 					borrowFailPanel.add(exceptionMessage);
 					borrowExceptionFrame.add(borrowFailPanel);
 					borrowExceptionFrame.setVisible(true);
+				} catch (BorrowBook.NoBorrowedBooks noBooks) {
+					JLabel exceptionMessage = new JLabel(noBooks.getMessage());
+					borrowFailPanel.add(exceptionMessage);
+					borrowExceptionFrame.add(borrowFailPanel);
+					borrowExceptionFrame.setVisible(true);
 				}
 				
 			}
@@ -125,8 +140,8 @@ public class LibraryCatalogMenu {
 		});
 		
 		
-		frame.add(bookCatalog);
-		frame.add(borrowBooks, BorderLayout.SOUTH);
+		frame.add(bookCatalog, BorderLayout.CENTER);
+		frame.add(southPanel, BorderLayout.SOUTH);
 		frame.setSize(new Dimension(800,600));
 
 		frame.setVisible(true);

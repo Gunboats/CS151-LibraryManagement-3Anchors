@@ -97,21 +97,21 @@ public class EnterLoginFrame extends EnterInformationFrame{
 				
 			});
 			
-			panelWest.setPreferredSize(new Dimension(195,200));
-			panelEast.setPreferredSize(new Dimension(195,200));
-			panelSouth.setPreferredSize(new Dimension(200,230));
+			getPanelWest().setPreferredSize(new Dimension(195,200));
+			getPanelEast().setPreferredSize(new Dimension(195,200));
+			getPanelSouth().setPreferredSize(new Dimension(200,230));
 			
 			panelCenter.add(usernameLabel);
 			panelCenter.add(usernameField);
 			panelCenter.add(passwordLabel);
 			panelCenter.add(passwordField);
 			
-			panelSouth.add(loginButton);
+			getPanelSouth().add(loginButton);
 			
 			enterInfoFrame.add(panelCenter, BorderLayout.CENTER);
-			enterInfoFrame.add(panelWest, BorderLayout.WEST);
-			enterInfoFrame.add(panelEast, BorderLayout.EAST);
-			enterInfoFrame.add(panelSouth, BorderLayout.SOUTH);
+			enterInfoFrame.add(getPanelWest(), BorderLayout.WEST);
+			enterInfoFrame.add(getPanelEast(), BorderLayout.EAST);
+			enterInfoFrame.add(getPanelSouth(), BorderLayout.SOUTH);
 			enterInfoFrame.setVisible(true);
 		
 	}

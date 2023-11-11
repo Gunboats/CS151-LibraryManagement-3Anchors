@@ -22,12 +22,12 @@ import librarymanagement.LoginException.IncorrectUsernamePasswordCombo;
 public class EnterInformationFrame {
 	private String buttonName;
 	private String windowName;
-	public boolean login;
+	private boolean login;
 	
-	JPanel panelWest = new JPanel();
-	JPanel panelEast = new JPanel();
-	JPanel panelSouth = new JPanel();
-	JPanel panelNorth = new JPanel();
+	private JPanel panelWest = new JPanel();
+	private JPanel panelEast = new JPanel();
+	private JPanel panelSouth = new JPanel(); // setting this private messes with resolution
+	private JPanel panelNorth = new JPanel();
 	
 	JFrame enterInfoFrame = new JFrame();
 
@@ -45,8 +45,7 @@ public class EnterInformationFrame {
 		 * Users enter their username and password to log in, their library card string
 		 * and their phone number
 		 * 
-		 * @param windowName The name of the login or signup window
-		 * @param needsSignUp True for sign up window, false for login window
+		 * @param windowName The name of the window
 		 */
 	public EnterInformationFrame(String windowName, Library library, JFrame frame) {
 		login = false;
@@ -69,18 +68,29 @@ public class EnterInformationFrame {
 
 
 		
-
-		
-		
 	}
 	
 	public boolean getLogin() {
 		return login;
 	}
-	public void setLogin() {
-		login = true;
+
+	public JPanel getPanelSouth() {
+		return panelSouth;
+		
 	}
 	
+	public JPanel getPanelEast() {
+		return panelEast;
+		
+	}
+	public JPanel getPanelWest() {
+		return panelWest;
+		
+	}
+	public JPanel getPanelNorth() {
+		return panelNorth;
+		
+	}
 
 
 	

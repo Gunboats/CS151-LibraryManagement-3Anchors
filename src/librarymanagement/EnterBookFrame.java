@@ -15,6 +15,18 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class EnterBookFrame {
+	
+	
+	/**
+	 * Creates a JFrame allowing admins to make a book with 
+	 * an admin specified name and author
+	 * On successful creation, it is added to the library's
+	 * list of books, and will refresh the JFrame for the 
+	 * library's catalog of books, showing that the new book
+	 * is in fact, in the library's catalog
+	 * @param library The library the book will be added to
+	 * @param frame The catalog frame that gets refreshed
+	 */
 	EnterBookFrame(Library library, JFrame frame) {
 		JFrame addBookFrame = new JFrame();
 		addBookFrame.setSize(new Dimension(600,600));
@@ -55,12 +67,20 @@ public class EnterBookFrame {
 		addBookFrame.add(panelWest, BorderLayout.WEST);
 		addBookFrame.add(panelEast, BorderLayout.EAST);
 		addBookFrame.add(panelSouth, BorderLayout.SOUTH);
+
 		
+		/**
+		 * On pressing addBook, it checks that the title and
+		 * author field are not empty. If they are both not
+		 * empty, it makes the book and adds the book to the library
+		 * and refreshes the catalog
+		 */
 		addBook.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JFrame addException = new JFrame("Add Excepotion");
+				addException.setSize(new Dimension(600,200));
 				JPanel addExceptionPanel = new JPanel();
 				
 				try {
@@ -82,16 +102,14 @@ public class EnterBookFrame {
 					addExceptionPanel.add(exceptionMessage);
 					addException.add(addExceptionPanel);
 					addException.setVisible(true);
+					LibraryGUI.openJFrames.add(addException);
 				} catch(AddRemoveBookException.EmptyAuthor noAuthor) {
 					JLabel exceptionMessage = new JLabel(noAuthor.getMessage());
 					addExceptionPanel.add(exceptionMessage);
 					addException.add(addExceptionPanel);
 					addException.setVisible(true);
+					LibraryGUI.openJFrames.add(addException);
 				}
-				
-
-				
-//				library.addBook(null);
 				
 			}
 			
@@ -99,6 +117,7 @@ public class EnterBookFrame {
 
 		
 		addBookFrame.setVisible(true);
+		LibraryGUI.openJFrames.add(addBookFrame);
 		
 		
 	}

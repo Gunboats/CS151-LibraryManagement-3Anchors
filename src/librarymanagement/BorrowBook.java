@@ -10,7 +10,7 @@ public class BorrowBook extends Exception {
 
 		CannotBorrow() {
 			super("A book trying to be checked out is already borrowed");
-			// TODO Auto-generated constructor stub
+			
 		}
 		
 	}
@@ -19,7 +19,16 @@ public class BorrowBook extends Exception {
 
 		NoBorrowedBooks() {
 			super("Exception: No books were borrowed");
-			// TODO Auto-generated constructor stub
+			
+		}
+		
+	}
+	
+	public static class NoBorrowedBooksReturned extends BorrowBook {
+
+		NoBorrowedBooksReturned() {
+			super("Exception: No books borrowed were returned");
+			
 		}
 		
 	}

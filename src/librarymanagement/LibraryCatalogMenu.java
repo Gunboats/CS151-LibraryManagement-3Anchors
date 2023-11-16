@@ -20,6 +20,18 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class LibraryCatalogMenu {
+	
+	/**
+	 * Creates the library catalog for users, allowing them
+	 * to borrow books, and access their borrowed books list,
+	 * and then logout, returning them to the main menu
+	 * Users select check boxes to choose which books to borrow
+	 * but they are prevented from borrowing already borrowed books
+	 * Successful borrowing will tell users what they borrowed, but
+	 * unsuccessful borrowing will give a popup
+	 * @param library
+	 * @param user
+	 */
 	LibraryCatalogMenu(Library library, User user) {
 		JFrame frame = new JFrame("Library Catalog");
 		JPanel bookPanel = new JPanel();
@@ -38,9 +50,15 @@ public class LibraryCatalogMenu {
 		FlowLayout panelLayout = new FlowLayout(FlowLayout.LEFT, 25, 5);
 		bookPanel.setLayout(panelLayout);
 		JButton borrowBooks = new JButton("Borrow");
-		borrowBooks.setPreferredSize(new Dimension(100,40));
+		
+		
+		JButton booksBorrowed = new JButton("Books Borrowed");
+		JButton logout = new JButton("Logout");
+		
 		
 		southPanel.add(borrowBooks);
+		southPanel.add(booksBorrowed);
+		southPanel.add(logout);
 		
 		for(Book b: library.getBookList()) {
 			JLabel label = new JLabel("<html>" + b.getBookTitle() + "<br/>" + 
@@ -99,6 +117,7 @@ public class LibraryCatalogMenu {
 					// admin add users
 					
 					JFrame thanksFrame = new JFrame("Thank you");
+					
 					thanksFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					thanksFrame.setSize(new Dimension(800,600));
 					JPanel thanksPanel = new JPanel();
@@ -122,28 +141,52 @@ public class LibraryCatalogMenu {
 					thanksPanel.add(thanksLabel);
 					thanksFrame.add(thanksPanel);
 					thanksFrame.setVisible(true);
+					LibraryGUI.openJFrames.add(thanksFrame);
 					
 				} catch(BorrowBook.CannotBorrow bookBorrowed) {
 					JLabel exceptionMessage = new JLabel(bookBorrowed.getMessage());
 					borrowFailPanel.add(exceptionMessage);
 					borrowExceptionFrame.add(borrowFailPanel);
 					borrowExceptionFrame.setVisible(true);
+					LibraryGUI.openJFrames.add(borrowExceptionFrame);
 				} catch (BorrowBook.NoBorrowedBooks noBooks) {
 					JLabel exceptionMessage = new JLabel(noBooks.getMessage());
 					borrowFailPanel.add(exceptionMessage);
 					borrowExceptionFrame.add(borrowFailPanel);
 					borrowExceptionFrame.setVisible(true);
+					LibraryGUI.openJFrames.add(borrowExceptionFrame);
 				}
 				
 			}
 			
 		});
 		
+		booksBorrowed.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				LibraryBorrowedBooksMenu borrowedBooks = new LibraryBorrowedBooksMenu(user);
+				
+			}
+			
+		});
+		
+		logout.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				LibraryGUI.closeJFrames();
+				new LibraryLoginSignUpFrame(library);
+			}
+			
+		});
 		
 		frame.add(bookCatalog, BorderLayout.CENTER);
 		frame.add(southPanel, BorderLayout.SOUTH);
 		frame.setSize(new Dimension(800,600));
-
+		LibraryGUI.openJFrames.add(frame);
 		frame.setVisible(true);
 	}
 	

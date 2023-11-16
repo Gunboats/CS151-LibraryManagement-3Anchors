@@ -10,6 +10,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -19,10 +20,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class LibraryGUI {
-	
+	public static ArrayList<JFrame> openJFrames;
 	
 	public static void main(String[] args) {
-	// The Window for displaying content
+	// The Class for displaying content
+		openJFrames = new ArrayList<JFrame>();
 		
 		Library library = new Library("a", "a");
 		library.addBook(new Book());
@@ -46,4 +48,18 @@ public class LibraryGUI {
 		LibraryLoginSignUpFrame loginScreen = new LibraryLoginSignUpFrame(library);
 		
 	}
+	
+	/**
+	 * Closes the frames that were opened and added to the array list,
+	 * and then empties the array list of open frames
+	 */
+	public static void closeJFrames() {
+		for (JFrame j: openJFrames) {
+			j.dispose();
+		}
+		
+		openJFrames = new ArrayList<JFrame>();
+	}
+	
+	
 }

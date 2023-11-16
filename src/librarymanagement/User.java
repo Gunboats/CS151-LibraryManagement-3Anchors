@@ -111,6 +111,7 @@ public class User implements Comparable<User> {
 
     public void returnBook(Book book){
         borrowedBooks.remove(book);
+        book.setBorrowed(false);
     }
         //can be deleted if repeat the code above
 

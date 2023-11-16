@@ -26,26 +26,23 @@ public class EnterInformationFrame {
 	
 	private JPanel panelWest = new JPanel();
 	private JPanel panelEast = new JPanel();
-	private JPanel panelSouth = new JPanel(); // setting this private messes with resolution
+	private JPanel panelSouth = new JPanel(); 
 	private JPanel panelNorth = new JPanel();
 	
 	JFrame enterInfoFrame = new JFrame();
 
-	
-	//10/31/2023 I can take out some common elements like the panels in the frame and then
-	// reduce duplicate code
 
 		/**
-		 * EnterInformationFrame creates 2 types of windows based on the boolean
-		 * if boolean is True: Create a window for signing up
-		 * if false: Create a window for logging in
+		 * EnterInformationFrame is extended by children to create 2 types 
+		 * of windows: a window for signing up, and a window for logging in
 		 * Users can enter their first name, last name, and phone number to sign up
-		 * Signing up requires at least one character letter for first name and last name
-		 * Phone numbers are unique and only used once
-		 * Users enter their username and password to log in, their library card string
-		 * and their phone number
+		 * Forms the basic signup frame for both frames with a title, Jframe window name
+		 * and some formatting to the JFrame
 		 * 
 		 * @param windowName The name of the window
+		 * @param library The library being used to register/signup
+		 * @param The main menu (first JFrame on launch) to be closed after successful
+		 * login
 		 */
 	public EnterInformationFrame(String windowName, Library library, JFrame frame) {
 		login = false;

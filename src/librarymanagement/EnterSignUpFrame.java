@@ -17,6 +17,28 @@ import javax.swing.JTextField;
 
 public class EnterSignUpFrame extends EnterInformationFrame{
 
+	
+	/**
+	 * Creates a signup frame allowing the user to enter a first name,
+	 * last name, and their phone number
+	 * Phone numbers are meant to be unique, and prevents the user from
+	 * entering a duplicate phone number so that we can distinguish which
+	 * user is which
+	 * Signing up requires a name with valid letters and special characters
+	 * Successful registration will give the user a library card with their
+	 * Library id, and remind them of their password
+	 * Failing to properly fill out fields will create a popup
+	 * 
+	 * Special case for admin adding users: This constructor is also used to 
+	 * refresh the admin's JFrame of library users at a library, and is used
+	 * to allow admin's to add users if users do not directly register themselves.
+	 * 
+	 * @param windowName The name of the JFrame window
+	 * @param library The library adding the user
+	 * @param frame The frame (AdminCatalogMenu) that is refreshed
+	 * @param refresh True if the AdminCatalogMenu needs to be refreshed, false
+	 * for other cases
+	 */
 	public EnterSignUpFrame(String windowName, Library library, JFrame frame, boolean refresh) {
 		super(windowName, library, frame);
 		// TODO Auto-generated constructor stub
@@ -61,6 +83,9 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 				 * Checks first name and last name if there are non-letters
 				 * or nonvalid characters, and throws exceptions to tell user
 				 * what went wrong with registering
+				 * There has to be a minimum of 1 letter for first name and last name
+				 * Failing to register will create a popup telling users what went 
+				 * wrong with registering
 				 * Phone numbers must be all digits and 9 digits in total
 				 * 
 				 */
@@ -154,6 +179,7 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 							registeredPanel.add(registrationPassword);
 							registered.add(registeredPanel);
 							registered.setVisible(true);
+							LibraryGUI.openJFrames.add(registered);
 
 						}
 						
@@ -164,48 +190,56 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 						registrationExceptionPanel.add(exceptionMessage);
 						registrationExceptionFrame.add(registrationExceptionPanel);
 						registrationExceptionFrame.setVisible(true);
+						
 					} catch(SignUpException.EmptyLastName emptyLastName) {
 						JLabel exceptionMessage = new JLabel(emptyLastName.getMessage());
 						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
 						registrationExceptionPanel.add(exceptionMessage);
 						registrationExceptionFrame.add(registrationExceptionPanel);
 						registrationExceptionFrame.setVisible(true);
+						LibraryGUI.openJFrames.add(registrationExceptionFrame);
 					} catch(SignUpException.EmptyPhoneNumber emptyPhoneNumber) {
 						JLabel exceptionMessage = new JLabel(emptyPhoneNumber.getMessage());
 						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
 						registrationExceptionPanel.add(exceptionMessage);
 						registrationExceptionFrame.add(registrationExceptionPanel);
 						registrationExceptionFrame.setVisible(true);
+						LibraryGUI.openJFrames.add(registrationExceptionFrame);
 					} catch(SignUpException.InvalidPhoneNumber invalidNumber) {
 						JLabel exceptionMessage = new JLabel(invalidNumber.getMessage());
 						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
 						registrationExceptionPanel.add(exceptionMessage);
 						registrationExceptionFrame.add(registrationExceptionPanel);
 						registrationExceptionFrame.setVisible(true);
+						LibraryGUI.openJFrames.add(registrationExceptionFrame);
 					} catch(SignUpException.InvalidPhoneNumberLength invalidNumberLength) {
 						JLabel exceptionMessage = new JLabel(invalidNumberLength.getMessage());
 						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
 						registrationExceptionPanel.add(exceptionMessage);
 						registrationExceptionFrame.add(registrationExceptionPanel);
 						registrationExceptionFrame.setVisible(true);
+						LibraryGUI.openJFrames.add(registrationExceptionFrame);
 					} catch(SignUpException.InvalidFirstName invalidFirstName) {
 						JLabel exceptionMessage = new JLabel(invalidFirstName.getMessage());
 						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
 						registrationExceptionPanel.add(exceptionMessage);
 						registrationExceptionFrame.add(registrationExceptionPanel);
 						registrationExceptionFrame.setVisible(true);
+						LibraryGUI.openJFrames.add(registrationExceptionFrame);
 					} catch(SignUpException.InvalidLastName invalidLastName) {
 						JLabel exceptionMessage = new JLabel(invalidLastName.getMessage());
 						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
 						registrationExceptionPanel.add(exceptionMessage);
 						registrationExceptionFrame.add(registrationExceptionPanel);
 						registrationExceptionFrame.setVisible(true);
+						LibraryGUI.openJFrames.add(registrationExceptionFrame);
 					} catch(SignUpException.PhoneNumberAlreadyUsed numAlreadyUsed) {
 						JLabel exceptionMessage = new JLabel(numAlreadyUsed.getMessage());
 						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
 						registrationExceptionPanel.add(exceptionMessage);
 						registrationExceptionFrame.add(registrationExceptionPanel);
 						registrationExceptionFrame.setVisible(true);
+						LibraryGUI.openJFrames.add(registrationExceptionFrame);
 					}
 					
 				}
@@ -214,6 +248,7 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 			
 			getPanelSouth().add(registerButton);
 			enterInfoFrame.setVisible(true);
+			LibraryGUI.openJFrames.add(enterInfoFrame);
 		
 	}
 

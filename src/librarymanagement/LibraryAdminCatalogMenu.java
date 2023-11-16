@@ -19,6 +19,17 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class LibraryAdminCatalogMenu {
+	
+	/**
+	 * Creates the catalog of books for admin
+	 * It shows all the books in the library,
+	 * allowing the admin to remove or add books
+	 * to the catalog
+	 * Admins select books they want to remove by
+	 * clicking the check box, and every check off box
+	 * will remove that book on the button press
+	 * @param library The library being accessed
+	 */
 	LibraryAdminCatalogMenu(Library library) {
 		JFrame frame = new JFrame("Library Catalog");
 		JPanel bookPanel = new JPanel();
@@ -38,10 +49,13 @@ public class LibraryAdminCatalogMenu {
 		
 		JButton addBook = new JButton("Add book");
 		
+		JButton logout = new JButton("Logout");
 		
 		southPanel.add(removeBooks);
-		southPanel.add(Box.createRigidArea(new Dimension(350,0)));
+		southPanel.add(Box.createRigidArea(new Dimension(150,0)));
 		southPanel.add(addBook);
+		southPanel.add(Box.createRigidArea(new Dimension(150,0)));
+		southPanel.add(logout);
 		
 		for(Book b: library.getBookList()) {
 			JLabel label = new JLabel("<html>" + b.getBookTitle() + "<br/>" + 
@@ -53,7 +67,7 @@ public class LibraryAdminCatalogMenu {
 
 				@Override
 				public void itemStateChanged(ItemEvent e) {
-					// TODO Auto-generated method stub
+					
 					if(e.getStateChange() == 1) {
 						removeList.add(b);
 					} else {
@@ -70,7 +84,7 @@ public class LibraryAdminCatalogMenu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
 				JFrame removeExceptionFrame = new JFrame("Remove book exception");
 				JPanel removeFailPanel = new JPanel();
 				removeFailPanel.add(Box.createRigidArea(new Dimension(0,150)));
@@ -93,11 +107,6 @@ public class LibraryAdminCatalogMenu {
 					}
 					frame.dispose();
 					new LibraryAdminCatalogMenu(library);
-					// TO BE ADDED
-					// show user's entire borrowed book list
-					// admin remove and add users
-					
-					
 					
 					
 				} catch(AddRemoveBookException.NoRemovedBooks noRemovedBook) {
@@ -116,6 +125,9 @@ public class LibraryAdminCatalogMenu {
 			
 		});
 		
+		/**
+		 * Opens a window for admins to add new library users
+		 */
 		addBook.addActionListener(new ActionListener() {
 
 			@Override
@@ -126,11 +138,25 @@ public class LibraryAdminCatalogMenu {
 			
 		});
 		
+		/**
+		 * closes all jframes and returns to the main menu
+		 */
+		logout.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				LibraryGUI.closeJFrames();
+				new LibraryLoginSignUpFrame(library);
+			}
+			
+		});
+		
 		
 		frame.add(bookCatalog, BorderLayout.CENTER);
 		frame.add(southPanel, BorderLayout.SOUTH);
 		frame.setSize(new Dimension(800,600));
-
+		LibraryGUI.openJFrames.add(frame);
 		frame.setVisible(true);
 	}
 }

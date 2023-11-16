@@ -17,6 +17,19 @@ import librarymanagement.LoginException.IncorrectUsernamePasswordCombo;
 
 public class EnterLoginAdminFrame extends EnterInformationFrame{
 
+	
+	
+	/**
+	 * Frame extends EnterInformation frame
+	 * Makes the login screen for admins to login
+	 * Throws exceptions and makes windows on failure to
+	 * enter "admin" and "password" into the respective username
+	 * and password field
+	 * @param windowName The name of the JFrame for logging in
+	 * @param library The library being accessed by admin
+	 * @param frame The main menu (LibraryLoginSignUpFrame) that will be 
+	 * disposed on successful login
+	 */
 	public EnterLoginAdminFrame(String windowName, Library library, JFrame frame) {
 		super(windowName, library, frame);
 		JLabel usernameLabel = new JLabel("Username: ");
@@ -63,16 +76,19 @@ public class EnterLoginAdminFrame extends EnterInformationFrame{
 					incorrectPanel.add(exceptionMessage);
 					incorrectLogin.add(incorrectPanel);
 					incorrectLogin.setVisible(true);
+					LibraryGUI.openJFrames.add(incorrectLogin);
 				} catch (LoginException.EmptyPassword emptyPassword) {
 					JLabel exceptionMessage = new JLabel(emptyPassword.getMessage());
 					incorrectPanel.add(exceptionMessage);
 					incorrectLogin.add(incorrectPanel);
 					incorrectLogin.setVisible(true);
+					LibraryGUI.openJFrames.add(incorrectLogin);
 				} catch (IncorrectUsernamePasswordCombo incorrectUserPass) {
 					JLabel exceptionMessage = new JLabel(incorrectUserPass.getMessage());
 					incorrectPanel.add(exceptionMessage);
 					incorrectLogin.add(incorrectPanel);
 					incorrectLogin.setVisible(true);
+					LibraryGUI.openJFrames.add(incorrectLogin);
 				} 
 				
 			}
@@ -94,6 +110,7 @@ public class EnterLoginAdminFrame extends EnterInformationFrame{
 		enterInfoFrame.add(getPanelEast(), BorderLayout.EAST);
 		enterInfoFrame.add(getPanelSouth(), BorderLayout.SOUTH);
 		enterInfoFrame.setVisible(true);
+		LibraryGUI.openJFrames.add(enterInfoFrame);
 	}
 
 }

@@ -29,6 +29,15 @@ import org.json.*;
 public class LibraryLoginSignUpFrame {
 	private Library library;
 	
+	
+	
+	/**
+	 * Constructor creates the main menu frame, which has the options of
+	 * logging in, signing up, importing, exporting at a library, and exiting
+	 * For each option, there is a respective button in the JFrame allowing
+	 * users to perform those action
+	 * @param lib The library being accessed
+	 */
 	LibraryLoginSignUpFrame(Library lib) {
 		library = lib;
 		// Frame for logging in and signing in 
@@ -84,6 +93,9 @@ public class LibraryLoginSignUpFrame {
 		JButton exportButton = new JButton("Export");
 		exportButton.setAlignmentX(JFileChooser.CENTER_ALIGNMENT);
 		
+		JButton exit = new JButton("Exit");
+		exit.setAlignmentX(JFileChooser.CENTER_ALIGNMENT);
+		
 		// Creates a login window when the user presses the button
 		
 		login.addActionListener(new ActionListener() {
@@ -106,7 +118,8 @@ public class LibraryLoginSignUpFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new EnterSignUpFrame("Sign up", library, frame, false);
+				EnterSignUpFrame signUp = new EnterSignUpFrame("Sign up", library, frame, false);
+				
 			}
 			
 		});
@@ -116,7 +129,7 @@ public class LibraryLoginSignUpFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new EnterLoginAdminFrame("Admin login", library, frame);
+				EnterLoginAdminFrame adminLogin = new EnterLoginAdminFrame("Admin login", library, frame);
 				
 			}
 			
@@ -149,6 +162,16 @@ public class LibraryLoginSignUpFrame {
 			}
 		});
 		
+		exit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.exit(0);
+			}
+			
+		});
+		
 		panelNorth.add(Box.createRigidArea(new Dimension(0,150)));
 		
 		panelCenter.add(Box.createRigidArea(new Dimension(100,20)));
@@ -159,6 +182,8 @@ public class LibraryLoginSignUpFrame {
 		panelCenter.add(importButton);
 		panelCenter.add(Box.createRigidArea(new Dimension(100,20)));
 		panelCenter.add(exportButton);
+		panelCenter.add(Box.createRigidArea(new Dimension(100,20)));
+		panelCenter.add(exit);
 		panelCenter.add(Box.createVerticalGlue());
 		panelCenter.add(Box.createHorizontalGlue());
 		
@@ -169,6 +194,9 @@ public class LibraryLoginSignUpFrame {
 		frame.add(panelEast, BorderLayout.EAST);
 		frame.setVisible(true);
 	}
+	
+	
+	
 	
 	public void setLibrary(File f) {
 		Library prevLibrary = library;

@@ -9,6 +9,8 @@ public class Book implements Comparable<Book> {
     
     /**
      * Default constructor for a Book object
+     * Books are not borrowed by default when created
+     * 
      */
     Book() {
         this.bookTitle = "Book Name";

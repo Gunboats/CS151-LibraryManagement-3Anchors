@@ -17,6 +17,12 @@ import librarymanagement.LoginException.IncorrectUsernamePasswordCombo;
 
 public class EnterLoginFrame extends EnterInformationFrame{
 
+	/**
+	 * 
+	 * @param windowName
+	 * @param library
+	 * @param frame
+	 */
 	public EnterLoginFrame(String windowName, Library library, JFrame frame) {
 		super(windowName, library, frame);
 		// TODO Auto-generated constructor stub
@@ -81,16 +87,19 @@ public class EnterLoginFrame extends EnterInformationFrame{
 						incorrectPanel.add(exceptionMessage);
 						incorrectLogin.add(incorrectPanel);
 						incorrectLogin.setVisible(true);
+						LibraryGUI.openJFrames.add(incorrectLogin);
 					} catch (LoginException.EmptyPassword emptyPassword) {
 						JLabel exceptionMessage = new JLabel(emptyPassword.getMessage());
 						incorrectPanel.add(exceptionMessage);
 						incorrectLogin.add(incorrectPanel);
 						incorrectLogin.setVisible(true);
+						LibraryGUI.openJFrames.add(incorrectLogin);
 					} catch (IncorrectUsernamePasswordCombo incorrectUserPass) {
 						JLabel exceptionMessage = new JLabel(incorrectUserPass.getMessage());
 						incorrectPanel.add(exceptionMessage);
 						incorrectLogin.add(incorrectPanel);
 						incorrectLogin.setVisible(true);
+						LibraryGUI.openJFrames.add(incorrectLogin);
 					} 
 					
 				}
@@ -113,6 +122,7 @@ public class EnterLoginFrame extends EnterInformationFrame{
 			enterInfoFrame.add(getPanelEast(), BorderLayout.EAST);
 			enterInfoFrame.add(getPanelSouth(), BorderLayout.SOUTH);
 			enterInfoFrame.setVisible(true);
+			LibraryGUI.openJFrames.add(enterInfoFrame);
 		
 	}
 	

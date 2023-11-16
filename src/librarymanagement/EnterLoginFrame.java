@@ -18,15 +18,17 @@ import librarymanagement.LoginException.IncorrectUsernamePasswordCombo;
 public class EnterLoginFrame extends EnterInformationFrame{
 
 	/**
-	 * 
-	 * @param windowName
-	 * @param library
-	 * @param frame
+	 * Creates the login window for users to enter their username and password
+	 * and checks if the information is correct before allowing the user to
+	 * login. If the information is not correct, it will throw an exception
+	 * and make a popup. 
+	 * If the login is successful, it lets the user access the library's catalog
+	 * @param windowName The name of the window
+	 * @param library	The library being accessed
+	 * @param frame The main menu frame to be closes on successful login
 	 */
 	public EnterLoginFrame(String windowName, Library library, JFrame frame) {
 		super(windowName, library, frame);
-		// TODO Auto-generated constructor stub
-
 			
 			JLabel usernameLabel = new JLabel("Username: ");
 			JTextField usernameField = new JTextField();
@@ -36,7 +38,6 @@ public class EnterLoginFrame extends EnterInformationFrame{
 		
 			JButton loginButton = new JButton("Login");
 			loginButton.addActionListener(new ActionListener() {
-		
 				
 				/**
 				 * Login button creates a window for the user to enter their information

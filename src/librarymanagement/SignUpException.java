@@ -9,7 +9,6 @@ public class SignUpException extends Exception {
 
 		public EmptyFirstName() {
 			super("Exception: Empty first name field");
-			// TODO Auto-generated constructor stub
 		}
 		
 	}
@@ -17,7 +16,6 @@ public class SignUpException extends Exception {
 
 		public EmptyLastName() {
 			super("Exception: Empty last name field");
-			// TODO Auto-generated constructor stub
 		}
 		
 	}
@@ -26,7 +24,6 @@ public class SignUpException extends Exception {
 
 		public EmptyPhoneNumber() {
 			super("Exception: Empty phone number field");
-			// TODO Auto-generated constructor stub
 		}
 		
 	}
@@ -47,7 +44,6 @@ public class SignUpException extends Exception {
 
 		public InvalidFirstName() {
 			super("Exception: First name contains non-letters");
-			// TODO Auto-generated constructor stub
 		}
 		
 	}
@@ -56,7 +52,6 @@ public class SignUpException extends Exception {
 
 		public InvalidLastName() {
 			super("Exception: Last name contains non-letters");
-			// TODO Auto-generated constructor stub
 		}
 		
 	}
@@ -64,7 +59,6 @@ public class SignUpException extends Exception {
 
 		public PhoneNumberAlreadyUsed() {
 			super("Exception: This phone number is already registered");
-			// TODO Auto-generated constructor stub
 		}
 		
 	}

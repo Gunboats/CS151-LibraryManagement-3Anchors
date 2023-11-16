@@ -10,7 +10,6 @@ public class AddRemoveUserException extends Exception {
 
 		RemoveEmpty() {
 			super("No user was selected to be removed");
-			// TODO Auto-generated constructor stub
 		}
 		
 	}

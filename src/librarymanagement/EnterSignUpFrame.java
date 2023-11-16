@@ -41,9 +41,6 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 	 */
 	public EnterSignUpFrame(String windowName, Library library, JFrame frame, boolean refresh) {
 		super(windowName, library, frame);
-		// TODO Auto-generated constructor stub
-
-
 			JLabel firstNameLabel = new JLabel("First name: ");
 			JTextField firstNameField = new JTextField();
 			JLabel lastNameLabel = new JLabel("Last name: ");
@@ -91,7 +88,6 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 				 */
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
 					// Create user
 					String userFirstName = firstNameField.getText();
 					String userLastName = lastNameField.getText();

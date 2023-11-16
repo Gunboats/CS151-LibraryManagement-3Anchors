@@ -61,7 +61,6 @@ public class LibraryUserMenu {
 
 				@Override
 				public void itemStateChanged(ItemEvent e) {
-					// TODO Auto-generated method stub
 					if(e.getStateChange() == 1) {
 						userList.add(u);
 					} else {
@@ -78,8 +77,6 @@ public class LibraryUserMenu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				// I need to refresh the list whenever i remove
 				JFrame removeException = new JFrame("Remove user exception");
 				removeException.setSize(new Dimension(600,200));
 				JPanel removePanel = new JPanel();
@@ -116,7 +113,6 @@ public class LibraryUserMenu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				JFrame temp = new JFrame();
 				EnterSignUpFrame signUp = new EnterSignUpFrame("Sign up", library, frame, true);
 				

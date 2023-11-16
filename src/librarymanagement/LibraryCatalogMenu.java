@@ -70,7 +70,6 @@ public class LibraryCatalogMenu {
 
 				@Override
 				public void itemStateChanged(ItemEvent e) {
-					// TODO Auto-generated method stub
 					if(e.getStateChange() == 1) {
 						toBorrowList.add(b);
 					} else {
@@ -88,7 +87,6 @@ public class LibraryCatalogMenu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				JFrame borrowExceptionFrame = new JFrame("Borrow exception");
 				JPanel borrowFailPanel = new JPanel();
 				borrowFailPanel.add(Box.createRigidArea(new Dimension(0,150)));
@@ -165,7 +163,6 @@ public class LibraryCatalogMenu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				LibraryBorrowedBooksMenu borrowedBooks = new LibraryBorrowedBooksMenu(user);
 				
 			}
@@ -176,7 +173,6 @@ public class LibraryCatalogMenu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				LibraryGUI.closeJFrames();
 				new LibraryLoginSignUpFrame(library);
 			}

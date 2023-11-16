@@ -9,7 +9,6 @@ public class AddRemoveBookException extends Exception {
 
 		public NoRemovedBooks() {
 			super("Exception: No books selected for removal");
-			// TODO Auto-generated constructor stub
 		}
 		
 
@@ -29,7 +28,6 @@ public class AddRemoveBookException extends Exception {
 
 		public EmptyTitle() {
 			super("Exception: No text in title");
-			// TODO Auto-generated constructor stub
 		}
 		
 	}
@@ -38,7 +36,6 @@ public class AddRemoveBookException extends Exception {
 
 		public EmptyAuthor() {
 			super("Exception: No text in author");
-			// TODO Auto-generated constructor stub
 		}
 		
 	}

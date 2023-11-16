@@ -56,7 +56,6 @@ public class LibraryBorrowedBooksMenu {
 
 				@Override
 				public void itemStateChanged(ItemEvent e) {
-					// TODO Auto-generated method stub
 					if(e.getStateChange() == 1) {
 						borrowedBookList.add(b);
 					} else {
@@ -73,7 +72,6 @@ public class LibraryBorrowedBooksMenu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				JFrame returnExceptionFrame = new JFrame("Return exception");
 				JPanel returnFailPanel = new JPanel();
 				returnFailPanel.add(Box.createRigidArea(new Dimension(0,150)));

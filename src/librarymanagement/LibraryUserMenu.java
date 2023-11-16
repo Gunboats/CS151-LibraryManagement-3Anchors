@@ -3,7 +3,6 @@ package librarymanagement;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -113,7 +112,7 @@ public class LibraryUserMenu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFrame temp = new JFrame();
+				
 				EnterSignUpFrame signUp = new EnterSignUpFrame("Sign up", library, frame, true);
 				
 			}

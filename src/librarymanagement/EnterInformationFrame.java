@@ -88,8 +88,5 @@ public class EnterInformationFrame {
 		return panelNorth;
 		
 	}
-
-
-	
 	
 }

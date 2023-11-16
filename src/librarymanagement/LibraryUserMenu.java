@@ -18,6 +18,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class LibraryUserMenu {
+	
+	/**
+	 * For admins, it creates a list of users registered, allowing them
+	 * to remove them by selecting checkboxes and clicking the remove button
+	 * They can also press the book catalog button to acces the library's list
+	 * of books, and add users to the list of users in the library
+	 * @param library
+	 */
 	LibraryUserMenu(Library library) {
 		JFrame frame = new JFrame("Library User Management");
 		JPanel panel = new JPanel();
@@ -30,12 +38,14 @@ public class LibraryUserMenu {
 		JButton removeUser = new JButton("Remove");
 		JButton addUser = new JButton("Add");
 		JButton openBookCatalog = new JButton("Book Catalog");
-		
+		JButton logout = new JButton("Logout");
 		southPanel.add(removeUser);
-		southPanel.add(Box.createRigidArea(new Dimension(150,0)));
+		southPanel.add(Box.createRigidArea(new Dimension(120,0)));
 		southPanel.add(addUser);
-		southPanel.add(Box.createRigidArea(new Dimension(150,0)));
+		southPanel.add(Box.createRigidArea(new Dimension(120,0)));
 		southPanel.add(openBookCatalog);
+		southPanel.add(Box.createRigidArea(new Dimension(120,0)));
+		southPanel.add(logout);
 		
 		ArrayList<User> userList = new ArrayList<User>();
 		int length = library.getuserList().size()/2 + 1;
@@ -74,6 +84,7 @@ public class LibraryUserMenu {
 				removeException.setSize(new Dimension(600,200));
 				JPanel removePanel = new JPanel();
 				removePanel.add(Box.createRigidArea(new Dimension(0,150)));
+				
 				try {
 					
 					if(userList.isEmpty()) {
@@ -91,6 +102,8 @@ public class LibraryUserMenu {
 					removePanel.add(exceptionMessage);
 					removeException.add(removePanel);
 					removeException.setVisible(true);
+					LibraryGUI.openJFrames.add(removeException);
+					
 				}
 
 				
@@ -105,8 +118,8 @@ public class LibraryUserMenu {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				JFrame temp = new JFrame();
-				new EnterSignUpFrame("Sign up", library, frame, true);
-
+				EnterSignUpFrame signUp = new EnterSignUpFrame("Sign up", library, frame, true);
+				
 			}
 			
 		});
@@ -116,8 +129,19 @@ public class LibraryUserMenu {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				new LibraryAdminCatalogMenu(library);
+				LibraryAdminCatalogMenu adminCatalog = new LibraryAdminCatalogMenu(library);
 				
+			}
+			
+		});
+		
+		logout.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				LibraryGUI.closeJFrames();
+				new LibraryLoginSignUpFrame(library);
 			}
 			
 		});
@@ -126,6 +150,7 @@ public class LibraryUserMenu {
 		frame.setSize(new Dimension(800,600));
 		frame.add(userCatalog, BorderLayout.CENTER);
 		frame.setVisible(true);
+		LibraryGUI.openJFrames.add(frame);
 		
 	}
 }

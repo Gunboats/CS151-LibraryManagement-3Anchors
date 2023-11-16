@@ -43,11 +43,6 @@ public class User implements Comparable<User> {
         this.phoneNumber = phoneNumber;
     }
 
-    public void checkOut(Book book) {
-    	// TODO should add a book for borrowedBooks,
-    	// update borrowedBook to true
-        
-    }
     
     public void checkIn(Book book) {
     	// update book(s) to false...
@@ -111,6 +106,7 @@ public class User implements Comparable<User> {
 
     public void returnBook(Book book){
         borrowedBooks.remove(book);
+        book.setBorrowed(false);
     }
         //can be deleted if repeat the code above
 

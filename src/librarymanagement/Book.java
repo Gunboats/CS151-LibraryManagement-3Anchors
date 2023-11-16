@@ -9,6 +9,8 @@ public class Book implements Comparable<Book> {
     
     /**
      * Default constructor for a Book object
+     * Books are not borrowed by default when created
+     * 
      */
     Book() {
         this.bookTitle = "Book Name";
@@ -25,10 +27,10 @@ public class Book implements Comparable<Book> {
      * @param author Author first and last name
      * @param ISBN A 10 digit long, basically a book ID number
      */
-    Book(String bookTitle, String author, int ISBN) {
+    Book(String bookTitle, String author) {
         this.bookTitle = bookTitle;
         this.author = author;
-        this.ISBN = ISBN;
+        this.ISBN = (int) (Math.random() * 900000000) + 100000000;
         this.borrowed = false;
     }
 

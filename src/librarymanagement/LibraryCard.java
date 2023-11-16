@@ -6,6 +6,13 @@ public class LibraryCard {
     private String libraryName;
     private String fullCardID;
     
+    /**
+     * Creates library card with a library's prefix and the number
+     * Format of the card id: prefix-num
+     * @param libName
+     * @param prefix
+     * @param num
+     */
     public LibraryCard(String libName, String prefix, int num) {
         libraryPrefix = prefix;
         libraryName = libName;

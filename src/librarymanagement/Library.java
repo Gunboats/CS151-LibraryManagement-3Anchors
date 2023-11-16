@@ -14,9 +14,13 @@ public class Library {
     private List<User> userList = new ArrayList<User>();  
     private Map<String, User> cardNumAndUserMap = new HashMap<String, User>();
     private Map<String, User> phoneNumAndUserMap = new HashMap<String,User>();
-    
+    private String adminUsername = "admin";
+    private String adminPassword = "password";
     /**
      * Default constructor
+     * Libraries have lists for books and users
+     * Maps for cards and users, phone numbers and users
+     * default admin and password for admin logins
      */
     public Library() {
         name = "Library";
@@ -24,7 +28,12 @@ public class Library {
 
     /**
      * Parameterized constructor
+     * Libraries have lists for books and users
+     * Maps for cards and users, phone numbers and users
+     * default admin and password for admin logins, a card
+     * prefix for all cards they assign to users
      * @param name the library's name
+     * @param cardPrefix the library card letters before numbers
      */
     public Library(String name, String cardPrefix) {
         this.name = name;
@@ -38,6 +47,13 @@ public class Library {
     public void removeBook(Book book) {
         bookList.remove(book);
     }
+    
+    /**
+     * Checks if the phoneNumAndUserMap has the phone number
+     * that a user entered when they tried signing up
+     * @param number The phone number the user entered
+     * @return True or false
+     */
     public boolean containsNumber(String number) {
     	if(!phoneNumAndUserMap.containsKey(number)) {
     		return false;
@@ -49,6 +65,13 @@ public class Library {
     	return phoneNumAndUserMap;
     }
     
+    
+    /**
+     * Adds a user to a library if the phone number is not already there
+     * Then, it gives the user their library card, which has a string
+     * to allow them to login, which is randomly generated
+     * @param user
+     */
     public void addUser(User user) {
     	if(!containsNumber(user.getPhoneNumber())) {
             userList.add(user);
@@ -61,6 +84,10 @@ public class Library {
 
     }
 
+    /**
+     * removes user from each of the lists and maps that store them
+     * @param user The user being removed
+     */
     public void removeUser(User user) {
         userList.remove(user);
         phoneNumAndUserMap.remove(user.getPhoneNumber());
@@ -68,6 +95,10 @@ public class Library {
         
     }
 
+    
+    /**
+     * Prints the books in the library's bookList
+     */
     public void displayBooks() {
         bookList.sort(null);
         for (Book b : bookList) {
@@ -75,6 +106,9 @@ public class Library {
         }
     }
 
+    /**
+     * Prints the users in the userList list
+     */
     public void displayUsers() {
         userList.sort(null);
         for (User user : userList) {
@@ -82,23 +116,43 @@ public class Library {
         }
     }
 
-    public Book checkOutBook(User user, String title) {
-        int index = 0;
-        while (index < bookList.size() && !bookList.get(index).getBookTitle().equals(title)) {
-            index++;
-        }
-        if (index >= bookList.size()) {
-            System.out.println("Book not found");
-            return null;
-        }
-        Book book = bookList.remove(index);
+    public List<Book> getBookList() {
+    	return bookList;
+    }
+    
+    public List<User> getuserList() {
+    	return userList;
+    }
+    
+    
+    
+    /**
+     * Assuming the book if not borrowed(false), users 
+     * can check out the book, and they will receive the 
+     * book in their book list, updating the book to now
+     * be borrowed (true)
+     * @param user
+     * @param book
+     * @return
+     */
+    public Book checkOutBook(User user, Book book) {
+        
         if (!book.getBorrowed()){
             user.borrowBook(book);
             book.setBorrowed(true);
-            System.out.println("User: " + user.getName() + ",borrows book: " + book.getBookTitle() + ", Thank you for your support.");
+            
         }
         return book;
     }
+    
+    public String getAdminUsername() {
+    	return adminUsername;
+    }
+    
+    public String getAdminPassword() {
+    	return adminPassword;
+    }
+    
     public String getName() {
         return this.name;
     }

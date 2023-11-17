@@ -145,6 +145,8 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 							throw new SignUpException.InvalidFirstName();
 						} else if (invalidNameLast) {
 							throw new SignUpException.InvalidLastName();
+						} else if (userPassword.length() < 1) {
+							throw new SignUpException.EmptyPassword();
 						}
 						
 						User newUser = new User(userFirstName, userLastName, userPhoneNumber, userPassword);
@@ -238,6 +240,13 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 						LibraryGUI.openJFrames.add(registrationExceptionFrame);
 					} catch(SignUpException.PhoneNumberAlreadyUsed numAlreadyUsed) {
 						JLabel exceptionMessage = new JLabel(numAlreadyUsed.getMessage());
+						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
+						registrationExceptionPanel.add(exceptionMessage);
+						registrationExceptionFrame.add(registrationExceptionPanel);
+						registrationExceptionFrame.setVisible(true);
+						LibraryGUI.openJFrames.add(registrationExceptionFrame);
+					} catch(SignUpException.EmptyPassword emptyPassword) {
+						JLabel exceptionMessage = new JLabel(emptyPassword.getMessage());
 						exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20));
 						registrationExceptionPanel.add(exceptionMessage);
 						registrationExceptionFrame.add(registrationExceptionPanel);

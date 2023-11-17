@@ -63,5 +63,11 @@ public class SignUpException extends Exception {
 		
 	}
 	
-	
+		public static class EmptyPassword extends SignUpException {
+
+		public EmptyPassword() {
+			super("Exception: Password needs at least 1 character");
+		}
+		
+	}
 }

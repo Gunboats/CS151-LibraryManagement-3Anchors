@@ -14,6 +14,7 @@ public class User implements Comparable<User> {
     private Map<String, LibraryCard> passwordAndCards = new HashMap<String, LibraryCard>();
     private List<Book> borrowedBooks;
     private String phoneNumber;
+    private String password;
 
     
     /**
@@ -28,6 +29,7 @@ public class User implements Comparable<User> {
         libraryCards = new ArrayList<LibraryCard>();
         this.borrowedBooks = new ArrayList<Book>();
         this.phoneNumber = "123456789";
+        this.password = "asdfk";
     }
 
     /**
@@ -35,12 +37,13 @@ public class User implements Comparable<User> {
      * @param name the user's name
      * @param cardNumber the card's ID
      */
-    public User(String firstName, String lastName, String phoneNumber) {
+    public User(String firstName, String lastName, String phoneNumber, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         libraryCards = new ArrayList<LibraryCard>();
         borrowedBooks = new ArrayList<Book>();
         this.phoneNumber = phoneNumber;
+        this.password = password;
     }
 
     
@@ -98,6 +101,10 @@ public class User implements Comparable<User> {
     
     public String getPhoneNumber() {
     	return this.phoneNumber;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void borrowBook(Book book){

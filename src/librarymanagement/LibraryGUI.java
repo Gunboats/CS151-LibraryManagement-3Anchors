@@ -25,11 +25,11 @@ public class LibraryGUI {
 		library.addBook(new Book());
 		library.addBook(new Book());
 		// write to file..
-		library.addUser(new User("a", "a", "123123126"));
-		library.addUser(new User("a", "a", "123123122"));
-		library.addUser(new User("a", "a", "123123121"));
-		library.addUser(new User("a", "a", "123123124"));
-		library.addUser(new User("a", "a", "123123125"));
+		library.addUser(new User("a", "a", "123123126", "asfd"));
+		library.addUser(new User("a", "a", "123123122", " askbw"));
+		library.addUser(new User("a", "a", "123123121", "anjwk"));
+		library.addUser(new User("a", "a", "123123124", " ans"));
+		library.addUser(new User("a", "a", "123123125", " wan"));
 		LibraryLoginSignUpFrame loginScreen = new LibraryLoginSignUpFrame(library);
 		
 	}

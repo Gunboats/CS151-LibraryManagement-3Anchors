@@ -50,13 +50,16 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 			JLabel phoneNumberLabel = new JLabel("<html>Phone number: <br/>(9 digits only)<html>");
 			JTextField phoneNumberField = new JTextField();
 			
-			JPanel panelCenter = new JPanel(new GridLayout(3,2,5,40));
+			JLabel passwordLabel = new JLabel("Password: ");
+			JTextField passwordField = new JTextField();
+
+			JPanel panelCenter = new JPanel(new GridLayout(4,2,5,40));
 
 			// These panels dimensions are used to squash the components into place because
 			// I don't know any other way with the default Java Swing layouts
 			getPanelWest().setPreferredSize(new Dimension(195,200));
 			getPanelEast().setPreferredSize(new Dimension(195,200));
-			getPanelSouth().setPreferredSize(new Dimension(200,160));
+			getPanelSouth().setPreferredSize(new Dimension(200,90));
 			
 //			panelWest.setBackground(Color.cyan);
 			
@@ -66,6 +69,8 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 			panelCenter.add(lastNameField);
 			panelCenter.add(phoneNumberLabel);
 			panelCenter.add(phoneNumberField);
+			panelCenter.add(passwordLabel);
+			panelCenter.add(passwordField);
 			
 			enterInfoFrame.add(panelCenter, BorderLayout.CENTER);
 			enterInfoFrame.add(getPanelWest(), BorderLayout.WEST);
@@ -92,6 +97,7 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 					String userFirstName = firstNameField.getText();
 					String userLastName = lastNameField.getText();
 					String userPhoneNumber = phoneNumberField.getText();
+					String userPassword = passwordField.getText();
 					boolean notDigit = false;
 					boolean invalidNameFirst = false;
 					boolean invalidNameLast = false;
@@ -141,18 +147,15 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 							throw new SignUpException.InvalidLastName();
 						}
 						
-						User newUser = new User(userFirstName, userLastName, userPhoneNumber);
+						User newUser = new User(userFirstName, userLastName, userPhoneNumber, userPassword);
 						if(library.containsNumber(userPhoneNumber)) {
 							throw new SignUpException.PhoneNumberAlreadyUsed();
 						} else {
 
 							library.addUser(newUser);
-							enterInfoFrame.dispose();
 							
-							if (refresh) {
-								frame.dispose();
-								new LibraryUserMenu(library);
-							}
+							
+
 							
 							
 							JFrame registered = new JFrame("Registered");
@@ -163,7 +166,7 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 							JLabel registrationUsername = new JLabel("Your username/library card is: " +
 									newUser.getLibraryCard(library.getCardPrefix()).getFullCardID());
 							JLabel registrationPassword = new JLabel("Your password is: " +
-									newUser.getPhoneNumber());
+									newUser.getPassword());
 							registeredPanel.add(Box.createRigidArea(new Dimension(0,75)));
 							registrationMessage.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 							registrationUsername.setAlignmentX(JLabel.CENTER_ALIGNMENT);
@@ -176,7 +179,11 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 							registered.add(registeredPanel);
 							registered.setVisible(true);
 							LibraryGUI.openJFrames.add(registered);
-
+							enterInfoFrame.dispose();
+							if (refresh) {
+								frame.dispose();
+								new LibraryUserMenu(library);
+							}
 						}
 						
 						

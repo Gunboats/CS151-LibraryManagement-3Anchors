@@ -1,7 +1,10 @@
+// To run code, you can run from LibraryTester or LibraryGUI to see what happens
 // Manual Test cases because my front end and my back end are basically the same and I don't have time to fix it (Willy)
-// To run the program, run it from LibraryTester
 // 11/19/2023: The import and export have not yet been moved to automatically execute, buttons are supposed to be removed
-// 
+// The program creates a JFrame containing JPanels for the main menu
+// Successfully accessing another component like the Library catalog of books will open another JFrame
+// Users can register, login, borrow books, logout and return them
+// Admins can manage users by adding and removing, manage books by adding and removing
 // Test 1: Admin logins
 // Case 1: Empty username, password: asdf
 // Case 1 result: Popup saying "Exception: Empty username field"

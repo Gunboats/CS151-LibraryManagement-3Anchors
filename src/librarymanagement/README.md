@@ -3,7 +3,17 @@
 // 11/19/2023: The import and export have not yet been moved to automatically execute, buttons are supposed to be removed
 // The program creates a JFrame containing JPanels for the main menu
 // Successfully accessing another component like the Library catalog of books will open another JFrame
-// Users can register, login, borrow books, logout and return them
+// Users and admins navigate the GUI by pressing buttons, which generally open another JFrame
+// that gives them access to things like signing up, logging in, book catalogs, etc
+// Users can register, login, borrow books, logout and return books
+// For borrowing and borrowing, users click on check boxes and then press the borrow/return button
+// to return and borrow all selected books
+// For registering and logging in, both users and admins will need to type their data into
+// the respective JTextField and then press the respective sign up/login button
+// For removing users or books, admins select the check box associated with the book or user
+// and then press the remove button
+// For adding users and books, they must fill out the form for the user or book and then
+// press the sign up button or the add book button 
 // Admins can manage users by adding and removing, manage books by adding and removing
 // Test 1: Admin logins
 // Case 1: Empty username, password: asdf

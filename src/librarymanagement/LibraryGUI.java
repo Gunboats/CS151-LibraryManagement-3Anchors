@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 public class LibraryGUI {
-	public static ArrayList<JFrame> openJFrames;
+	public static ArrayList<JFrame> openJFrames = new ArrayList<JFrame>();
 	
 	public static void main(String[] args) {
 	// The Class for displaying content
-		openJFrames = new ArrayList<JFrame>();
+		
 		
 		Library library = new Library("a", "a");
 		library.addBook(new Book());

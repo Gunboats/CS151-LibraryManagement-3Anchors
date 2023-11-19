@@ -1,24 +1,7 @@
-package librarymanagement;
-
-
-
-public class LibraryTester {
-    public static void main(String[] args) {
-        Library library = new Library("San Jose", "SJ");
-        library.addBook(new Book("Book", "?"));
-        User u = new User("test", "user", "4085125333", "water");
-        library.addUser(u);
-        library.displayBooks();
-        System.out.println("-----");
-        library.displayUsers();
-        System.out.println("-----");
-//        library.checkOutBook(u, "Book");
-        System.out.println("-----");
-        library.displayBooks();
-        System.out.println("-----");
-        library.displayUsers();
-        LibraryLoginSignUpFrame libraryTest = new LibraryLoginSignUpFrame(library);
 // Manual Test cases because my front end and my back end are basically the same and I don't have time to fix it (Willy)
+// To run the program, run it from LibraryTester
+// 11/19/2023: The import and export have not yet been moved to automatically execute, buttons are supposed to be removed
+// 
 // Test 1: Admin logins
 // Case 1: Empty username, password: asdf
 // Case 1 result: Popup saying "Exception: Empty username field"
@@ -117,6 +100,3 @@ public class LibraryTester {
 // Thank you for the support!"
 // Test 6: Logout: Should return back to main menu
 // Result: Closes other windows, opens main menu
-
-    }
-}

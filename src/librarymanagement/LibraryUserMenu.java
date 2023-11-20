@@ -38,13 +38,19 @@ public class LibraryUserMenu {
 		JButton addUser = new JButton("Add");
 		JButton openBookCatalog = new JButton("Book Catalog");
 		JButton logout = new JButton("Logout");
+		JButton importButton = new JButton("Import");
+		JButton exportButton = new JButton("Export");
 		southPanel.add(removeUser);
-		southPanel.add(Box.createRigidArea(new Dimension(120,0)));
+		southPanel.add(Box.createRigidArea(new Dimension(40,0)));
 		southPanel.add(addUser);
-		southPanel.add(Box.createRigidArea(new Dimension(120,0)));
+		southPanel.add(Box.createRigidArea(new Dimension(40,0)));
 		southPanel.add(openBookCatalog);
-		southPanel.add(Box.createRigidArea(new Dimension(120,0)));
+		southPanel.add(Box.createRigidArea(new Dimension(40,0)));
 		southPanel.add(logout);
+		southPanel.add(Box.createRigidArea(new Dimension(40,0)));
+		southPanel.add(importButton);
+		southPanel.add(Box.createRigidArea(new Dimension(40,0)));
+		southPanel.add(exportButton);
 		
 		ArrayList<User> userList = new ArrayList<User>();
 		FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT, 20,20);
@@ -139,7 +145,22 @@ public class LibraryUserMenu {
 			}
 			
 		});
-		
+
+		importButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+
+		});
+
+		exportButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+
+		});
 		frame.add(southPanel, BorderLayout.SOUTH);
 		frame.setSize(new Dimension(800,600));
 		frame.add(userCatalog, BorderLayout.CENTER);

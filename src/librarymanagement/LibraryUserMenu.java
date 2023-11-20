@@ -47,13 +47,12 @@ public class LibraryUserMenu {
 		southPanel.add(logout);
 		
 		ArrayList<User> userList = new ArrayList<User>();
-		int length = library.getuserList().size()/2 + 1;
 		FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT, 20,20);
 		
 		panel.setLayout(flowLayout);
 		for(User u: library.getuserList()) {
 			JLabel label = new JLabel("<html>" + u.getName() + "<br/>" + 
-					u.getLibraryCard(library.getCardPrefix()) + "<html>");
+					u.getLibraryCard() + "<html>");
 			label.setPreferredSize(new Dimension(150,60));
 			JCheckBox selectUser = new JCheckBox();
 			selectUser.addItemListener(new ItemListener() {
@@ -113,7 +112,7 @@ public class LibraryUserMenu {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				EnterSignUpFrame signUp = new EnterSignUpFrame("Sign up", library, frame, true);
+				new EnterSignUpFrame("Sign up", library, frame, true);
 				
 			}
 			
@@ -124,7 +123,7 @@ public class LibraryUserMenu {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				LibraryAdminCatalogMenu adminCatalog = new LibraryAdminCatalogMenu(library);
+				new LibraryAdminCatalogMenu(library);
 				
 			}
 			

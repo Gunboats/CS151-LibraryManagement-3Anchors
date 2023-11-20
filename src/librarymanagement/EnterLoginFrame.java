@@ -68,9 +68,33 @@ public class EnterLoginFrame extends EnterInformationFrame{
 						if (copyPassword.length() < 1) {
 							throw new LoginException.EmptyPassword();
 						}
+<<<<<<< Updated upstream
 						if (!library.getPhoneNumAndUserMap().containsKey(copyPassword) || 
 						!library.getPhoneNumAndUserMap().get(copyPassword)
 						.getLibraryCard(library.getCardPrefix()).getFullCardID().equals(copyUsername)) {
+=======
+
+						for(User u: library.getuserList()) {
+							if(u.getPassword().equals(copyPassword) && 
+								u.getLibraryCard().equals(copyUsername)) {
+								hasLogin = true;
+							}
+						}
+
+						if (hasLogin) {
+							for(User u: library.getuserList()) {
+								if(u.getPassword().equals(copyPassword) && 
+									u.getLibraryCard().equals(copyUsername)) {
+									frame.dispose();
+									enterInfoFrame.dispose();
+							
+									User copyUser = u;
+									new LibraryCatalogMenu(library, copyUser);
+									break;
+								}
+							}
+						} else {
+>>>>>>> Stashed changes
 							throw new LoginException.IncorrectUsernamePasswordCombo();
 						}
 						

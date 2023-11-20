@@ -39,7 +39,9 @@ public class LibraryLoginSignUpFrame {
 	 * @param lib The library being accessed
 	 */
 	LibraryLoginSignUpFrame(Library lib) {
+		
 		library = lib;
+		
 		// Frame for logging in and signing in 
 		JFrame frame = new JFrame("Library Management System");
 		frame.setSize(new Dimension(800, 600));
@@ -78,20 +80,12 @@ public class LibraryLoginSignUpFrame {
 		panelCenter.add(labelLibName);
 		
 		panelSouth.add(adminLogin);
-		
-		
-		
+
 		JButton signUp = new JButton("Sign up");
 		signUp.setAlignmentX(JButton.CENTER_ALIGNMENT);
 		
 		JButton login = new JButton("  Login ");	
 		login.setAlignmentX(JButton.CENTER_ALIGNMENT);
-		
-		JButton importButton = new JButton("Import");
-		importButton.setAlignmentX(JFileChooser.CENTER_ALIGNMENT);
-
-		JButton exportButton = new JButton("Export");
-		exportButton.setAlignmentX(JFileChooser.CENTER_ALIGNMENT);
 		
 		JButton exit = new JButton("Exit");
 		exit.setAlignmentX(JFileChooser.CENTER_ALIGNMENT);
@@ -135,37 +129,13 @@ public class LibraryLoginSignUpFrame {
 			
 		});
 
-		importButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser fc = new JFileChooser();
-				int returnVal = fc.showOpenDialog(null);
 
-				if (returnVal == JFileChooser.APPROVE_OPTION) {
-					File file = fc.getSelectedFile();
-					setLibrary(file);
-				}
-			}
-		});
-		
-		exportButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser fc = new JFileChooser();
-				fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				int returnVal = fc.showOpenDialog(null);
-				
-				if (returnVal == JFileChooser.APPROVE_OPTION) {
-					File file = fc.getSelectedFile();
-					exportLibrary(file);
-				}
-			}
-		});
 		
 		exit.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				exportLibrary(library);
 				System.exit(0);
 			}
 			
@@ -177,10 +147,6 @@ public class LibraryLoginSignUpFrame {
 		panelCenter.add(login);
 		panelCenter.add(Box.createRigidArea(new Dimension(100,20)));
 		panelCenter.add(signUp);
-		panelCenter.add(Box.createRigidArea(new Dimension(100,20)));
-		panelCenter.add(importButton);
-		panelCenter.add(Box.createRigidArea(new Dimension(100,20)));
-		panelCenter.add(exportButton);
 		panelCenter.add(Box.createRigidArea(new Dimension(100,20)));
 		panelCenter.add(exit);
 		panelCenter.add(Box.createVerticalGlue());
@@ -197,8 +163,10 @@ public class LibraryLoginSignUpFrame {
 	
 	
 	
-	public void setLibrary(File f) {
+	public static Library setLibrary(Library library) {
 		Library prevLibrary = library;
+		File f = new File("lib\\library.json");
+
 		try {
 			JSONObject obj = new JSONObject(new String(Files.readAllBytes(f.toPath())));
 			JSONArray books = obj.getJSONArray("books");
@@ -211,10 +179,11 @@ public class LibraryLoginSignUpFrame {
 			}
 			for (int i = 0; i < users.length(); i++) {
 				JSONObject userObj = users.getJSONObject(i);
-				User u = new User(userObj.getString("first_name"), userObj.getString("last_name"), userObj.getString("phone_number"));
-				library.addUser(u);
+				User u = new User(userObj.getString("first_name"), userObj.getString("last_name"), userObj.getString("phone_number"), userObj.getString("password"), userObj.getString("libraryCard"));
+				library.addUser(u, false);
 			}
-			JOptionPane.showMessageDialog(null, "Library successfully imported.");
+			// JOptionPane.showMessageDialog(null, "Library successfully imported.");
+			return library;
 		}
 		catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Invalid File");
@@ -224,10 +193,11 @@ public class LibraryLoginSignUpFrame {
 			JOptionPane.showMessageDialog(null, "Invalid File");
 			library = prevLibrary;
 		}
+		return prevLibrary;
 	}
 	
-	public void exportLibrary(File dir) {
-		String path = dir.getPath() + "\\" + library.getName() + ".json";
+	public static void exportLibrary(Library library) {
+		String path = "lib\\library.json";
 		JSONObject libraryObj = new JSONObject();
 		
 		libraryObj.put("name", library.getName());
@@ -249,6 +219,8 @@ public class LibraryLoginSignUpFrame {
 			userObj.put("first_name", u.getFirstName());
 			userObj.put("last_name", u.getLastName());
 			userObj.put("phone_number", u.getPhoneNumber());
+			userObj.put("password", u.getPassword());
+			userObj.put("libraryCard", u.getLibraryCard());
 			userArray.put(userObj);
 		}
 		libraryObj.put("users", userArray);
@@ -257,7 +229,7 @@ public class LibraryLoginSignUpFrame {
 			FileWriter writer = new FileWriter(path);
 			writer.write(libraryObj.toString());
 			writer.close();
-			JOptionPane.showMessageDialog(null, "Library successfully exported.");
+			// JOptionPane.showMessageDialog(null, "Library successfully exported.");
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Invalid Location");
 		} catch (JSONException e) {

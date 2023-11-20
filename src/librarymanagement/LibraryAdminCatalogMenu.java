@@ -146,6 +146,7 @@ public class LibraryAdminCatalogMenu {
 			public void actionPerformed(ActionEvent e) {
 				
 				LibraryGUI.closeJFrames();
+				
 				new LibraryLoginSignUpFrame(library);
 			}
 			

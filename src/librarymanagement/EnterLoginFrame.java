@@ -42,12 +42,10 @@ public class EnterLoginFrame extends EnterInformationFrame{
 				/**
 				 * Login button creates a window for the user to enter their information
 				 * There are 2 fields they use to enter their information
-				 * One is for password (phone number), one is for username (library card id)
+				 * One is for password, one is for username (library card id)
 				 * If users incorrectly enter their information, there will be a popup 
 				 * explaining that something went wrong like an empty field, incorrect info
-				 * 
-				 * Not incorporated yet: I need to open a window on successful login for users
-				 * to access the library catalog
+				 * Successful login will open up the library catalog
 				 * 
 				 */
 				@Override
@@ -60,7 +58,7 @@ public class EnterLoginFrame extends EnterInformationFrame{
 					JPanel incorrectPanel = new JPanel();
 					incorrectPanel.add(Box.createRigidArea(new Dimension(0,150)));
 					incorrectLogin.setSize(new Dimension(600,200));
-					
+					boolean hasLogin = false;
 					try {
 						if (copyUsername.length() < 1) {
 							throw new LoginException.EmptyUsername();
@@ -68,11 +66,6 @@ public class EnterLoginFrame extends EnterInformationFrame{
 						if (copyPassword.length() < 1) {
 							throw new LoginException.EmptyPassword();
 						}
-<<<<<<< Updated upstream
-						if (!library.getPhoneNumAndUserMap().containsKey(copyPassword) || 
-						!library.getPhoneNumAndUserMap().get(copyPassword)
-						.getLibraryCard(library.getCardPrefix()).getFullCardID().equals(copyUsername)) {
-=======
 
 						for(User u: library.getuserList()) {
 							if(u.getPassword().equals(copyPassword) && 
@@ -94,18 +87,10 @@ public class EnterLoginFrame extends EnterInformationFrame{
 								}
 							}
 						} else {
->>>>>>> Stashed changes
 							throw new LoginException.IncorrectUsernamePasswordCombo();
 						}
-						
-						if(library.getPhoneNumAndUserMap().containsKey(copyPassword) && 
-								library.getPhoneNumAndUserMap().get(copyPassword).getLibraryCard(library.getCardPrefix()).getFullCardID().equals(copyUsername)) {
-							frame.dispose();
-							enterInfoFrame.dispose();
-							
-							User copyUser = library.getPhoneNumAndUserMap().get(copyPassword);
-							new LibraryCatalogMenu(library, copyUser);
-						}
+
+
 						
 					} catch(LoginException.EmptyUsername emptyUsername) {
 						JLabel exceptionMessage = new JLabel(emptyUsername.getMessage());

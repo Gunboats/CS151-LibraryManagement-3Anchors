@@ -157,7 +157,9 @@ public class LibraryUserMenu {
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					File file = fc.getSelectedFile();
 					Library newLibrary = LibraryLoginSignUpFrame.setLibrary(library, file);
+					frame.dispose();
 					
+					new LibraryUserMenu(newLibrary);
 				}
 			}
 

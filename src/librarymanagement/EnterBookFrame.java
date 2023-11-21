@@ -48,7 +48,7 @@ public class EnterBookFrame {
 		title.setFont(new Font("Arial", Font.PLAIN, 20));
 		panelWest.setPreferredSize(new Dimension(195,200));
 		panelEast.setPreferredSize(new Dimension(195,200));
-		panelSouth.setPreferredSize(new Dimension(200,160));
+		panelSouth.setPreferredSize(new Dimension(200,230));
 		panelSouth.add(addBook);
 		panelNorth.add(title);
 		panelNorth.setAlignmentX(JPanel.CENTER_ALIGNMENT);

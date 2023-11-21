@@ -39,11 +39,13 @@ public class LibraryLoginSignUpFrame {
 	 * @param lib The library being accessed
 	 */
 	LibraryLoginSignUpFrame(Library lib) {
+		
 		library = lib;
+		
 		// Frame for logging in and signing in 
 		JFrame frame = new JFrame("Library Management System");
 		frame.setSize(new Dimension(800, 600));
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panelNorth = new JPanel();
@@ -78,20 +80,12 @@ public class LibraryLoginSignUpFrame {
 		panelCenter.add(labelLibName);
 		
 		panelSouth.add(adminLogin);
-		
-		
-		
+
 		JButton signUp = new JButton("Sign up");
 		signUp.setAlignmentX(JButton.CENTER_ALIGNMENT);
 		
 		JButton login = new JButton("  Login ");	
 		login.setAlignmentX(JButton.CENTER_ALIGNMENT);
-		
-		JButton importButton = new JButton("Import");
-		importButton.setAlignmentX(JFileChooser.CENTER_ALIGNMENT);
-
-		JButton exportButton = new JButton("Export");
-		exportButton.setAlignmentX(JFileChooser.CENTER_ALIGNMENT);
 		
 		JButton exit = new JButton("Exit");
 		exit.setAlignmentX(JFileChooser.CENTER_ALIGNMENT);
@@ -135,37 +129,13 @@ public class LibraryLoginSignUpFrame {
 			
 		});
 
-		importButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser fc = new JFileChooser();
-				int returnVal = fc.showOpenDialog(null);
 
-				if (returnVal == JFileChooser.APPROVE_OPTION) {
-					File file = fc.getSelectedFile();
-					setLibrary(file);
-				}
-			}
-		});
-		
-		exportButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser fc = new JFileChooser();
-				fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				int returnVal = fc.showOpenDialog(null);
-				
-				if (returnVal == JFileChooser.APPROVE_OPTION) {
-					File file = fc.getSelectedFile();
-					exportLibrary(file);
-				}
-			}
-		});
 		
 		exit.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				exportLibrary(library, "lib\\library.json");
 				System.exit(0);
 			}
 			
@@ -177,10 +147,6 @@ public class LibraryLoginSignUpFrame {
 		panelCenter.add(login);
 		panelCenter.add(Box.createRigidArea(new Dimension(100,20)));
 		panelCenter.add(signUp);
-		panelCenter.add(Box.createRigidArea(new Dimension(100,20)));
-		panelCenter.add(importButton);
-		panelCenter.add(Box.createRigidArea(new Dimension(100,20)));
-		panelCenter.add(exportButton);
 		panelCenter.add(Box.createRigidArea(new Dimension(100,20)));
 		panelCenter.add(exit);
 		panelCenter.add(Box.createVerticalGlue());
@@ -195,10 +161,17 @@ public class LibraryLoginSignUpFrame {
 	}
 	
 	
-	
-	
-	public void setLibrary(File f) {
+	/**
+	 * A method that will create a library that loads stored data from a file and return it
+	 * Uses org.json package to read JSON file data and create a library
+	 * If the file is invalid, a popup will appear noting this, and this method will return the parameter library
+	 * @param library the current library
+	 * @param f a file with path leading to a data JSON file to read
+	 * @return a library with the file data loaded, or the library passed as parameter if the file fails
+	 */
+	public static Library setLibrary(Library library, File f) {
 		Library prevLibrary = library;
+
 		try {
 			JSONObject obj = new JSONObject(new String(Files.readAllBytes(f.toPath())));
 			JSONArray books = obj.getJSONArray("books");
@@ -207,14 +180,33 @@ public class LibraryLoginSignUpFrame {
 			for (int i = 0; i < books.length(); i++) {
 				JSONObject bookObj = books.getJSONObject(i);
 				Book b = new Book(bookObj.getString("title"), bookObj.getString("author"));
+				b.setISBN(bookObj.getInt("isbn"));
 				library.addBook(b);
 			}
 			for (int i = 0; i < users.length(); i++) {
 				JSONObject userObj = users.getJSONObject(i);
-				User u = new User(userObj.getString("first_name"), userObj.getString("last_name"), userObj.getString("phone_number"));
-				library.addUser(u);
+				User u = new User(userObj.getString("first_name"), userObj.getString("last_name"), userObj.getString("phone_number"), userObj.getString("password"), userObj.getString("libraryCard"));
+				JSONArray borrowedBooks = userObj.getJSONArray("borrowed_books");
+				for (int j = 0; j < borrowedBooks.length(); j++) {
+					int bookISBN = borrowedBooks.getInt(j);
+					List<Book> bookList = library.getBookList();
+					boolean found = false;
+					for (int k = 0; k < bookList.size(); k++) {
+						Book b = bookList.get(k);
+						if (!b.getBorrowed() && b.getISBN() == bookISBN) {
+							library.checkOutBook(u, b);
+							found = true;
+							break;
+						}
+					}
+					if (!found) {
+						throw new JSONException("Invalid File");
+					}
+				}
+				library.addUser(u, false);
 			}
-			JOptionPane.showMessageDialog(null, "Library successfully imported.");
+			// JOptionPane.showMessageDialog(null, "Library successfully imported.");
+			return library;
 		}
 		catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Invalid File");
@@ -224,10 +216,16 @@ public class LibraryLoginSignUpFrame {
 			JOptionPane.showMessageDialog(null, "Invalid File");
 			library = prevLibrary;
 		}
+		return prevLibrary;
 	}
 	
-	public void exportLibrary(File dir) {
-		String path = dir.getPath() + "\\" + library.getName() + ".json";
+	/**
+	 * A method to export a library to a new JSON file at a desired path
+	 * Uses org.json package to store the library data in the JSON file in proper format for import
+	 * @param library the library to export
+	 * @param path the path of the file that should be created
+	 */
+	public static void exportLibrary(Library library, String path) {
 		JSONObject libraryObj = new JSONObject();
 		
 		libraryObj.put("name", library.getName());
@@ -238,6 +236,7 @@ public class LibraryLoginSignUpFrame {
 			JSONObject bookObj = new JSONObject();
 			bookObj.put("title", b.getBookTitle());
 			bookObj.put("author", b.getAuthor());
+			bookObj.put("isbn", b.getISBN());
 			bookArray.put(bookObj);
 		}
 		libraryObj.put("books", bookArray);
@@ -249,6 +248,14 @@ public class LibraryLoginSignUpFrame {
 			userObj.put("first_name", u.getFirstName());
 			userObj.put("last_name", u.getLastName());
 			userObj.put("phone_number", u.getPhoneNumber());
+			userObj.put("password", u.getPassword());
+			userObj.put("libraryCard", u.getLibraryCard());
+			JSONArray borrowedBooksList = new JSONArray();
+			for (Book b : u.getBorrowedBooks()) {
+				borrowedBooksList.put(b.getISBN());
+			}
+			userObj.put("borrowed_books", borrowedBooksList);
+			
 			userArray.put(userObj);
 		}
 		libraryObj.put("users", userArray);
@@ -257,7 +264,7 @@ public class LibraryLoginSignUpFrame {
 			FileWriter writer = new FileWriter(path);
 			writer.write(libraryObj.toString());
 			writer.close();
-			JOptionPane.showMessageDialog(null, "Library successfully exported.");
+			// JOptionPane.showMessageDialog(null, "Library successfully exported.");
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Invalid Location");
 		} catch (JSONException e) {

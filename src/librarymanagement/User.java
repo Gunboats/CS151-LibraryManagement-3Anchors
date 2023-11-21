@@ -10,10 +10,11 @@ import java.util.Map;
 public class User implements Comparable<User> {
     private String firstName;
     private String lastName;
-    private List<LibraryCard> libraryCards;
-    private Map<String, LibraryCard> passwordAndCards = new HashMap<String, LibraryCard>();
+
     private List<Book> borrowedBooks;
     private String phoneNumber;
+    private String password;
+    private String libraryCard;
 
     
     /**
@@ -25,7 +26,7 @@ public class User implements Comparable<User> {
     public User() {
         this.firstName = "John";
         this.lastName = "Doe";
-        libraryCards = new ArrayList<LibraryCard>();
+ 
         this.borrowedBooks = new ArrayList<Book>();
         this.phoneNumber = "123456789";
     }
@@ -35,18 +36,29 @@ public class User implements Comparable<User> {
      * @param name the user's name
      * @param cardNumber the card's ID
      */
-    public User(String firstName, String lastName, String phoneNumber) {
+    public User(String firstName, String lastName, String phoneNumber, String password, String libraryCard) {
         this.firstName = firstName;
         this.lastName = lastName;
-        libraryCards = new ArrayList<LibraryCard>();
+
         borrowedBooks = new ArrayList<Book>();
         this.phoneNumber = phoneNumber;
+        this.password = password;
+        this.libraryCard = libraryCard;
     }
 
+    public User(String firstName, String lastName, String phoneNumber, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+
+        borrowedBooks = new ArrayList<Book>();
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+        this.libraryCard = libraryCard;
+    }
     
     public void checkIn(Book book) {
     	// update book(s) to false...
- System.out.println(("User: " + this.firstName + " " + this.lastName + ", cards: " + getCardsAsString() + ", is checking book: " + book.getBookTitle()));
+ System.out.println(("User: " + this.firstName + " " + this.lastName + ", card: " + getLibraryCard() + ", is checking book: " + book.getBookTitle()));
         if(borrowedBooks.contains(book)){
             borrowedBooks.remove(book);
              book.setBorrowed(false);
@@ -68,20 +80,10 @@ public class User implements Comparable<User> {
     	return firstName + " " + lastName;
     }
     
-    public List<LibraryCard> getCards() {
-    	List<LibraryCard> list = new ArrayList<LibraryCard>(libraryCards);
-        return list;
-    }
 
-    public String getCardsAsString() {
-        if (libraryCards.size() == 0) {
-            return "";
-        }
-        String str = libraryCards.get(0).toString();
-        for (int i = 1; i < libraryCards.size(); i++) {
-            str += ", " + libraryCards.get(i).toString();
-        }
-        return str;
+
+    public String getLibraryCard() {
+        return libraryCard;
     }
     
     public List<Book> getBorrowedBooks(){
@@ -100,6 +102,14 @@ public class User implements Comparable<User> {
     	return this.phoneNumber;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String newPass) {
+        this.password = newPass;
+    }
+
     public void borrowBook(Book book){
         borrowedBooks.add(book);
     }
@@ -110,29 +120,17 @@ public class User implements Comparable<User> {
     }
         //can be deleted if repeat the code above
 
-    public void addCard(LibraryCard c) {
-        libraryCards.add(c);
+    public void setCard(String card) {
+        libraryCard = card;
+    }
+
+    public void setUserBorrowedBookList(List<Book> list) {
+        this.borrowedBooks = list;
     }
     
-    public boolean findLibraryCard(String libPrefix) {
-    	for (LibraryCard card : libraryCards) {
-    		if (card.getLibraryPrefix().equals(libPrefix)) {
-    			return true;
-    		} 
-    	}
-    	return false;
-    }
+
     
-    public LibraryCard getLibraryCard(String libPrefix) {
-    	if(findLibraryCard(libPrefix)) {
-    		for (LibraryCard card : libraryCards) {
-        		if (card.getLibraryPrefix().equals(libPrefix)) {
-        			return card;
-        		} 
-    		}
-    	}
-		return null;
-    }
+
     
     @Override
     public int compareTo(User o) {
@@ -142,7 +140,7 @@ public class User implements Comparable<User> {
 
     @Override
     public String toString() {
-        return "User: " + getName() + ", cards: " + getCardsAsString() +
+        return "User: " + getName() + ", cards: " + getLibraryCard() +
         "\nBooks: \n" + getBooksAsString(); 
     }
 }

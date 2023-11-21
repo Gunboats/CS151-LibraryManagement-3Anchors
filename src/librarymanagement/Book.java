@@ -42,7 +42,7 @@ public class Book implements Comparable<Book> {
         return author;
     }
 
-    public long getISBN() {
+    public int getISBN() {
         return ISBN;
     }
     

@@ -78,11 +78,24 @@ public class Library {
             
             phoneNumAndUserMap.put(user.getPhoneNumber(), user);
             
-            user.addCard(new LibraryCard(name, cardPrefix, (int) (Math.random() * 9000000) + 1000000));
-            cardNumAndUserMap.put(user.getLibraryCard(cardPrefix).getFullCardID(), user);
+            user.setCard(cardPrefix + "-" + ((int) (Math.random() * 9000000) + 1000000));
+            cardNumAndUserMap.put(user.getLibraryCard(), user);
     	}
 
     }
+
+    public void addUser(User user, boolean f) {
+    	if(!containsNumber(user.getPhoneNumber())) {
+            userList.add(user);
+            
+            phoneNumAndUserMap.put(user.getPhoneNumber(), user);
+            
+            
+            cardNumAndUserMap.put(user.getLibraryCard(), user);
+    	}
+
+    }
+
 
     /**
      * removes user from each of the lists and maps that store them
@@ -91,7 +104,7 @@ public class Library {
     public void removeUser(User user) {
         userList.remove(user);
         phoneNumAndUserMap.remove(user.getPhoneNumber());
-        cardNumAndUserMap.remove(user.getLibraryCard(cardPrefix).getFullCardID());
+        cardNumAndUserMap.remove(user.getLibraryCard());
         
     }
 

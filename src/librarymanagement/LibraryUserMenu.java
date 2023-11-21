@@ -7,8 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -38,22 +40,27 @@ public class LibraryUserMenu {
 		JButton addUser = new JButton("Add");
 		JButton openBookCatalog = new JButton("Book Catalog");
 		JButton logout = new JButton("Logout");
+		JButton importButton = new JButton("Import");
+		JButton exportButton = new JButton("Export");
 		southPanel.add(removeUser);
-		southPanel.add(Box.createRigidArea(new Dimension(120,0)));
+		southPanel.add(Box.createRigidArea(new Dimension(40,0)));
 		southPanel.add(addUser);
-		southPanel.add(Box.createRigidArea(new Dimension(120,0)));
+		southPanel.add(Box.createRigidArea(new Dimension(40,0)));
 		southPanel.add(openBookCatalog);
-		southPanel.add(Box.createRigidArea(new Dimension(120,0)));
+		southPanel.add(Box.createRigidArea(new Dimension(40,0)));
 		southPanel.add(logout);
+		southPanel.add(Box.createRigidArea(new Dimension(40,0)));
+		southPanel.add(importButton);
+		southPanel.add(Box.createRigidArea(new Dimension(40,0)));
+		southPanel.add(exportButton);
 		
 		ArrayList<User> userList = new ArrayList<User>();
-		int length = library.getuserList().size()/2 + 1;
 		FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT, 20,20);
 		
 		panel.setLayout(flowLayout);
 		for(User u: library.getuserList()) {
 			JLabel label = new JLabel("<html>" + u.getName() + "<br/>" + 
-					u.getLibraryCard(library.getCardPrefix()) + "<html>");
+					u.getLibraryCard() + "<html>");
 			label.setPreferredSize(new Dimension(150,60));
 			JCheckBox selectUser = new JCheckBox();
 			selectUser.addItemListener(new ItemListener() {
@@ -113,7 +120,7 @@ public class LibraryUserMenu {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				EnterSignUpFrame signUp = new EnterSignUpFrame("Sign up", library, frame, true);
+				new EnterSignUpFrame("Sign up", library, frame, true);
 				
 			}
 			
@@ -124,7 +131,7 @@ public class LibraryUserMenu {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				LibraryAdminCatalogMenu adminCatalog = new LibraryAdminCatalogMenu(library);
+				new LibraryAdminCatalogMenu(library);
 				
 			}
 			
@@ -140,7 +147,38 @@ public class LibraryUserMenu {
 			}
 			
 		});
-		
+
+		importButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fc = new JFileChooser();
+				int returnVal = fc.showOpenDialog(null);
+
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					File file = fc.getSelectedFile();
+					Library newLibrary = LibraryLoginSignUpFrame.setLibrary(library, file);
+					frame.dispose();
+					
+					new LibraryUserMenu(newLibrary);
+				}
+			}
+
+		});
+
+		exportButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fc = new JFileChooser();
+				fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				int returnVal = fc.showOpenDialog(null);
+
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					File file = fc.getSelectedFile();
+					LibraryLoginSignUpFrame.exportLibrary(library, file.getPath() + "\\" + library.getName() + ".json");
+				}
+			}
+
+		});
 		frame.add(southPanel, BorderLayout.SOUTH);
 		frame.setSize(new Dimension(800,600));
 		frame.add(userCatalog, BorderLayout.CENTER);

@@ -45,7 +45,7 @@ public class LibraryLoginSignUpFrame {
 		// Frame for logging in and signing in 
 		JFrame frame = new JFrame("Library Management System");
 		frame.setSize(new Dimension(800, 600));
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panelNorth = new JPanel();

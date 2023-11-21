@@ -161,8 +161,14 @@ public class LibraryLoginSignUpFrame {
 	}
 	
 	
-	
-	
+	/**
+	 * A method that will create a library that loads stored data from a file and return it
+	 * Uses org.json package to read JSON file data and create a library
+	 * If the file is invalid, a popup will appear noting this, and this method will return the parameter library
+	 * @param library the current library
+	 * @param f a file with path leading to a data JSON file to read
+	 * @return a library with the file data loaded, or the library passed as parameter if the file fails
+	 */
 	public static Library setLibrary(Library library, File f) {
 		Library prevLibrary = library;
 
@@ -213,6 +219,12 @@ public class LibraryLoginSignUpFrame {
 		return prevLibrary;
 	}
 	
+	/**
+	 * A method to export a library to a new JSON file at a desired path
+	 * Uses org.json package to store the library data in the JSON file in proper format for import
+	 * @param library the library to export
+	 * @param path the path of the file that should be created
+	 */
 	public static void exportLibrary(Library library, String path) {
 		JSONObject libraryObj = new JSONObject();
 		

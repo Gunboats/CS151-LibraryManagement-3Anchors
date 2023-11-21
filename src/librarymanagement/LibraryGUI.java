@@ -1,6 +1,7 @@
 package librarymanagement;
 
 
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 
@@ -31,7 +32,7 @@ public class LibraryGUI {
 		library.addUser(new User("a", "a", "123123124", " ans"));
 		library.addUser(new User("a", "a", "123123125", " wan"));
 
-		library = LibraryLoginSignUpFrame.setLibrary(library);
+		library = LibraryLoginSignUpFrame.setLibrary(library, new File("lib\\library.json"));
 		LibraryLoginSignUpFrame loginScreen = new LibraryLoginSignUpFrame(library);
 		
 	}

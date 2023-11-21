@@ -1,1 +1,54 @@
-{"books":[{"author":"John Doe","title":"Book Name"},{"author":"John Doe","title":"Book Name"},{"author":"John Doe","title":"Book Name"},{"author":"John Doe","title":"Book Name"},{"author":"John Doe","title":"Book Name"},{"author":"John Doe","title":"Book Name"},{"author":"John Doe","title":"Book Name"},{"author":"John Doe","title":"Book Name"},{"author":"John Doe","title":"Book Name"},{"author":"John Doe","title":"Book Name"},{"author":"John Doe","title":"Book Name"},{"author":"John Doe","title":"Book Name"}],"prefix":"a","name":"a","users":[{"password":"asfd","last_name":"a","phone_number":"123123126","libraryCard":"a-5784339","first_name":"a"},{"password":" askbw","last_name":"a","phone_number":"123123122","libraryCard":"a-5886597","first_name":"a"},{"password":"anjwk","last_name":"a","phone_number":"123123121","libraryCard":"a-6669761","first_name":"a"}]}
+{
+    "name":"TestLib",
+    "prefix":"tl",
+    "books":
+    [
+        {
+            "title":"Book1",
+            "author":"John Doe",
+            "isbn":19581723
+        },
+        {
+            "title":"Book2",
+            "author":"Jane Doe",
+            "isbn":65819275
+        }
+    ],
+    "users":
+    [
+        {
+            "first_name":"Alex",
+            "last_name":"Pham",
+            "phone_number":"123123123",
+            "password":"ap123",
+            "libraryCard":"apham",
+            "borrowed_books":
+            [
+                19581723
+            ]
+        },
+        {
+            "first_name":"Willy",
+            "last_name":"Tang",
+            "phone_number":"152152152",
+            "password":"wt152",
+            "libraryCard":"wtang",
+            "borrowed_books":
+            [
+
+            ]
+        },
+        {
+            "first_name":"Yelin",
+            "last_name":"Wu",
+            "phone_number":"196196196",
+            "password":"yw196",
+            "libraryCard":"ywu",
+            "borrowed_books":
+            [
+
+            ]
+        }
+    ]
+}
+

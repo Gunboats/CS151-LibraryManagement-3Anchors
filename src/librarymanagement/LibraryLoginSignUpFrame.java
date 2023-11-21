@@ -135,7 +135,7 @@ public class LibraryLoginSignUpFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				exportLibrary(library);
+				exportLibrary(library, "lib\\library.json");
 				System.exit(0);
 			}
 			
@@ -163,9 +163,8 @@ public class LibraryLoginSignUpFrame {
 	
 	
 	
-	public static Library setLibrary(Library library) {
+	public static Library setLibrary(Library library, File f) {
 		Library prevLibrary = library;
-		File f = new File("lib\\library.json");
 
 		try {
 			JSONObject obj = new JSONObject(new String(Files.readAllBytes(f.toPath())));
@@ -175,11 +174,29 @@ public class LibraryLoginSignUpFrame {
 			for (int i = 0; i < books.length(); i++) {
 				JSONObject bookObj = books.getJSONObject(i);
 				Book b = new Book(bookObj.getString("title"), bookObj.getString("author"));
+				b.setISBN(bookObj.getInt("isbn"));
 				library.addBook(b);
 			}
 			for (int i = 0; i < users.length(); i++) {
 				JSONObject userObj = users.getJSONObject(i);
 				User u = new User(userObj.getString("first_name"), userObj.getString("last_name"), userObj.getString("phone_number"), userObj.getString("password"), userObj.getString("libraryCard"));
+				JSONArray borrowedBooks = userObj.getJSONArray("borrowed_books");
+				for (int j = 0; j < borrowedBooks.length(); j++) {
+					int bookISBN = borrowedBooks.getInt(j);
+					List<Book> bookList = library.getBookList();
+					boolean found = false;
+					for (int k = 0; k < bookList.size(); k++) {
+						Book b = bookList.get(k);
+						if (!b.getBorrowed() && b.getISBN() == bookISBN) {
+							library.checkOutBook(u, b);
+							found = true;
+							break;
+						}
+					}
+					if (!found) {
+						throw new JSONException("Invalid File");
+					}
+				}
 				library.addUser(u, false);
 			}
 			// JOptionPane.showMessageDialog(null, "Library successfully imported.");
@@ -196,8 +213,7 @@ public class LibraryLoginSignUpFrame {
 		return prevLibrary;
 	}
 	
-	public static void exportLibrary(Library library) {
-		String path = "lib\\library.json";
+	public static void exportLibrary(Library library, String path) {
 		JSONObject libraryObj = new JSONObject();
 		
 		libraryObj.put("name", library.getName());
@@ -208,6 +224,7 @@ public class LibraryLoginSignUpFrame {
 			JSONObject bookObj = new JSONObject();
 			bookObj.put("title", b.getBookTitle());
 			bookObj.put("author", b.getAuthor());
+			bookObj.put("isbn", b.getISBN());
 			bookArray.put(bookObj);
 		}
 		libraryObj.put("books", bookArray);
@@ -221,6 +238,12 @@ public class LibraryLoginSignUpFrame {
 			userObj.put("phone_number", u.getPhoneNumber());
 			userObj.put("password", u.getPassword());
 			userObj.put("libraryCard", u.getLibraryCard());
+			JSONArray borrowedBooksList = new JSONArray();
+			for (Book b : u.getBorrowedBooks()) {
+				borrowedBooksList.put(b.getISBN());
+			}
+			userObj.put("borrowed_books", borrowedBooksList);
+			
 			userArray.put(userObj);
 		}
 		libraryObj.put("users", userArray);

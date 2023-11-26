@@ -54,7 +54,7 @@ public class LibraryLoginSignUpFrame {
 		JPanel panelWest = new JPanel();
 		JPanel panelEast = new JPanel();
 		JPanel panelSouth = new JPanel();
-		JLabel labelLibName = new JLabel("Library Name");
+		JLabel labelLibName = new JLabel(lib.getName());
 		
 		JButton adminLogin = new JButton("Admin login");
 		adminLogin.setAlignmentX(JButton.RIGHT_ALIGNMENT);
@@ -112,7 +112,7 @@ public class LibraryLoginSignUpFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				EnterSignUpFrame signUp = new EnterSignUpFrame("Sign up", library, frame, false);
+				new EnterSignUpFrame("Sign up", library, frame, false);
 				
 			}
 			
@@ -123,7 +123,7 @@ public class LibraryLoginSignUpFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				EnterLoginAdminFrame adminLogin = new EnterLoginAdminFrame("Admin login", library, frame);
+				new EnterLoginAdminFrame("Admin login", library, frame);
 				
 			}
 			

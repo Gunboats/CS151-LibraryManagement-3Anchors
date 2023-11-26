@@ -32,4 +32,20 @@ public class BorrowBook extends Exception {
 		}
 		
 	}
+
+	public static class BookBorrowedAlready extends BorrowBook {
+
+		BookBorrowedAlready() {
+			super("Exception: You have already borrowed this book");
+		}
+		
+	}
+
+		public static class BorrowingDuplicates extends BorrowBook {
+
+		BorrowingDuplicates() {
+			super("Exception: Borrowing duplicate books");
+		}
+		
+	}
 }

@@ -27,7 +27,7 @@ public class LibraryBorrowedBooksMenu {
 	 * library
 	 * @param user
 	 */
-	LibraryBorrowedBooksMenu(User user) {
+	LibraryBorrowedBooksMenu(User user, JFrame catalogFrame, Library library) {
 		JFrame frame = new JFrame("Borrowed Books");
 		JPanel bookPanel = new JPanel();
 		JScrollPane bookCatalog = new JScrollPane(bookPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -87,8 +87,9 @@ public class LibraryBorrowedBooksMenu {
 						user.returnBook(b);
 					}
 					frame.dispose();
-					new LibraryBorrowedBooksMenu(user);
-
+					catalogFrame.dispose();
+					new LibraryBorrowedBooksMenu(user, catalogFrame, library);
+					new LibraryCatalogMenu(library, user);
 					
 					JFrame thanksFrame = new JFrame("Thank you");
 					thanksFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

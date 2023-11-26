@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class EnterSignUpFrame extends EnterInformationFrame{
@@ -51,7 +52,7 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 			JTextField phoneNumberField = new JTextField();
 			
 			JLabel passwordLabel = new JLabel("Password: ");
-			JTextField passwordField = new JTextField();
+			JPasswordField passwordField = new JPasswordField();
 
 			JPanel panelCenter = new JPanel(new GridLayout(4,2,5,40));
 
@@ -148,6 +149,7 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 						} else if (userPassword.length() < 1) {
 							throw new SignUpException.EmptyPassword();
 						} else if (!userPassword.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")) {
+							// Contributions made by Yelin
 							// 1. At least 8 chars
 							// 2. Contains at least one digit
 							// 3. Contains at least one lower alpha char and one upper alpha char
@@ -171,11 +173,7 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 						} else {
 
 							library.addUser(newUser);
-							
-							
 
-							
-							
 							JFrame registered = new JFrame("Registered");
 							registered.setSize(new Dimension(600,200));
 							JPanel registeredPanel = new JPanel();

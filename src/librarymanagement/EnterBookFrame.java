@@ -30,7 +30,7 @@ public class EnterBookFrame {
 	EnterBookFrame(Library library, JFrame frame) {
 		JFrame addBookFrame = new JFrame();
 		addBookFrame.setSize(new Dimension(600,600));
-		
+		addBookFrame.setResizable(false);
 		JLabel titleLabel = new JLabel("Title: ");
 		JTextField titleField = new JTextField();
 		JLabel authorLabel = new JLabel("Author ");

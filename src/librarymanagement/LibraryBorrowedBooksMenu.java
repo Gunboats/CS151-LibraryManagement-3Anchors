@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class LibraryBorrowedBooksMenu {
-	
+	JFrame frame = new JFrame("Borrowed Books");
 	/**
 	 * Creates JFrame showing the User's borrowed books
 	 * Users can click on check boxes and then press
@@ -28,12 +28,13 @@ public class LibraryBorrowedBooksMenu {
 	 * @param user
 	 */
 	LibraryBorrowedBooksMenu(User user, JFrame catalogFrame, Library library) {
-		JFrame frame = new JFrame("Borrowed Books");
+		
 		JPanel bookPanel = new JPanel();
 		JScrollPane bookCatalog = new JScrollPane(bookPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		bookCatalog.getVerticalScrollBar().setUnitIncrement(15);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		bookPanel.setPreferredSize(new Dimension(400,600));
+		
 		
 		
 		ArrayList<Book> borrowedBookList = new ArrayList<Book>();
@@ -133,13 +134,16 @@ public class LibraryBorrowedBooksMenu {
 		frame.add(southPanel, BorderLayout.SOUTH);
 		frame.add(northPanel, BorderLayout.NORTH);
 		frame.setSize(new Dimension(800,600));
-
+		LibraryGUI.openJFrames.add(frame);
 		frame.setVisible(true);
 		
 		
 		
 	}
 	
+	public JFrame getJFrame() {
+		return frame;
+	}
 	
 	
 }

@@ -201,8 +201,11 @@ public class LibraryCatalogMenu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new LibraryBorrowedBooksMenu(user, frame, library);
-				
+				LibraryGUI.closeJFrames();
+				frame.setVisible(true);
+				LibraryGUI.openJFrames.add(frame);
+				LibraryBorrowedBooksMenu menu = new LibraryBorrowedBooksMenu(user, frame, library);
+
 			}
 			
 		});

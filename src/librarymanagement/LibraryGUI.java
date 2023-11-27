@@ -13,26 +13,27 @@ public class LibraryGUI {
 		openJFrames = new ArrayList<JFrame>();
 		
 		Library library = new Library("a", "a");
-		library.addBook(new Book());
-		library.addBook(new Book());
-		library.addBook(new Book());
-		library.addBook(new Book());
-		library.addBook(new Book());
-		library.addBook(new Book());
-		library.addBook(new Book());
-		library.addBook(new Book());
-		library.addBook(new Book());
-		library.addBook(new Book());
-		library.addBook(new Book());
-		library.addBook(new Book());
-		// write to file..
-		library.addUser(new User("a", "a", "123123126", "asfd", "SJ-1232321"));
-		library.addUser(new User("a", "a", "123123122", " askbw"));
-		library.addUser(new User("a", "a", "123123121", "anjwk"));
-		library.addUser(new User("a", "a", "123123124", " ans"));
-		library.addUser(new User("a", "a", "123123125", " wan"));
 
-		library = LibraryLoginSignUpFrame.setLibrary(library, new File("lib\\library.json"));
+		// library.addBook(new Book("ABSALOM, ABSALOM!", "WILLIAM FAULKNER"));
+		// library.addBook(new Book("A TIME TO KILL", "JOHN GRISHAM"));
+		// library.addBook(new Book());
+		// library.addBook(new Book());
+		// library.addBook(new Book());
+		// library.addBook(new Book());
+		// library.addBook(new Book());
+		// library.addBook(new Book());
+		// library.addBook(new Book());
+		// library.addBook(new Book());
+		// library.addBook(new Book());
+		// library.addBook(new Book());
+		// // write to file..
+		// library.addUser(new User("a", "a", "123123126", "asfd", "SJ-1232321"));
+		// library.addUser(new User("a", "a", "123123122", " askbw"));
+		// library.addUser(new User("a", "a", "123123121", "anjwk"));
+		// library.addUser(new User("a", "a", "123123124", " ans"));
+		// library.addUser(new User("a", "a", "123123125", " wan"));
+
+		library = LibraryLoginSignUpFrame.setLibrary(library, new File("./lib/library.json"));
 		LibraryLoginSignUpFrame loginScreen = new LibraryLoginSignUpFrame(library);
 		
 	}

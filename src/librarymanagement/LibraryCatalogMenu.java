@@ -118,7 +118,7 @@ public class LibraryCatalogMenu {
 
 					if(toBorrowList.size() > 0) {
 						for(int i = 0; i < toBorrowList.size(); i++) {
-							for (int j = 1; j < toBorrowList.size(); j++) {
+							for (int j = i+1; j < toBorrowList.size(); j++) {
 								if (toBorrowList.get(i).getAuthor().equals(toBorrowList.get(j).getAuthor())) {
 									if (toBorrowList.get(i).getBookTitle().equals(toBorrowList.get(j).getBookTitle())) {
 										throw new BorrowBook.BorrowingDuplicates();

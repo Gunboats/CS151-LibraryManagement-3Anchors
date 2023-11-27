@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import librarymanagement.LoginException.IncorrectUsernamePasswordCombo;
@@ -35,7 +36,7 @@ public class EnterLoginAdminFrame extends EnterInformationFrame{
 		JLabel usernameLabel = new JLabel("Username: ");
 		JTextField usernameField = new JTextField();
 		JLabel passwordLabel = new JLabel("Password: ");
-		JTextField passwordField = new JTextField();
+		JPasswordField passwordField = new JPasswordField();
 		JPanel panelCenter = new JPanel(new GridLayout(2,2,5,40));
 	
 		JButton loginButton = new JButton("Login");

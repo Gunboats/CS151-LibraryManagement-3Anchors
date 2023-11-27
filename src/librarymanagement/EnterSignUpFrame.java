@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class EnterSignUpFrame extends EnterInformationFrame{
@@ -51,7 +52,7 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 			JTextField phoneNumberField = new JTextField();
 			
 			JLabel passwordLabel = new JLabel("Password: ");
-			JTextField passwordField = new JTextField();
+			JPasswordField passwordField = new JPasswordField();
 
 			JPanel panelCenter = new JPanel(new GridLayout(4,2,5,40));
 
@@ -147,6 +148,23 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 							throw new SignUpException.InvalidLastName();
 						} else if (userPassword.length() < 1) {
 							throw new SignUpException.EmptyPassword();
+						} else if (!userPassword.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")) {
+							// Contributions made by Yelin
+							// 1. At least 8 chars
+							// 2. Contains at least one digit
+							// 3. Contains at least one lower alpha char and one upper alpha char
+							// 4. Contains at least one char within a set of special chars (@#%$^ etc.)
+							// 5. Does not contain space, tab, etc.
+							//
+							// ^                 # start-of-string
+							// (?=.*[0-9])       # a digit must occur at least once
+							// (?=.*[a-z])       # a lower case letter must occur at least once
+							// (?=.*[A-Z])       # an upper case letter must occur at least once
+							// (?=.*[@#$%^&+=])  # a special character must occur at least once
+							// (?=\S+$)          # no whitespace allowed in the entire string
+							// .{8,}             # anything, at least eight places though
+							// $                 # end-of-string
+							throw new SignUpException.InvalidPassword();
 						}
 						
 						User newUser = new User(userFirstName, userLastName, userPhoneNumber, userPassword);
@@ -155,11 +173,7 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 						} else {
 
 							library.addUser(newUser);
-							
-							
 
-							
-							
 							JFrame registered = new JFrame("Registered");
 							registered.setSize(new Dimension(600,200));
 							JPanel registeredPanel = new JPanel();
@@ -253,7 +267,14 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 						registrationExceptionFrame.add(registrationExceptionPanel);
 						registrationExceptionFrame.setVisible(true);
 						LibraryGUI.openJFrames.add(registrationExceptionFrame);
-					}
+					} catch(SignUpException.InvalidPassword invalidPassword) {
+						JLabel exceptionMessage = new JLabel(invalidPassword.getMessage());
+						// exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20);
+						registrationExceptionPanel.add(exceptionMessage);
+						registrationExceptionFrame.add(registrationExceptionPanel);
+						registrationExceptionFrame.setVisible(true);
+						LibraryGUI.openJFrames.add(registrationExceptionFrame);
+					} 	
 					
 				}
 				

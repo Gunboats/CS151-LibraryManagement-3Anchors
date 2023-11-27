@@ -101,17 +101,44 @@ public class LibraryCatalogMenu {
 					if(toBorrowList.isEmpty()) {
 						throw new BorrowBook.NoBorrowedBooks();
 					}
-					
+
+					if(toBorrowList.size() > 0) {
+						for (Book b: toBorrowList) {
+							if(!user.getBorrowedBooks().isEmpty()) {
+								for(Book c: user.getBorrowedBooks()) {
+									if (b.getAuthor().equals(c.getAuthor()) && b.getBookTitle().equals(c.getBookTitle())) {
+										throw new BorrowBook.BookBorrowedAlready();
+									}
+								}
+							}
+
+
+						}
+					}
+
+					if(toBorrowList.size() > 0) {
+						for(int i = 0; i < toBorrowList.size(); i++) {
+							for (int j = 1; j < toBorrowList.size(); j++) {
+								if (toBorrowList.get(i).getAuthor().equals(toBorrowList.get(j).getAuthor())) {
+									if (toBorrowList.get(i).getBookTitle().equals(toBorrowList.get(j).getBookTitle())) {
+										throw new BorrowBook.BorrowingDuplicates();
+									}
+								}
+							}
+						}
+					}
+
+
 					for (Book b: toBorrowList) {
-//						ok actually borrow this time
+//						This loop will borrow the books
 						
 						library.checkOutBook(user, b);
 					}
+
+
+
 					frame.dispose();
 					new LibraryCatalogMenu(library, user);
-					// TO BE ADDED
-					// show user's entire borrowed book list
-					// admin add users
 					
 					JFrame thanksFrame = new JFrame("Thank you");
 					
@@ -152,6 +179,18 @@ public class LibraryCatalogMenu {
 					borrowExceptionFrame.add(borrowFailPanel);
 					borrowExceptionFrame.setVisible(true);
 					LibraryGUI.openJFrames.add(borrowExceptionFrame);
+				} catch (BorrowBook.BookBorrowedAlready borrowedAlready) {
+					JLabel exceptionMessage = new JLabel(borrowedAlready.getMessage());
+					borrowFailPanel.add(exceptionMessage);
+					borrowExceptionFrame.add(borrowFailPanel);
+					borrowExceptionFrame.setVisible(true);
+					LibraryGUI.openJFrames.add(borrowExceptionFrame);
+				} catch (BorrowBook.BorrowingDuplicates duplicateBorrowing) {
+					JLabel exceptionMessage = new JLabel(duplicateBorrowing.getMessage());
+					borrowFailPanel.add(exceptionMessage);
+					borrowExceptionFrame.add(borrowFailPanel);
+					borrowExceptionFrame.setVisible(true);
+					LibraryGUI.openJFrames.add(borrowExceptionFrame);
 				}
 				
 			}
@@ -162,8 +201,11 @@ public class LibraryCatalogMenu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				LibraryBorrowedBooksMenu borrowedBooks = new LibraryBorrowedBooksMenu(user);
-				
+				LibraryGUI.closeJFrames();
+				frame.setVisible(true);
+				LibraryGUI.openJFrames.add(frame);
+				LibraryBorrowedBooksMenu menu = new LibraryBorrowedBooksMenu(user, frame, library);
+
 			}
 			
 		});

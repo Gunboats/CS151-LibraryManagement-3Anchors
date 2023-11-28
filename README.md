@@ -70,11 +70,11 @@
 ### Snapshot of running program
 * When the user runs the program, the loginSignup interface will appear first.
 * <img width="794" alt="loginSignupFrame" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/204b68a4-a2ac-405d-b75d-70373ed1812b">
-* To borrow books, users need to click signup first, obtain user information and then log in to borrow/return/checkbooks.
+* To borrow books, users need to click signup first, obtain user information and then log in to borrow/return/checkbooks. Users access this by pressing sign up botton, admins access by pressing add user button
 * <img width="584" alt="sign up" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/b17ce1da-753d-4df8-bbf6-3fa2d6fe21b1">
-* Obtain user information
+* Obtain the registered user's password and library card id (username)
 * <img width="595" alt="user information" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/31534c9a-619f-4071-a974-18a051e69caf">
-* Login to the Library
+* Login window to the Library
 * <img width="590" alt="login" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/6138720f-29c8-49a1-8773-2eda77f58daa">
 * Users can view books as well as borrow or return books,
 * <img width="790" alt="book list" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/33734c98-53c2-41ef-8784-9e4e1320dafc">
@@ -82,6 +82,44 @@
 * Show activity information
 * <img width="798" alt="borrow book and show activity information" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/dd2bc369-9d01-4ee0-b959-57922e159a08">
 * <img width="795" alt="show activity information" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/cb9df368-e381-4f95-860e-289fa918d4a0">
+
+#### Other Exceptions/Popups that may appear when running program
+* Occurs when admin or user fails to enter any characters in the username field
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/3a036125-aff3-4f97-9bfa-b3590a20a6fc)
+* Occurs when admin or user enters info into passwordField, but leaves username field empty
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/a118b0b9-4932-492c-88ed-5cb77238cd71)
+* Occurs when admin or user enters incorrect username and password combination
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/d7040036-8788-44be-a6b8-54e1b205ffad)
+* Opens after successful login for admins, shows all users, allowing removing users, adding users, opening the admin view of the library's book catalog, can import and export the library
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/ee840989-2012-4fb2-b87b-ff8bba3c5e99)
+* Occurs when no checkboxes are selected to remove a user
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/8b8370ad-3c96-49a5-b3c4-6f623350ca52)
+* Occurs when user or admin tries to register a user, but does not fill in any fields
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/96b355a8-5b08-48ae-9a51-a62d1079c5c3)
+* Occurs when first name field is filled, but last name field is not filled
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/d021fdb1-d121-4a13-8e32-4bcff209df09)
+* Occurs when no number is provided for the phone number field
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/83262df9-a894-4bdc-a8f1-92c9d5e67996)
+* Occurs when user or admin provides a number for the phone number field, but the length is not exactly 9 digits
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/5f18374a-56d1-43a8-b2e3-bd97cc76b861)
+* Occurs when user or admin uses non-digit characters in the phone number field
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/2e016eeb-a34b-42ac-9032-d0ac9b0a0f2a)
+* Occurs when password field is empty
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/b303cb7c-dc62-44c5-8627-1efddcc96abe)
+* Occurs when password does not meet required password requirements
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/0594cafd-21c9-41ae-bd03-0e51827e7dab)
+* Occurs when user or admin enters a phone number that is already used when they try to register a user
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/2e430840-17fe-4343-9fb6-83d1b778a62e)
+* Opens when admin tries to import a file of library data to the GUI
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/6a277b3c-2d22-4da1-9ad5-f3803e3e94b1)
+* Pop up of file explorer occurs when admin tries to import an invalid file to the library GUI
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/80d3dae1-585c-4361-a670-4e5158b6b6f7)
+* Opens a file explorer when admin tries to export to a location
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/ba4dad49-ff10-494d-a4b2-52beb7ee37bb)
+
+
+
+
 
 
 

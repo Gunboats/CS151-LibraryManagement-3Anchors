@@ -13,7 +13,7 @@
 
 ## Members working on Project Code:
 ### Willy: Managed github post-proposal creation. Created most exceptions for AddRemoveBookException, AddRemoveUserException, BorrowBook, SignUpException, LoginException. Worked on Library, User, Book. Contributed to EnterInformationFrame, LibraryLoginSignUpFrame, LibraryCatalogMenu, EnterLoginAdminFrame, EnterSignUpFrame, LibraryUserMenu, EnterBookFrame, Enter InformationFrame, LibraryBorrowedBooksMenu, the README.md inside the src folder with test cases you manually have to enter. Implemented exception handling, made most of the GUI's JFrames, popups, Bonus's user view and admin view. 
-### Alex: Managed github during project proposal phase, transferred control to Willy after.
+### Alex: Managed github during project proposal phase, transferred control to Willy after. Initialized project files in github. Added to basic Library operations during the early stages of the project and created some testing for the library, pre-GUI, in the Pre-commit-to-main-branch branch. Implemented import and export functionality on Test-branch-file-writing, and created a format for storing Library data in a JSON file along with some test libraries.
 ### Yelin: Contributed to Libray.java, User.java, LibrayLoginSignUpFrame.java(These were pushed the laurindaaa-patch branch. But it was overrided by the team's code and didn't merge into the final branch). Added the password format checker. Fixed the import path for library.json. Updated the libray.json data inclduing books data and user data. Updated README.md.
 
 ## Members working on Project Report:
@@ -93,9 +93,9 @@
   
 ### References:
 ####JSON Library:
--Library Used: library.json
--Version: 20231013 
--Description: A JSON library for storing book's data and admin user's data.
+-Package Used: org.json (from json-20231013.jar)
+-Version: 20231013 release
+-Description: A package with useful operations for reading and writing JSON files. From https://github.com/stleary/JSON-java
 
 ####Frame:
 * 1.Enter BookFrame:

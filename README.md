@@ -116,6 +116,24 @@
 * ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/80d3dae1-585c-4361-a670-4e5158b6b6f7)
 * Opens a file explorer when admin tries to export to a location
 * ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/ba4dad49-ff10-494d-a4b2-52beb7ee37bb)
+* Opens the Add book JFrame from the add book button
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/2d52b31b-355f-4990-ab62-1ef061955c02)
+* Occurs when admins try to remove 0 books that are selected with check boxes
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/0138e961-abe5-434e-b3a4-04088b71271d)
+* Occurs when admin tries adding a book without a title
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/d1563f11-8aa1-490a-a72c-e04d98a74e44)
+* Occurs when admin tries adding book with a title, but no author
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/32cbec7b-2e1c-49b5-9bfb-67ce2eaa3210)
+* Occurs when user tries to borrow books, but no books were selected
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/6e39fe44-f225-43cb-bc72-e8d43b9c5a75)
+* Occurs when user tries to borrow an already borrowed book
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/39c5913f-7f2e-46bc-8909-def0bf7303f1)
+* Occurs when user tries to return 0 books selected
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/fc89d09c-5ed2-4d83-862b-fbe12ef4a2a4)
+
+
+
+
 
 
 

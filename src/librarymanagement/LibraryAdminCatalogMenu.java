@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 import javax.swing.Box;
@@ -14,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -56,6 +59,28 @@ public class LibraryAdminCatalogMenu {
 		southPanel.add(Box.createRigidArea(new Dimension(150,0)));
 		southPanel.add(logout);
 		
+
+				/**
+		 * Adds alternate way to exit program when users press x so that JDK is not
+		 * running in the background
+		 * Pressing yes should exit the program
+		 */
+		frame.addWindowListener(new WindowAdapter() {
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				JOptionPane closeProgramPane = new JOptionPane("Exting program");
+				int closeValue = closeProgramPane.showConfirmDialog(closeProgramPane, "Ready to exit?");
+				if (closeValue == JOptionPane.YES_OPTION) {
+					LibraryLoginSignUpFrame.exportLibrary(library, "lib\\library.json");
+					System.exit(0);
+				}
+
+
+						
+			}
+		});
+
 		for(Book b: library.getBookList()) {
 			JLabel label = new JLabel("<html>" + b.getBookTitle() + "<br/>" + 
 		b.getAuthor() + "<br/>" + (b.getBorrowed() ? "Borrowed" : "Available") + "<html>");

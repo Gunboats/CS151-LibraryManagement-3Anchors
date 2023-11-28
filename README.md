@@ -14,7 +14,7 @@
 ## Members working on Project Code:
 ### Willy: Managed github post-proposal creation. Created most exceptions for AddRemoveBookException, AddRemoveUserException, BorrowBook, SignUpException, LoginException. Worked on Library, User, Book. Contributed to EnterInformationFrame, LibraryLoginSignUpFrame, LibraryCatalogMenu, EnterLoginAdminFrame, EnterSignUpFrame, LibraryUserMenu, EnterBookFrame, Enter InformationFrame, LibraryBorrowedBooksMenu, the README.md inside the src folder with test cases you manually have to enter. Implemented exception handling, made most of the GUI's JFrames, popups, Bonus's user view and admin view. 
 ### Alex: Managed github during project proposal phase, transferred control to Willy after.
-### Yelin: Contributed to Libray.java, User.java, LibrayLoginSignUpFrame.java(These were pushed the laurindaaa-patch branch. But it was overrided by the team's code and didn't merge into the final branch). Added the password format checker. Fixed the import path for library.json. Updated the libray.json data inclduing books data and user data. 
+### Yelin: Contributed to Libray.java, User.java, LibrayLoginSignUpFrame.java(These were pushed the laurindaaa-patch branch. But it was overrided by the team's code and didn't merge into the final branch). Added the password format checker. Fixed the import path for library.json. Updated the libray.json data inclduing books data and user data. Updated README.md.
 
 ## Members working on Project Report:
 ### Problem/Issue: Problem to solve: We have a library that lack a digital system for users to use and store important data such as the books in their catalog and the users that are registered with the library. We want to create a library management system that manages a library’s digital catalog of books and users with their respective information such as borrowed books, their name, and their library card number. This library management system should have a GUI that is intuitive and not difficult to use. Libraries and users need to be able to login to use their respective privileges. This requires us to uniquely identify each user to each library.
@@ -65,6 +65,9 @@
 * Build the project to compile the source code.
 * Run the main class or file containing the main method (please run LibraryGUI.java)
 * Once the code is running, follow any on-screen instructions to interact with the Library Management System.
+
+### Snapshot of running program
+
 
   
 ### References:

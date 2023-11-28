@@ -1,11 +1,18 @@
 package librarymanagement;
 
+/**
+ * Exceptions that occur when users try to borrow a book
+ * and also return books
+ */
 public class BorrowBook extends Exception {
 	BorrowBook(String error) {
 			super(error);
 	}
 	
-	
+	/**
+	 * Created and used when user tries to borrow a book
+	 * that is already borrowed
+	 */
 	public static class CannotBorrow extends BorrowBook {
 
 		CannotBorrow() {
@@ -15,6 +22,10 @@ public class BorrowBook extends Exception {
 		
 	}
 	
+	/**
+	 * Created and used when the user does not select any
+	 * books with checkboxes and presses borrow button
+	 */
 	public static class NoBorrowedBooks extends BorrowBook {
 
 		NoBorrowedBooks() {
@@ -24,6 +35,10 @@ public class BorrowBook extends Exception {
 		
 	}
 	
+	/**
+	 * Created and used when the user did not select any books to
+	 * return with a check box
+	 */
 	public static class NoBorrowedBooksReturned extends BorrowBook {
 
 		NoBorrowedBooksReturned() {
@@ -33,6 +48,10 @@ public class BorrowBook extends Exception {
 		
 	}
 
+	/**
+	 * Created and used when the user tries to borrow a book
+	 * that is in their list of borrowed books
+	 */
 	public static class BookBorrowedAlready extends BorrowBook {
 
 		BookBorrowedAlready() {
@@ -41,7 +60,12 @@ public class BorrowBook extends Exception {
 		
 	}
 
-		public static class BorrowingDuplicates extends BorrowBook {
+	/**
+	 * Created and used when user tries borrowing 2 books with
+	 * the same exact title and author, assuming that upper and 
+	 * lower cases matter
+	 */
+	public static class BorrowingDuplicates extends BorrowBook {
 
 		BorrowingDuplicates() {
 			super("Exception: Borrowing duplicate books");

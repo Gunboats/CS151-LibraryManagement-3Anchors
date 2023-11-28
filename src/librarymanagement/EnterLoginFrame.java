@@ -31,6 +31,9 @@ public class EnterLoginFrame extends EnterInformationFrame{
 	public EnterLoginFrame(String windowName, Library library, JFrame frame) {
 		super(windowName, library, frame);
 			
+		/**
+		 * Declaring and assigning labels and fields for username, password, creating center panel
+		 */
 			JLabel usernameLabel = new JLabel("Username: ");
 			JTextField usernameField = new JTextField();
 			JLabel passwordLabel = new JLabel("Password: ");
@@ -61,6 +64,17 @@ public class EnterLoginFrame extends EnterInformationFrame{
 					incorrectPanel.add(Box.createRigidArea(new Dimension(0,150)));
 					incorrectLogin.setSize(new Dimension(600,200));
 					boolean hasLogin = false;
+					
+					/**
+					 * Checks that user has at least entered 1 character
+					 * for username and password, and then checks if the
+					 * username and password match a user
+					 * If both match a user's login, it will close the login
+					 * frame and open the LibraryCatalogMenu frame of books in
+					 * the library
+					 * Failing to login will throw error which will open a popup 
+					 * telling what went wrong with the inputs
+					 */
 					try {
 						if (copyUsername.length() < 1) {
 							throw new LoginException.EmptyUsername();
@@ -118,6 +132,10 @@ public class EnterLoginFrame extends EnterInformationFrame{
 				
 			});
 			
+			/**
+			 * Adjusts panel sizes, added labels, fields, button to panels,
+			 * and then adds panels to the JFrame in a borderlayout form
+			 */
 			getPanelWest().setPreferredSize(new Dimension(195,200));
 			getPanelEast().setPreferredSize(new Dimension(195,200));
 			getPanelSouth().setPreferredSize(new Dimension(200,230));

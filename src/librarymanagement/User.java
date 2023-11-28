@@ -76,11 +76,15 @@ public class User implements Comparable<User> {
     public String getLastName() {
     	return this.lastName;
     }
+
+    /**
+     * Getter forms first name and last name
+     * as one string
+     * @return full name of user
+     */
     public String getName() {
     	return firstName + " " + lastName;
     }
-    
-
 
     public String getLibraryCard() {
         return libraryCard;

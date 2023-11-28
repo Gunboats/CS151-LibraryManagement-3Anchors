@@ -147,7 +147,10 @@ public class LibraryLoginSignUpFrame {
 			}
 			
 		});
-		
+		/**
+		 * Boxes create space between the different components so that they are
+		 * not all together, but rather are spaced apart
+		 */
 		panelNorth.add(Box.createRigidArea(new Dimension(0,150)));
 		
 		panelCenter.add(Box.createRigidArea(new Dimension(100,20)));

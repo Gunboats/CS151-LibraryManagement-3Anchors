@@ -33,6 +33,13 @@ public class LibraryAdminCatalogMenu {
 	 * @param library The library being accessed
 	 */
 	LibraryAdminCatalogMenu(Library library) {
+		/**
+		 * Declares and assigns JFrame, JPanels, JScrollPane
+		 * Uses a flow layout for the bookPanel, allowing books to
+		 * be displayed from left to right order, and then top to bottom
+		 * Buttons are added to southPanel to put them at the bottom of the
+		 * screen
+		 */
 		JFrame frame = new JFrame("Library Catalog");
 		JPanel bookPanel = new JPanel();
 		JScrollPane bookCatalog = new JScrollPane(bookPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -60,7 +67,7 @@ public class LibraryAdminCatalogMenu {
 		southPanel.add(logout);
 		
 
-				/**
+		/**
 		 * Adds alternate way to exit program when users press x so that JDK is not
 		 * running in the background
 		 * Pressing yes should exit the program
@@ -81,6 +88,13 @@ public class LibraryAdminCatalogMenu {
 			}
 		});
 
+
+		/**
+		 * For every book in the library, it creates a label with a checkbox
+		 * so that books are paired with a checkbox, allowing the user to select
+		 * which books to borrow, which are added to a list of books that may be borrowed,
+		 * the labels and check boxes are added to book panel
+		 */
 		for(Book b: library.getBookList()) {
 			JLabel label = new JLabel("<html>" + b.getBookTitle() + "<br/>" + 
 		b.getAuthor() + "<br/>" + (b.getBorrowed() ? "Borrowed" : "Available") + "<html>");
@@ -109,6 +123,7 @@ public class LibraryAdminCatalogMenu {
 		 * Failing to remove a book (no books check mark selected)
 		 * will create a popup notifying the admin that it failed to
 		 * occur
+		 * Prevents admins from removing books that are still borrowed
 		 * Removes book(s) that are selected, updates the file, and reopens 
 		 * the window to reflect the changes made 
 		 */

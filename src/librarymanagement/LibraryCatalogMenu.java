@@ -67,20 +67,12 @@ public class LibraryCatalogMenu {
 	
 
 		ArrayList<Book> toBorrowList = new ArrayList<Book>();
-		
-		
 		JPanel southPanel = new JPanel();
-		
-		
 		FlowLayout panelLayout = new FlowLayout(FlowLayout.LEFT, 25, 5);
 		bookPanel.setLayout(panelLayout);
 		JButton borrowBooks = new JButton("Borrow");
-		
-		
 		JButton booksBorrowed = new JButton("Books Borrowed");
 		JButton logout = new JButton("Logout");
-		
-		
 		southPanel.add(borrowBooks);
 		southPanel.add(booksBorrowed);
 		southPanel.add(logout);
@@ -241,7 +233,8 @@ public class LibraryCatalogMenu {
 		});
 		
 		/**
-		 * Opens the JFrame for the list of books the user borrowed,
+		 * Opens the JFrame for the list of books the user borrowed, closes
+		 * other frames
 		 */
 		booksBorrowed.addActionListener(new ActionListener() {
 

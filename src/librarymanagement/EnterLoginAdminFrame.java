@@ -62,6 +62,14 @@ public class EnterLoginAdminFrame extends EnterInformationFrame{
 				incorrectPanel.add(Box.createRigidArea(new Dimension(0,150)));
 				incorrectLogin.setSize(new Dimension(600,200));
 				
+
+
+				/**
+				 * Checks username and password are longer than 0 characters,
+				 * and that the username and password match the admin and password
+				 * values within the library, otherwise it throws errors that will
+				 * open JFrames displaying an exception message
+				 */
 				try {
 					if (copyUsername.length() < 1) {
 						throw new LoginException.EmptyUsername();
@@ -106,6 +114,11 @@ public class EnterLoginAdminFrame extends EnterInformationFrame{
 			}
 			
 		});
+
+		/**
+		 * Adjusting size of the panels, adding labels, button, fields to the panels
+		 * which the panels are then added to the JFrame and displayed
+		 */
 		getPanelWest().setPreferredSize(new Dimension(195,200));
 		getPanelEast().setPreferredSize(new Dimension(195,200));
 		getPanelSouth().setPreferredSize(new Dimension(200,230));

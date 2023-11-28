@@ -42,7 +42,11 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 	 */
 	public EnterSignUpFrame(String windowName, Library library, JFrame frame, boolean refresh) {
 		super(windowName, library, frame);
-			JLabel firstNameLabel = new JLabel("First name: ");
+			
+		/**
+		 * Assigns and declares labels, fields, 
+		 */
+		JLabel firstNameLabel = new JLabel("First name: ");
 			JTextField firstNameField = new JTextField();
 			JLabel lastNameLabel = new JLabel("Last name: ");
 			JTextField lastNameField = new JTextField();
@@ -64,6 +68,10 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 			
 //			panelWest.setBackground(Color.cyan);
 			
+			/**
+			 * Adds the labels and fields to the panel, and then adds
+			 * the panels to the JFrame in a borderlayout 
+			 */
 			panelCenter.add(firstNameLabel);
 			panelCenter.add(firstNameField);
 			panelCenter.add(lastNameLabel);
@@ -105,6 +113,13 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 					boolean invalidNameFirst = false;
 					boolean invalidNameLast = false;
 					
+					/**
+					 * The following for loops check first name, last name,
+					 * and phone numbers
+					 * Checking first name and last name for letters and valid
+					 * other characters in a name
+					 * Checks that phone numbers do not have a non-digit value
+					 */
 					for (Character c: userFirstName.toCharArray()) {
 						if (!Character.isLetter(c) && !c.equals('-') && 
 								!c.equals(' ') && !c.equals('\'') && !c.equals('.')) {
@@ -126,12 +141,14 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 						}
 					}
 					
+					/**
+					 * Sets up exception JFrame and JPanel to display what went wrong when signing up
+					 */
 					JFrame registrationExceptionFrame = new JFrame("Registration Error");
 					registrationExceptionFrame.setSize(new Dimension(600,200));
 					JPanel registrationExceptionPanel = new JPanel();
 					registrationExceptionPanel.add(Box.createRigidArea(new Dimension(0,150)));
 
-					
 					try {
 						
 						if(userFirstName.length() < 1) {
@@ -169,7 +186,22 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 							throw new SignUpException.InvalidPassword();
 						}
 						
+						/**
+						 * If no exceptions above occur, it creates the user
+						 */
 						User newUser = new User(userFirstName, userLastName, userPhoneNumber, userPassword);
+						
+						/**
+						 * if-else block checks that if the phone number is not already used,
+						 * register the user with the library
+						 * This block has a special condition where if the block is for admin frames,
+						 * it will reopen the previous frame (the list of users for admins)
+						 * Successful registration will open a JFrame telling the user they 
+						 * were able to register, and remind the user of their username/id
+						 * and password
+						 * Failing to provide an unused phone number with the library will throw an
+						 * exception, create a popup with exception message
+						 */
 						if(library.containsNumber(userPhoneNumber)) {
 							throw new SignUpException.PhoneNumberAlreadyUsed();
 						} else {

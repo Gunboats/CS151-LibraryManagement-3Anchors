@@ -42,10 +42,18 @@ public class Library {
         this.cardPrefix = cardPrefix;
     }
 
+    /**
+     * Adds the book to the library's list of books
+     * @param book The book being added
+     */
     public void addBook(Book book) {
         bookList.add(book);
     }
 
+    /**
+     * Removes a book from a library's list of books
+     * @param book The book being removed
+     */
     public void removeBook(Book book) {
         bookList.remove(book);
     }
@@ -64,6 +72,10 @@ public class Library {
     	return true;
     }
     
+    /**
+     * Getter that returns the phone number and user map 
+     * @return phoneNumAndUserMap
+     */
     public Map<String, User> getPhoneNumAndUserMap()  {
     	return phoneNumAndUserMap;
     }
@@ -74,7 +86,7 @@ public class Library {
      * Then, it gives the user their library card, which has a string
      * to allow them to login, which is randomly generated with a 
      * random large number as part of the identifier
-     * @param user
+     * @param user The user being registered to the library
      */
     public void addUser(User user) {
     	if(!containsNumber(user.getPhoneNumber())) {
@@ -143,10 +155,18 @@ public class Library {
         }
     }
 
+    /**
+     * Returns the book list of a library
+     * @return bookList
+     */
     public List<Book> getBookList() {
     	return bookList;
     }
     
+    /**
+     * Returns the user list of a library
+     * @return userList
+     */
     public List<User> getuserList() {
     	return userList;
     }
@@ -158,9 +178,9 @@ public class Library {
      * can check out the book, and they will receive the 
      * book in their book list, updating the book to now
      * be borrowed (true)
-     * @param user
-     * @param book
-     * @return
+     * @param user The user trying to borrow a book
+     * @param book The book being borrowed
+     * @return Returns the book being borrowed
      */
     public Book checkOutBook(User user, Book book) {
         
@@ -172,17 +192,36 @@ public class Library {
         return book;
     }
     
+    /**
+     * Gets the library's admin username
+     * @return adminUsername
+     */
     public String getAdminUsername() {
     	return adminUsername;
     }
     
+    /**
+     * Gets the library's admin password
+     * @return adminPassword
+     */
     public String getAdminPassword() {
     	return adminPassword;
     }
     
+    /**
+     * Gets the name of the library
+     * @return name
+     */
     public String getName() {
         return this.name;
     }
+
+    /**
+     * Gets the cardPrefix of the library, an identifier
+     * that is specific to a library's library cards to make 
+     * them unique
+     * @return cardPrefix
+     */
     public String getCardPrefix() {
     	return cardPrefix;
     }

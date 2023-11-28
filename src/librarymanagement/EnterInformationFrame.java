@@ -15,8 +15,7 @@ import javax.swing.JPanel;
 
 public class EnterInformationFrame {
 
-	private boolean login;
-	
+	private boolean login;	
 	private JPanel panelWest = new JPanel();
 	private JPanel panelEast = new JPanel();
 	private JPanel panelSouth = new JPanel(); 
@@ -60,23 +59,50 @@ public class EnterInformationFrame {
 		
 	}
 	
+	/**
+	 * Returns whether the login has finished or not
+	 * Returns true if login was successful, false
+	 * if it was not successful
+	 * @return 
+	 */
 	public boolean getLogin() {
 		return login;
 	}
 
+	/**
+	 * returns the southern panel, which is used in a 
+	 * border layout
+	 * @return panelSouth
+	 */
 	public JPanel getPanelSouth() {
 		return panelSouth;
 		
 	}
 	
+	/**
+	 * returns the eastern panel, which is used in a 
+	 * border layout
+	 * @return panelEast
+	 */
 	public JPanel getPanelEast() {
 		return panelEast;
 		
 	}
+
+	/**
+	 * returns the west panel, which is used in a 
+	 * border layout
+	 * @return panelWest
+	 */
 	public JPanel getPanelWest() {
 		return panelWest;
 		
 	}
+	/**
+	 * returns the North panel, which is used in a 
+	 * border layout
+	 * @return panelNorth
+	 */
 	public JPanel getPanelNorth() {
 		return panelNorth;
 		

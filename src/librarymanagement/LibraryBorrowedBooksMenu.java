@@ -50,6 +50,10 @@ public class LibraryBorrowedBooksMenu {
 		FlowLayout panelLayout = new FlowLayout(FlowLayout.LEFT, 25, 5);
 		bookPanel.setLayout(panelLayout);
 		
+		/**
+		 * Used to create labels with checkboxes of the list of books
+		 * a user has borrowed, which is added to bookPanel
+		 */
 		for(Book b: user.getBorrowedBooks()) {
 			JLabel label = new JLabel("<html>" + b.getBookTitle() + "<br/>" + 
 		b.getAuthor() + "<br/>" + (b.getBorrowed() ? "Borrowed" : "Available") + "<html>");
@@ -74,6 +78,9 @@ public class LibraryBorrowedBooksMenu {
 		 * Button returns all books selected to be returned
 		 * Failing to return occurs when no books are selected to be
 		 * returned, which creates a popup from handling thrown exception
+		 * Successfully returning a book will make the book available again,
+		 * and will tell the user what books were returned, and reopen the 
+		 * library's catalog of books and the borrowed books by the user
 		 */
 		returnBooks.addActionListener(new ActionListener() {
 

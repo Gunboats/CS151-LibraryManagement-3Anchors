@@ -28,6 +28,12 @@ public class EnterBookFrame {
 	 * @param frame The catalog frame that gets refreshed
 	 */
 	EnterBookFrame(Library library, JFrame frame) {
+		/**
+		 * Creates the JFrame that displays content, creates 4 panels
+		 * to format the center panel, which uses a grid layout to display
+		 * the labels and text fields, format the positions of the components
+		 * Also creates button to add a book
+		 */
 		JFrame addBookFrame = new JFrame();
 		addBookFrame.setSize(new Dimension(600,600));
 		addBookFrame.setResizable(false);
@@ -45,6 +51,12 @@ public class EnterBookFrame {
 		
 		JButton addBook = new JButton("Add book");
 		
+		/**
+		 * Section adjusts the size of each panel to squash the central
+		 * panel into place, and adds the buttons, labels, and fields to
+		 * the panels, uses a box in the northern panel to push down add book text
+		 * Also adds the panel to the frame so they can be displayed
+		 */
 		title.setFont(new Font("Arial", Font.PLAIN, 20));
 		panelWest.setPreferredSize(new Dimension(195,200));
 		panelEast.setPreferredSize(new Dimension(195,200));

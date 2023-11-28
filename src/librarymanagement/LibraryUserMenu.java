@@ -83,7 +83,7 @@ public class LibraryUserMenu {
 		
 		/**
 		 * Creates the user text and check boxes next to each other so that admins
-		 * can interact with removing users
+		 * can interact with removing users, 
 		 */
 		panel.setLayout(flowLayout);
 		for(User u: library.getuserList()) {

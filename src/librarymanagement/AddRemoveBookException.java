@@ -1,10 +1,17 @@
 package librarymanagement;
 
+/**
+ * File contains all exceptions related to adding and removing a
+ * book (occurs when admin tries to add and remove books)
+ */
 public class AddRemoveBookException extends Exception {
 	public AddRemoveBookException(String error) {
 		super(error);
 	}
-	
+	/**
+	 * Created when admin tries to remove a book, but none are selected
+	 * for removal
+	 */
 	public static class NoRemovedBooks extends AddRemoveBookException {
 
 		public NoRemovedBooks() {
@@ -14,7 +21,10 @@ public class AddRemoveBookException extends Exception {
 
 	}
 	
-	
+	/**
+	 * Created and used when admin tries to remove a book that is borrowed
+	 * (we want the book still before we can officially remove it from the catalog)
+	 */
 	public static class RemovedBookIsBorrowed extends AddRemoveBookException {
 
 		public RemovedBookIsBorrowed() {
@@ -24,6 +34,10 @@ public class AddRemoveBookException extends Exception {
 		
 	}
 	
+	/**
+	 * Created and used when admin tries adding a book without a
+	 * title
+	 */
 	public static class EmptyTitle extends AddRemoveBookException {
 
 		public EmptyTitle() {
@@ -32,6 +46,10 @@ public class AddRemoveBookException extends Exception {
 		
 	}
 	
+	/**
+	 * Created and used when admin tried adding a book without an
+	 * author attached to the book
+	 */
 	public static class EmptyAuthor extends AddRemoveBookException {
 
 		public EmptyAuthor() {

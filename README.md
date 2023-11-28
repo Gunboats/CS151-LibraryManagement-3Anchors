@@ -65,5 +65,9 @@
 * Run the main class or file containing the main method (please run LibraryGUI.java)
 * Once the code is running, follow any on-screen instructions to interact with the Library Management System.
 ### References:
+*JSON Library:
+Library Used: library.json
+Version: 20231013 
+Description: A JSON library for storing book's data and admin user's data.
 
 

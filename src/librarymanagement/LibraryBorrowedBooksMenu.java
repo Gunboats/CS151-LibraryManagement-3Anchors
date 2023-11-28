@@ -22,10 +22,12 @@ public class LibraryBorrowedBooksMenu {
 	JFrame frame = new JFrame("Borrowed Books");
 	/**
 	 * Creates JFrame showing the User's borrowed books
-	 * Users can click on check boxes and then press
+	 * Users can click on check boxes of books and then press
 	 * the return button to return books back to the 
 	 * library
-	 * @param user
+	 * The JFrame is empty if no books are borrowed, but has books for 
+	 * borrowed books that are borrowed
+	 * @param user The user's that will have their borrowed book list shown
 	 */
 	LibraryBorrowedBooksMenu(User user, JFrame catalogFrame, Library library) {
 		
@@ -68,7 +70,11 @@ public class LibraryBorrowedBooksMenu {
 			bookPanel.add(borrowCheckBox);
 		}
 		
-		
+		/**
+		 * Button returns all books selected to be returned
+		 * Failing to return occurs when no books are selected to be
+		 * returned, which creates a popup from handling thrown exception
+		 */
 		returnBooks.addActionListener(new ActionListener() {
 
 			@Override

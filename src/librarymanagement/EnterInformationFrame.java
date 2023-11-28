@@ -28,9 +28,9 @@ public class EnterInformationFrame {
 		/**
 		 * EnterInformationFrame is extended by children to create 2 types 
 		 * of windows: a window for signing up, and a window for logging in
-		 * Users can enter their first name, last name, and phone number to sign up
 		 * Forms the basic signup frame for both frames with a title, Jframe window name
 		 * and some formatting to the JFrame
+		 * Sets up 4 panels for a JFrame border layout setup
 		 * 
 		 * @param windowName The name of the window
 		 * @param library The library being used to register/signup

@@ -57,6 +57,11 @@ public class LibraryUserMenu {
 		ArrayList<User> userList = new ArrayList<User>();
 		FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT, 20,20);
 		
+
+		/**
+		 * Creates the user text and check boxes next to each other so that admins
+		 * can interact with removing users
+		 */
 		panel.setLayout(flowLayout);
 		for(User u: library.getuserList()) {
 			JLabel label = new JLabel("<html>" + u.getName() + "<br/>" + 
@@ -79,6 +84,12 @@ public class LibraryUserMenu {
 			panel.add(selectUser);
 		}
 		
+		/**
+		 * Removes selected users with the checkbox and reopens the JFrame of
+		 * users, reflecting that the removed users are removed
+		 * Does not remove if no users are selected, creates popup to tell the 
+		 * admin
+		 */
 		removeUser.addActionListener(new ActionListener() {
 
 			@Override
@@ -116,6 +127,10 @@ public class LibraryUserMenu {
 			
 		});
 		
+		/**
+		 * Opens EnterSignUpFrame so that the user may be added by an admin
+		 * to the library
+		 */
 		addUser.addActionListener(new ActionListener() {
 
 			@Override
@@ -127,6 +142,11 @@ public class LibraryUserMenu {
 			
 		});
 		
+
+		/**
+		 * Opens the admin perspective of the LibraryCatalogMenu,
+		 * which allows the admin to add, remove books
+		 */
 		openBookCatalog.addActionListener(new ActionListener() {
 
 			@Override
@@ -138,6 +158,9 @@ public class LibraryUserMenu {
 			
 		});
 		
+		/**
+		 * Closes JFrames and reopens the main menu
+		 */
 		logout.addActionListener(new ActionListener() {
 
 			@Override
@@ -149,6 +172,13 @@ public class LibraryUserMenu {
 			
 		});
 
+		/**
+		 * Creates a little window allowing the admin to select a file
+		 * on their computer to be used in the library.
+		 * Does not automatically save to the library json file
+		 * Selecting a file will allow update the library to reflect that
+		 * it is now using the new file's data. 
+		 */
 		importButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -166,6 +196,12 @@ public class LibraryUserMenu {
 
 		});
 
+		/**
+		 * Writes to a file of the library's contents of books, users,
+		 * and the data relevent to both of them
+		 * Creates a file if it does not exist with the name based on the 
+		 * library's name
+		 */
 		exportButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

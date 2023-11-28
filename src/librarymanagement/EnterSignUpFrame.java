@@ -90,7 +90,9 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 				 * Failing to register will create a popup telling users what went 
 				 * wrong with registering
 				 * Phone numbers must be all digits and 9 digits in total
-				 * 
+				 * Successful registration creates the user's library card id (their username)
+				 * And a popup will tell the user that they successfully registered, and will
+				 * tell the user their password and username
 				 */
 				@Override
 				public void actionPerformed(ActionEvent e) {

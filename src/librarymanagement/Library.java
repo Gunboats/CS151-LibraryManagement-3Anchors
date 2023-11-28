@@ -32,6 +32,8 @@ public class Library {
      * Maps for cards and users, phone numbers and users
      * default admin and password for admin logins, a card
      * prefix for all cards they assign to users
+     * cardPrefix is used to assign the string prefix to a library
+     * card Id as a way of being a unique identifier
      * @param name the library's name
      * @param cardPrefix the library card letters before numbers
      */
@@ -51,8 +53,9 @@ public class Library {
     /**
      * Checks if the phoneNumAndUserMap has the phone number
      * that a user entered when they tried signing up
+     * Return 
      * @param number The phone number the user entered
-     * @return True or false
+     * @return True if number is used or false if not used
      */
     public boolean containsNumber(String number) {
     	if(!phoneNumAndUserMap.containsKey(number)) {
@@ -69,7 +72,8 @@ public class Library {
     /**
      * Adds a user to a library if the phone number is not already there
      * Then, it gives the user their library card, which has a string
-     * to allow them to login, which is randomly generated
+     * to allow them to login, which is randomly generated with a 
+     * random large number as part of the identifier
      * @param user
      */
     public void addUser(User user) {
@@ -84,6 +88,16 @@ public class Library {
 
     }
 
+    /**
+     * Overloaded method that does not create a credit
+     * card, mainly for writing to file so that it does
+     * not recreate a new random library card
+     * Checks if the user's number is not already added
+     * If not, add it to the card and phone number hashmaps,
+     * and add the user to the user list
+     * @param user
+     * @param f
+     */
     public void addUser(User user, boolean f) {
     	if(!containsNumber(user.getPhoneNumber())) {
             userList.add(user);

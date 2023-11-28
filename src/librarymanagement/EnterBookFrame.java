@@ -74,6 +74,9 @@ public class EnterBookFrame {
 		 * author field are not empty. If they are both not
 		 * empty, it makes the book and adds the book to the library
 		 * and refreshes the catalog
+		 * Successful adding will create a book Object,
+		 * failure to fill out the fields will throw an error,
+		 * and create a pop up
 		 */
 		addBook.addActionListener(new ActionListener() {
 

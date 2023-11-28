@@ -40,6 +40,17 @@ public class EnterLoginAdminFrame extends EnterInformationFrame{
 		JPanel panelCenter = new JPanel(new GridLayout(2,2,5,40));
 	
 		JButton loginButton = new JButton("Login");
+
+
+		/**
+		 * Takes the username and password fields the admin used
+		 * and compares the values to the correct username and password
+		 * needed to login
+		 * Successful login allows the Admin to access LibraryCatalogMenu,
+		 * which shows the list of users
+		 * Failing to login creates a popup notifying the admin of what went
+		 * wrong
+		 */
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 

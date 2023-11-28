@@ -62,6 +62,8 @@ public class Book implements Comparable<Book> {
     	this.ISBN = newISBN;
     }
     
+    // Updates the borrowed status of a Book object with
+    // either true or false
     public void setBorrowed(boolean borrowedStatus) {
     	this.borrowed = borrowedStatus;
     }

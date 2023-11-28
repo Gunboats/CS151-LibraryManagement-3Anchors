@@ -21,7 +21,7 @@ import javax.swing.JScrollPane;
 public class LibraryCatalogMenu {
 	
 	/**
-	 * Creates the library catalog for users, allowing them
+	 * Creates the library catalog of their books for users, allowing users
 	 * to borrow books, and access their borrowed books list,
 	 * and then logout, returning them to the main menu
 	 * Users select check boxes to choose which books to borrow
@@ -59,6 +59,12 @@ public class LibraryCatalogMenu {
 		southPanel.add(booksBorrowed);
 		southPanel.add(logout);
 		
+
+		/**
+		 * Builds the components of JLabels and JCheckboxes so that books
+		 * can be interacted with, which are then put into bookPanel, which is later
+		 * put in the JFrame for display
+		 */
 		for(Book b: library.getBookList()) {
 			JLabel label = new JLabel("<html>" + b.getBookTitle() + "<br/>" + 
 		b.getAuthor() + "<br/>" + (b.getBorrowed() ? "Borrowed" : "Available") + "<html>");
@@ -82,6 +88,17 @@ public class LibraryCatalogMenu {
 
 		}
 		
+		/**
+		 * For every checked box for a book, it is stored in a list
+		 * that compares to see if the user is borrowing duplicates,
+		 * if the list is empty, or if the user has already borrowed a book
+		 * and is trying to borrow a duplicate copies
+		 * Failing to borrow will create a popup telling the issue
+		 * If successful, it allows the user to borrow
+		 * adding the books to the user's list of borrowed books, updates
+		 * boolean of books to reflect that they are borrowed, reopening the
+		 * LibraryCatalogMenu, and making a popup to show what the user borrowed
+		 */
 		borrowBooks.addActionListener(new ActionListener() {
 
 			@Override
@@ -197,6 +214,9 @@ public class LibraryCatalogMenu {
 			
 		});
 		
+		/**
+		 * Opens the JFrame for the list of books the user borrowed,
+		 */
 		booksBorrowed.addActionListener(new ActionListener() {
 
 			@Override
@@ -209,7 +229,9 @@ public class LibraryCatalogMenu {
 			}
 			
 		});
-		
+		/**
+		 * Closes JFrames and reopens the main menu (LibraryLoginSignUpFrame)
+		 */
 		logout.addActionListener(new ActionListener() {
 
 			@Override

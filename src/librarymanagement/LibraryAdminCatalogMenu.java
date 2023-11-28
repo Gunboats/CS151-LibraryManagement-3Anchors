@@ -79,6 +79,14 @@ public class LibraryAdminCatalogMenu {
 			bookPanel.add(removeCheckBox);
 		}
 		
+
+		/**
+		 * Failing to remove a book (no books check mark selected)
+		 * will create a popup notifying the admin that it failed to
+		 * occur
+		 * Removes book(s) that are selected, updates the file, and reopens 
+		 * the window to reflect the changes made 
+		 */
 		removeBooks.addActionListener(new ActionListener() {
 
 			@Override

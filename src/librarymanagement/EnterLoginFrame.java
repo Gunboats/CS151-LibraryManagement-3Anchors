@@ -47,7 +47,8 @@ public class EnterLoginFrame extends EnterInformationFrame{
 				 * If users incorrectly enter their information, there will be a popup 
 				 * explaining that something went wrong like an empty field, incorrect info
 				 * Successful login will open up the library catalog
-				 * 
+				 * Compares the entered information with the library's database to see if 
+				 * the user is with the library, if the username and password are correct
 				 */
 				@Override
 				public void actionPerformed(ActionEvent e) {

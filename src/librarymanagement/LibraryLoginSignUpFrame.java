@@ -90,7 +90,8 @@ public class LibraryLoginSignUpFrame {
 		JButton exit = new JButton("Exit");
 		exit.setAlignmentX(JFileChooser.CENTER_ALIGNMENT);
 		
-		// Creates a login window when the user presses the button
+		// Creates a login window when the user presses the button, and successful
+		// login will close the main menu
 		
 		login.addActionListener(new ActionListener() {
 
@@ -118,7 +119,10 @@ public class LibraryLoginSignUpFrame {
 			
 		});
 		
-		
+		/**
+		 * Creates the admin login window, which requires the admin
+		 * to enter the password and username for admin access
+		 */
 		adminLogin.addActionListener(new ActionListener() {
 
 			@Override
@@ -130,7 +134,10 @@ public class LibraryLoginSignUpFrame {
 		});
 
 
-		
+		/**
+		 * Exits program so that the JFrames are not running in the background, and
+		 * exports the library to the json file
+		 */
 		exit.addActionListener(new ActionListener() {
 
 			@Override

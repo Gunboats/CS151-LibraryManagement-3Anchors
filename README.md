@@ -70,19 +70,19 @@
 
 ### Snapshot of running program
 * When the user runs the program, the loginSignup interface will appear first.
-<img width="794" alt="loginSignupFrame" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/204b68a4-a2ac-405d-b75d-70373ed1812b">
-* To borrow books, users need to click signup first, obtain user information and then log in to borrow/return/check books.
-<img width="584" alt="sign up" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/b17ce1da-753d-4df8-bbf6-3fa2d6fe21b1">
-* obtain user information
-<img width="595" alt="user information" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/31534c9a-619f-4071-a974-18a051e69caf">
-* login to the Library
-<img width="590" alt="login" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/6138720f-29c8-49a1-8773-2eda77f58daa">
+* <img width="794" alt="loginSignupFrame" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/204b68a4-a2ac-405d-b75d-70373ed1812b">
+* To borrow books, users need to click signup first, obtain user information and then log in to borrow/return/checkbooks.
+* <img width="584" alt="sign up" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/b17ce1da-753d-4df8-bbf6-3fa2d6fe21b1">
+* Obtain user information
+* <img width="595" alt="user information" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/31534c9a-619f-4071-a974-18a051e69caf">
+* Login to the Library
+* <img width="590" alt="login" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/6138720f-29c8-49a1-8773-2eda77f58daa">
 * Users can view books as well as borrow or return books,
-<img width="790" alt="book list" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/33734c98-53c2-41ef-8784-9e4e1320dafc">
-<img width="802" alt="return book" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/a0def085-3a76-4426-b395-c4b1b0650fcf">
-* show activity information
-<img width="798" alt="borrow book and show activity information" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/dd2bc369-9d01-4ee0-b959-57922e159a08">
-<img width="795" alt="show activity information" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/cb9df368-e381-4f95-860e-289fa918d4a0">
+* <img width="790" alt="book list" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/33734c98-53c2-41ef-8784-9e4e1320dafc">
+* <img width="802" alt="return book" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/a0def085-3a76-4426-b395-c4b1b0650fcf">
+* Show activity information
+* <img width="798" alt="borrow book and show activity information" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/dd2bc369-9d01-4ee0-b959-57922e159a08">
+* <img width="795" alt="show activity information" src="https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/147214348/cb9df368-e381-4f95-860e-289fa918d4a0">
 
 
 
@@ -99,7 +99,7 @@
 -Description: A JSON library for storing book's data and admin user's data.
 
 ####Frame:
-* 1. Enter BookFrame:
+* 1.Enter BookFrame:
 -Source code location: src/librarymanagement/EnterBookFrame.java
 -Description: The EnterBookFrame class allows administrators to enter the title and author information of a book and interact with other components that manage book information to add new book information to the system.
 

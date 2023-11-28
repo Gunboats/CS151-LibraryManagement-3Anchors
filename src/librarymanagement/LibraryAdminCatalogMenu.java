@@ -174,7 +174,8 @@ public class LibraryAdminCatalogMenu {
 		});
 		
 		/**
-		 * Opens a window for admins to add new library users
+		 * Opens a window for admins to add new library users, updates
+		 * the library json file
 		 */
 		addBook.addActionListener(new ActionListener() {
 

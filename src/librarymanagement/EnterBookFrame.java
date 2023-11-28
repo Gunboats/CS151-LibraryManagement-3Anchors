@@ -97,7 +97,7 @@ public class EnterBookFrame {
 				JFrame addException = new JFrame("Add Excepotion");
 				addException.setSize(new Dimension(600,200));
 				JPanel addExceptionPanel = new JPanel();
-				
+				addExceptionPanel.add(Box.createRigidArea(new Dimension(0,150)));
 				try {
 					if (titleField.getText().length() < 1) {
 						throw new AddRemoveBookException.EmptyTitle();

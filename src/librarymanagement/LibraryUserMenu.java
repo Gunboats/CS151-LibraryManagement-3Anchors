@@ -112,6 +112,7 @@ public class LibraryUserMenu {
 		 * users, reflecting that the removed users are removed
 		 * Does not remove if no users are selected, creates popup to tell the 
 		 * admin
+		 * Writes to library json upon successful removing
 		 */
 		removeUser.addActionListener(new ActionListener() {
 

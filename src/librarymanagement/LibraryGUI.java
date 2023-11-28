@@ -9,7 +9,7 @@ public class LibraryGUI {
 	public static ArrayList<JFrame> openJFrames;
 	
 	public static void main(String[] args) {
-	// The Class for displaying content
+	// The Class being used for displaying content
 		openJFrames = new ArrayList<JFrame>();
 		
 		Library library = new Library("a", "a");

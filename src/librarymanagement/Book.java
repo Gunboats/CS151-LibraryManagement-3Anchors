@@ -111,7 +111,7 @@ public class Book implements Comparable<Book> {
     }
 
     /**
-     * Was supposed to be used to compare books and sort
+     * Was supposed to be used to compare books by book title order and sort
      * but not implemented due to lack of time
      */
     @Override

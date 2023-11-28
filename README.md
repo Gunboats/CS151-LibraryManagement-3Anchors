@@ -52,6 +52,12 @@
 * The system supports adding/removing books: librarians can add new books to the catalog or delete books from the catalog.
 ### Solution
 ### Steps to Run Code
+* Before running the code, make sure you have set up the environment, for example: Make sure you have set up the necessary development environment, including the required programming language (JAVA).
+* Clone repository from github, how to clone project repository to local IDE.
+* Open a terminal and navigate to the project directory.
+* Use a compiler or build tool with the JAVA programming language to compile the source code.
+* The command executes compiled code.
+* Follow the on-screen instructions to interact with the library management system
 ### Steps to Run JAR
 * Clone the project repository to your local computer.
 * Import the project into the IDE.

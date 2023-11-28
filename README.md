@@ -48,7 +48,6 @@
 * The system supports borrowing books: users can borrow books from the library.
 * The system supports checking borrowed books: users can check the currently borrowed books and return them.
 * The system supports catalog browsing: users can browse the library's catalog to view available books.
-* The system supports adding/removing users: the library can add new users to the system as well as delete users.
 * The system supports adding/removing books: librarians can add new books to the catalog or delete books from the catalog.
 ### Solution
 
@@ -70,21 +69,21 @@
   
 ### References:
 ####JSON Library:
-*Library Used: library.json
-*Version: 20231013 
-*Description: A JSON library for storing book's data and admin user's data.
+-Library Used: library.json
+-Version: 20231013 
+-Description: A JSON library for storing book's data and admin user's data.
 
 ####Frame:
-1. Enter BookFrame
-*Source code location: src/librarymanagement/EnterBookFrame.java
-*Description: The EnterBookFrame class allows administrators to enter the title and author information of a book and interact with other components that manage book information to add new book information to the system.
+1. Enter BookFrame:
+-Source code location: src/librarymanagement/EnterBookFrame.java
+-Description: The EnterBookFrame class allows administrators to enter the title and author information of a book and interact with other components that manage book information to add new book information to the system.
 
-2.EnterInformationFrame
-*Source code location: src/librarymanagement/EnterInformationFrame.java
-*Description: The EnterBookFrame class provides a basic interface for user login or registration, and interacts with other components that manage book information to implement user login or registration. It is extended by three subclasses, which are used to create the administrator login window (EnterLoginAdminFrame), the user login window (EnterLoginFrame) and the user registration window (EnterSignUpFrame).
+2.EnterInformationFrame:
+-Source code location: src/librarymanagement/EnterInformationFrame.java
+-Description: The EnterBookFrame class provides a basic interface for user login or registration, and interacts with other components that manage book information to implement user login or registration. It is extended by three subclasses, which are used to create the administrator login window (EnterLoginAdminFrame), the user login window (EnterLoginFrame) and the user registration window (EnterSignUpFrame).
 
-3.LibraryLoginSignUpFrame
-*Source code location: src/librarymanagement/LibraryLoginSignUpFrame.java
-*Description: The EnterBookFrame class creates the main menu interface of the library management system, providing operation buttons for login, registration, import, export and other functions. Interacting with other components that manage book information is to implement a series of operation entrances.
+3.LibraryLoginSignUpFrame:
+-Source code location: src/librarymanagement/LibraryLoginSignUpFrame.java
+-Description: The EnterBookFrame class creates the main menu interface of the library management system, providing operation buttons for login, registration, import, export and other functions. Interacting with other components that manage book information is to implement a series of operation entrances.
 
 

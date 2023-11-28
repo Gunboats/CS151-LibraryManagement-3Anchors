@@ -104,6 +104,7 @@ public class LibraryAdminCatalogMenu {
 						
 						library.removeBook(b);;
 					}
+					LibraryLoginSignUpFrame.exportLibrary(library, "lib\\library.json");
 					frame.dispose();
 					new LibraryAdminCatalogMenu(library);
 					
@@ -131,6 +132,7 @@ public class LibraryAdminCatalogMenu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				LibraryLoginSignUpFrame.exportLibrary(library, "lib\\library.json");
 				new EnterBookFrame(library, frame);
 				
 			}
@@ -146,7 +148,6 @@ public class LibraryAdminCatalogMenu {
 			public void actionPerformed(ActionEvent e) {
 				
 				LibraryGUI.closeJFrames();
-				
 				new LibraryLoginSignUpFrame(library);
 			}
 			

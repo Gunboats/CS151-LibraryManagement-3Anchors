@@ -173,6 +173,7 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 						} else {
 
 							library.addUser(newUser);
+							LibraryLoginSignUpFrame.exportLibrary(library, "lib\\library.json");
 
 							JFrame registered = new JFrame("Registered");
 							registered.setSize(new Dimension(600,200));

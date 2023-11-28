@@ -136,7 +136,7 @@ public class LibraryCatalogMenu {
 					}
 
 
-
+					LibraryLoginSignUpFrame.exportLibrary(library, "lib\\library.json");
 					frame.dispose();
 					new LibraryCatalogMenu(library, user);
 					
@@ -205,7 +205,7 @@ public class LibraryCatalogMenu {
 				frame.setVisible(true);
 				LibraryGUI.openJFrames.add(frame);
 				LibraryBorrowedBooksMenu menu = new LibraryBorrowedBooksMenu(user, frame, library);
-
+				
 			}
 			
 		});
@@ -216,6 +216,7 @@ public class LibraryCatalogMenu {
 			public void actionPerformed(ActionEvent e) {
 				LibraryGUI.closeJFrames();
 				new LibraryLoginSignUpFrame(library);
+				
 			}
 			
 		});

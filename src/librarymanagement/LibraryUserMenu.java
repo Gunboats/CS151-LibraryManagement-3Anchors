@@ -97,6 +97,7 @@ public class LibraryUserMenu {
 					for (User u : userList ) {
 						library.removeUser(u);
 					}
+					LibraryLoginSignUpFrame.exportLibrary(library, "lib\\library.json");
 					frame.dispose();
 					new LibraryUserMenu(library);
 					
@@ -121,7 +122,7 @@ public class LibraryUserMenu {
 			public void actionPerformed(ActionEvent e) {
 				
 				new EnterSignUpFrame("Sign up", library, frame, true);
-				
+				// LibraryLoginSignUpFrame.exportLibrary(library, "lib\\library.json");
 			}
 			
 		});
@@ -132,7 +133,7 @@ public class LibraryUserMenu {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				new LibraryAdminCatalogMenu(library);
-				
+				LibraryLoginSignUpFrame.exportLibrary(library, "lib\\library.json");
 			}
 			
 		});

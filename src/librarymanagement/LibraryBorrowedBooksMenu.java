@@ -91,7 +91,7 @@ public class LibraryBorrowedBooksMenu {
 					catalogFrame.dispose();
 					new LibraryBorrowedBooksMenu(user, catalogFrame, library);
 					new LibraryCatalogMenu(library, user);
-					
+					LibraryLoginSignUpFrame.exportLibrary(library, "lib\\library.json");
 					JFrame thanksFrame = new JFrame("Thank you");
 					thanksFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					thanksFrame.setSize(new Dimension(800,600));

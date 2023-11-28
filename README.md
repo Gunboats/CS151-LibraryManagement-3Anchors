@@ -43,9 +43,21 @@
 * The system will have functions to manage user’s borrowing fees.
 * There will be a login system with different levels of access for libraries and users.
 ### Operations
+* The system supports loading data: loading library data from a file to initialize the system.
+* The system supports registration/login/logout: users can register and log in to browse/borrow/return books, and log out after completing the operation.
+* The system supports borrowing books: users can borrow books from the library.
+* The system supports checking borrowed books: users can check the currently borrowed books and return them.
+* The system supports catalog browsing: users can browse the library's catalog to view available books.
+* The system supports adding/removing users: the library can add new users to the system as well as delete users.
+* The system supports adding/removing books: librarians can add new books to the catalog or delete books from the catalog.
 ### Solution
 ### Steps to Run Code
 ### Steps to Run JAR
+* Clone the project repository to your local computer.
+* Import the project into the IDE.
+* Build the project to compile the source code.
+* Run the main class or file containing the main method (please run LibraryGUI.java)
+* Once the code is running, follow any on-screen instructions to interact with the Library Management System.
 ### References:
 
 

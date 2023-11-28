@@ -1,13 +1,13 @@
 ## Team: 3 Anchors
 ## Team members: Willy Tang, Alexander Pham, Yelin Wu
 ## Contributions to proposal
-### Willy: Wrote to problem to solve, most of the functionality section, operations for each class,
+### Willy: Wrote to problem to solve, most of the functionality section, some operations for each class,
 ### some of the High level
 ### Alex: Added some of the high level description of the solution, operations for library, half of functions
 ### Yelin: Wrote in a separate document but was not really used much in the shared document final proposal 
 
 ## Contributions to UML Diagrams
-### Willy: Did the Use Case, Sequence, and Class Diagram
+### Willy: Did the Use Case, Sequence, and Class Diagram, updated Use Case diagram
 ### Alex: Did the State Diagram, gave feedback on the UML Diagrams
 ### Yelin: Updated class diagram and sequence diagram, did not contribute to initial UML Diagrams 
 
@@ -25,6 +25,7 @@
 ### Operations
 ### Solution
 ### Steps to Run Code
+### Steps to Run JAR
 ### References:
 
 

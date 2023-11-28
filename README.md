@@ -17,12 +17,31 @@
 ### Yelin: Contributed to Libray.java, User.java, LibrayLoginSignUpFrame.java(These were pushed the laurindaaa-patch branch. But it was overrided by the team's code and didn't merge into the final branch). Added the password format checker. Fixed the import path for library.json. Updated the libray.json data inclduing books data and user data. 
 
 ## Members working on Project Report:
-## Problem/Issue: Problem to solve: We have a library that lack a digital system for users to use and store important data such as the books in their catalog and the users that are registered with the library. We want to create a library management system that manages a library’s digital catalog of books and users with their respective information such as borrowed books, their name, and their library card number. This library management system should have a GUI that is intuitive and not difficult to use. Libraries and users need to be able to login to use their respective privileges. This requires us to uniquely identify each user to each library.
+### Problem/Issue: Problem to solve: We have a library that lack a digital system for users to use and store important data such as the books in their catalog and the users that are registered with the library. We want to create a library management system that manages a library’s digital catalog of books and users with their respective information such as borrowed books, their name, and their library card number. This library management system should have a GUI that is intuitive and not difficult to use. Libraries and users need to be able to login to use their respective privileges. This requires us to uniquely identify each user to each library.
 
 ### Assumptions / Operating Environments / Intended Usage: Assumptions: The project of a Library management system will run on Java and the interactable user interface will be implemented using Java Swing to create a GUI. Users will be able to interact with the library, being able to use functions like borrow books, return books. Libraries can manage users and books in their system, adding and removing them. Both libraries and users should be able to interact with the GUI by performing actions like clicking on buttons. The library will have the ability to save and load stored data.
 ### Previous works?
 ### Diagrams
+# UML Diagrams
+## UML Class Diagram
+[UML Class Diagram](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/blob/Test-branch-file-writing/diagrams/UpdatedProjectClassDiagram.png)
+
+## UML State Diagram
+[UML State Diagram](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/blob/main/diagrams/ProjectUMLStateDiagram.png)
+
+## UML Use Case Diagram
+[UML Use Case Diagram](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/blob/Test-branch-file-writing/diagrams/UpdatedProjectUseCaseDiagramFinal.png)
+
+## UML Sequence Diagram
+[UML Sequence Diagram](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/blob/Test-branch-file-writing/diagrams/UpdatedProjectSequenceDiagram.png)
+
 ### Functionality
+* The project will store the data of a library in a file to keep track of books, users, and update if there are any changes to it.
+* Data can be loaded, providing access to a library, their users, and their books.
+* Users will be able to borrow books, check borrowed books, and look through the library’s catalog (without being able to modify it directly except through checking out or returning).
+* Libraries can manage their users and books by removing and adding them.
+* The system will have functions to manage user’s borrowing fees.
+* There will be a login system with different levels of access for libraries and users.
 ### Operations
 ### Solution
 ### Steps to Run Code

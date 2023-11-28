@@ -61,10 +61,9 @@
   
 ### Steps to Run JAR
 * Clone the project repository to your local computer.
-* Import the project into the IDE.
-* Build the project to compile the source code.
-* Run the main class or file containing the main method (please run LibraryGUI.java)
-* Once the code is running, follow any on-screen instructions to interact with the Library Management System.
+* Assuming you have download the Zip file, take the CS151-LibraryManagement-3Anchors file out of the zip
+* Run the JAR from inside the CS151-LibraryManagement-3Anchors file that you took out 
+* It should say "TestLib" on the main menu when you run it, not "a"
 
   
 

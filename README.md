@@ -3,24 +3,26 @@
 Link to running the jar, this is just one approach that should work: https://www.youtube.com/watch?v=K0sskws1XS8
 Link to test cases (must be run manually) https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/blob/main/src/librarymanagement/README.md
 ## Contributions to proposal
-### Willy: Wrote to problem to solve, most of the functionality section, some operations for each class, some of the High level
-### Alex: Added some of the high level description of the solution, operations for library, half of functions
-### Yelin: Wrote in a separate document but was not really used much in the shared document final proposal 
+* Willy: Wrote to problem to solve, most of the functionality section, some operations for each class, some of the High level
+* Alex: Added some of the high level description of the solution, operations for library, half of functions
+* Yelin: Wrote in a separate document but was not really used much in the shared document final proposal 
 
 ## Contributions to UML Diagrams
-### Willy: Did the Use Case, Sequence, and Class Diagram, updated Use Case diagram
-### Alex: Did the State Diagram, gave feedback on the UML Diagrams
-### Yelin: Updated class diagram and sequence diagram, did not contribute to initial UML Diagrams 
+* Willy: Did the Use Case, Sequence, and Class Diagram, updated Use Case diagram
+* Alex: Did the State Diagram, gave feedback on the UML Diagrams
+* Yelin: Updated class diagram and sequence diagram, did not contribute to initial UML Diagrams 
 
 ## Members working on Project Code:
-### Willy: Managed github post-proposal creation. Created most exceptions for AddRemoveBookException, AddRemoveUserException, BorrowBook, SignUpException, LoginException. Worked on Library, User, Book. Contributed to EnterInformationFrame, LibraryLoginSignUpFrame, LibraryCatalogMenu, EnterLoginAdminFrame, EnterSignUpFrame, LibraryUserMenu, EnterBookFrame, Enter InformationFrame, LibraryBorrowedBooksMenu, the README.md inside the src folder with test cases you manually have to enter. Implemented exception handling, made most of the GUI's JFrames, popups, Bonus's user view and admin view. 
-### Alex: Managed github during project proposal phase, transferred control to Willy after. Initialized project files in github. Added to basic Library operations during the early stages of the project and created some testing for the library, pre-GUI, in the Pre-commit-to-main-branch branch. Implemented import and export functionality on Test-branch-file-writing, and created a format for storing Library data in a JSON file along with some test libraries.
-### Yelin: Contributed to Libray.java, User.java, LibrayLoginSignUpFrame.java(These were pushed the laurindaaa-patch branch. But it was overrided by the team's code and didn't merge into the final branch). Added the password format checker. Fixed the import path for library.json. Updated the libray.json data inclduing books data and user data. Updated README.md.
+* Willy: Managed github post-proposal creation. Created most exceptions for AddRemoveBookException, AddRemoveUserException, BorrowBook, SignUpException, LoginException. Worked on Library, User, Book. Contributed to EnterInformationFrame, LibraryLoginSignUpFrame, LibraryCatalogMenu, EnterLoginAdminFrame, EnterSignUpFrame, LibraryUserMenu, EnterBookFrame, Enter InformationFrame, LibraryBorrowedBooksMenu, the README.md inside the src folder with test cases you manually have to enter. Implemented exception handling, made most of the GUI's JFrames, popups, Bonus's user view and admin view. 
+* Alex: Managed github during project proposal phase, transferred control to Willy after. Initialized project files in github. Added to basic Library operations during the early stages of the project and created some testing for the library, pre-GUI, in the Pre-commit-to-main-branch branch. Implemented import and export functionality on Test-branch-file-writing, and created a format for storing Library data in a JSON file along with some test libraries.
+* Yelin: Contributed to Libray.java, User.java, LibrayLoginSignUpFrame.java(These were pushed the laurindaaa-patch branch. But it was overrided by the team's code and didn't merge into the final branch). Added the password format checker. Fixed the import path for library.json. Updated the libray.json data inclduing books data and user data. Updated README.md.
 
-## Members working on Project Report:
-### Problem/Issue: Problem to solve: We have a library that lacks a digital system for users to use and store important data such as the books in their catalog and the users that are registered with the library. We want to create a library management system that manages a library’s digital catalog of books and users with their respective information such as borrowed books, their name, and their library card number. This library management system should have a GUI that is intuitive and not difficult to use. Libraries and users need to be able to login to use their respective privileges. This requires us to uniquely identify each user to each library.
+## Members working on Project Report: Alex, Willy, Yelin
+### Problem/Issue: Problem to solve: 
+* We have a library that lacks a digital system for users to use and store important data such as the books in their catalog and the users that are registered with the library. We want to create a library management system that manages a library’s digital catalog of books and users with their respective information such as borrowed books, their name, and their library card number. This library management system should have a GUI that is intuitive and not difficult to use. Libraries and users need to be able to login to use their respective privileges. This requires us to uniquely identify each user to each library.
 
-### Assumptions / Operating Environments / Intended Usage: Assumptions: The project of a Library management system will run on Java and the interactable user interface will be implemented using Java Swing to create a GUI. Users will be able to interact with the library, being able to use functions like borrow books, return books. Libraries can manage users and books in their system, adding and removing them. Both libraries and users should be able to interact with the GUI by performing actions like clicking on buttons. The library will have the ability to save and load stored data.
+### Assumptions / Operating Environments / Intended Usage: Assumptions: 
+* The project of a Library management system will run on Java and the interactable user interface will be implemented using Java Swing to create a GUI. Users will be able to interact with the library, being able to use functions like borrow books, return books. Libraries can manage users and books in their system, adding and removing them. Both libraries and users should be able to interact with the GUI by performing actions like clicking on buttons. The library will have the ability to save and load stored data.
 ### Previous works?
 ### Diagrams
 # UML Diagrams

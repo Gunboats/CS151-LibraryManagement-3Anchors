@@ -68,4 +68,20 @@ public class SignUpException extends Exception {
 			super("Exception: Password needs at least 1 character");
 		}
 	}
+
+	public static class InvalidPassword extends SignUpException {
+		// Contributions made by Yelin
+		public InvalidPassword() {
+			super("<html>Exception: Password does not satisfied the following requirements <br/>" + "\n" +
+					"At least 8 chars <br/>" + 
+					"\n" +
+					"Contains at least one digit <br/>" + 
+					"\n" +
+					"Contains at least one lower alpha char and one upper alpha char <br/>" + 
+					"\n" + 
+					"Contains at least one char within a set of special chars (@#%$^ etc.) <br/>" + 
+					"\n" +
+					"Does not contain space, tab, etc. <html> ");
+		}
+	}
 }

@@ -19,21 +19,24 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class LibraryBorrowedBooksMenu {
-	
+	JFrame frame = new JFrame("Borrowed Books");
 	/**
 	 * Creates JFrame showing the User's borrowed books
-	 * Users can click on check boxes and then press
+	 * Users can click on check boxes of books and then press
 	 * the return button to return books back to the 
 	 * library
-	 * @param user
+	 * The JFrame is empty if no books are borrowed, but has books for 
+	 * borrowed books that are borrowed
+	 * @param user The user's that will have their borrowed book list shown
 	 */
-	LibraryBorrowedBooksMenu(User user) {
-		JFrame frame = new JFrame("Borrowed Books");
+	LibraryBorrowedBooksMenu(User user, JFrame catalogFrame, Library library) {
+		
 		JPanel bookPanel = new JPanel();
 		JScrollPane bookCatalog = new JScrollPane(bookPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		bookCatalog.getVerticalScrollBar().setUnitIncrement(15);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		bookPanel.setPreferredSize(new Dimension(400,600));
+		
 		
 		
 		ArrayList<Book> borrowedBookList = new ArrayList<Book>();
@@ -47,6 +50,10 @@ public class LibraryBorrowedBooksMenu {
 		FlowLayout panelLayout = new FlowLayout(FlowLayout.LEFT, 25, 5);
 		bookPanel.setLayout(panelLayout);
 		
+		/**
+		 * Used to create labels with checkboxes of the list of books
+		 * a user has borrowed, which is added to bookPanel
+		 */
 		for(Book b: user.getBorrowedBooks()) {
 			JLabel label = new JLabel("<html>" + b.getBookTitle() + "<br/>" + 
 		b.getAuthor() + "<br/>" + (b.getBorrowed() ? "Borrowed" : "Available") + "<html>");
@@ -67,7 +74,14 @@ public class LibraryBorrowedBooksMenu {
 			bookPanel.add(borrowCheckBox);
 		}
 		
-		
+		/**
+		 * Button returns all books selected to be returned
+		 * Failing to return occurs when no books are selected to be
+		 * returned, which creates a popup from handling thrown exception
+		 * Successfully returning a book will make the book available again,
+		 * and will tell the user what books were returned, and reopen the 
+		 * library's catalog of books and the borrowed books by the user
+		 */
 		returnBooks.addActionListener(new ActionListener() {
 
 			@Override
@@ -87,9 +101,10 @@ public class LibraryBorrowedBooksMenu {
 						user.returnBook(b);
 					}
 					frame.dispose();
-					new LibraryBorrowedBooksMenu(user);
-
-					
+					catalogFrame.dispose();
+					new LibraryBorrowedBooksMenu(user, catalogFrame, library);
+					new LibraryCatalogMenu(library, user);
+					LibraryLoginSignUpFrame.exportLibrary(library, "lib\\library.json");
 					JFrame thanksFrame = new JFrame("Thank you");
 					thanksFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					thanksFrame.setSize(new Dimension(800,600));
@@ -132,13 +147,16 @@ public class LibraryBorrowedBooksMenu {
 		frame.add(southPanel, BorderLayout.SOUTH);
 		frame.add(northPanel, BorderLayout.NORTH);
 		frame.setSize(new Dimension(800,600));
-
+		LibraryGUI.openJFrames.add(frame);
 		frame.setVisible(true);
 		
 		
 		
 	}
 	
+	public JFrame getJFrame() {
+		return frame;
+	}
 	
 	
 }

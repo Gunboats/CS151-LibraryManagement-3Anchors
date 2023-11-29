@@ -54,7 +54,7 @@ public class LibraryLoginSignUpFrame {
 		JPanel panelWest = new JPanel();
 		JPanel panelEast = new JPanel();
 		JPanel panelSouth = new JPanel();
-		JLabel labelLibName = new JLabel("Library Name");
+		JLabel labelLibName = new JLabel(lib.getName());
 		
 		JButton adminLogin = new JButton("Admin login");
 		adminLogin.setAlignmentX(JButton.RIGHT_ALIGNMENT);
@@ -90,7 +90,8 @@ public class LibraryLoginSignUpFrame {
 		JButton exit = new JButton("Exit");
 		exit.setAlignmentX(JFileChooser.CENTER_ALIGNMENT);
 		
-		// Creates a login window when the user presses the button
+		// Creates a login window when the user presses the button, and successful
+		// login will close the main menu
 		
 		login.addActionListener(new ActionListener() {
 
@@ -112,25 +113,31 @@ public class LibraryLoginSignUpFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				EnterSignUpFrame signUp = new EnterSignUpFrame("Sign up", library, frame, false);
+				new EnterSignUpFrame("Sign up", library, frame, false);
 				
 			}
 			
 		});
 		
-		
+		/**
+		 * Creates the admin login window, which requires the admin
+		 * to enter the password and username for admin access
+		 */
 		adminLogin.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				EnterLoginAdminFrame adminLogin = new EnterLoginAdminFrame("Admin login", library, frame);
+				new EnterLoginAdminFrame("Admin login", library, frame);
 				
 			}
 			
 		});
 
 
-		
+		/**
+		 * Exits program so that the JFrames are not running in the background, and
+		 * exports the library to the json file
+		 */
 		exit.addActionListener(new ActionListener() {
 
 			@Override
@@ -140,7 +147,10 @@ public class LibraryLoginSignUpFrame {
 			}
 			
 		});
-		
+		/**
+		 * Boxes create space between the different components so that they are
+		 * not all together, but rather are spaced apart
+		 */
 		panelNorth.add(Box.createRigidArea(new Dimension(0,150)));
 		
 		panelCenter.add(Box.createRigidArea(new Dimension(100,20)));

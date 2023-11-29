@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import librarymanagement.LoginException.IncorrectUsernamePasswordCombo;
@@ -30,10 +31,13 @@ public class EnterLoginFrame extends EnterInformationFrame{
 	public EnterLoginFrame(String windowName, Library library, JFrame frame) {
 		super(windowName, library, frame);
 			
+		/**
+		 * Declaring and assigning labels and fields for username, password, creating center panel
+		 */
 			JLabel usernameLabel = new JLabel("Username: ");
 			JTextField usernameField = new JTextField();
 			JLabel passwordLabel = new JLabel("Password: ");
-			JTextField passwordField = new JTextField();
+			JPasswordField passwordField = new JPasswordField();
 			JPanel panelCenter = new JPanel(new GridLayout(2,2,5,40));
 		
 			JButton loginButton = new JButton("Login");
@@ -46,7 +50,8 @@ public class EnterLoginFrame extends EnterInformationFrame{
 				 * If users incorrectly enter their information, there will be a popup 
 				 * explaining that something went wrong like an empty field, incorrect info
 				 * Successful login will open up the library catalog
-				 * 
+				 * Compares the entered information with the library's database to see if 
+				 * the user is with the library, if the username and password are correct
 				 */
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -59,6 +64,17 @@ public class EnterLoginFrame extends EnterInformationFrame{
 					incorrectPanel.add(Box.createRigidArea(new Dimension(0,150)));
 					incorrectLogin.setSize(new Dimension(600,200));
 					boolean hasLogin = false;
+					
+					/**
+					 * Checks that user has at least entered 1 character
+					 * for username and password, and then checks if the
+					 * username and password match a user
+					 * If both match a user's login, it will close the login
+					 * frame and open the LibraryCatalogMenu frame of books in
+					 * the library
+					 * Failing to login will throw error which will open a popup 
+					 * telling what went wrong with the inputs
+					 */
 					try {
 						if (copyUsername.length() < 1) {
 							throw new LoginException.EmptyUsername();
@@ -116,6 +132,10 @@ public class EnterLoginFrame extends EnterInformationFrame{
 				
 			});
 			
+			/**
+			 * Adjusts panel sizes, added labels, fields, button to panels,
+			 * and then adds panels to the JFrame in a borderlayout form
+			 */
 			getPanelWest().setPreferredSize(new Dimension(195,200));
 			getPanelEast().setPreferredSize(new Dimension(195,200));
 			getPanelSouth().setPreferredSize(new Dimension(200,230));

@@ -1,29 +1,21 @@
 package librarymanagement;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-import librarymanagement.LoginException.EmptyPassword;
-import librarymanagement.LoginException.IncorrectUsernamePasswordCombo;
+
+
 
 public class EnterInformationFrame {
-	private String buttonName;
-	private String windowName;
-	private boolean login;
-	
+
+	private boolean login;	
 	private JPanel panelWest = new JPanel();
 	private JPanel panelEast = new JPanel();
 	private JPanel panelSouth = new JPanel(); 
@@ -35,9 +27,9 @@ public class EnterInformationFrame {
 		/**
 		 * EnterInformationFrame is extended by children to create 2 types 
 		 * of windows: a window for signing up, and a window for logging in
-		 * Users can enter their first name, last name, and phone number to sign up
 		 * Forms the basic signup frame for both frames with a title, Jframe window name
 		 * and some formatting to the JFrame
+		 * Sets up 4 panels for a JFrame border layout setup
 		 * 
 		 * @param windowName The name of the window
 		 * @param library The library being used to register/signup
@@ -67,23 +59,50 @@ public class EnterInformationFrame {
 		
 	}
 	
+	/**
+	 * Returns whether the login has finished or not
+	 * Returns true if login was successful, false
+	 * if it was not successful
+	 * @return 
+	 */
 	public boolean getLogin() {
 		return login;
 	}
 
+	/**
+	 * returns the southern panel, which is used in a 
+	 * border layout
+	 * @return panelSouth
+	 */
 	public JPanel getPanelSouth() {
 		return panelSouth;
 		
 	}
 	
+	/**
+	 * returns the eastern panel, which is used in a 
+	 * border layout
+	 * @return panelEast
+	 */
 	public JPanel getPanelEast() {
 		return panelEast;
 		
 	}
+
+	/**
+	 * returns the west panel, which is used in a 
+	 * border layout
+	 * @return panelWest
+	 */
 	public JPanel getPanelWest() {
 		return panelWest;
 		
 	}
+	/**
+	 * returns the North panel, which is used in a 
+	 * border layout
+	 * @return panelNorth
+	 */
 	public JPanel getPanelNorth() {
 		return panelNorth;
 		

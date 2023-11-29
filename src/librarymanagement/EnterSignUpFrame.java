@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class EnterSignUpFrame extends EnterInformationFrame{
@@ -41,7 +42,11 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 	 */
 	public EnterSignUpFrame(String windowName, Library library, JFrame frame, boolean refresh) {
 		super(windowName, library, frame);
-			JLabel firstNameLabel = new JLabel("First name: ");
+			
+		/**
+		 * Assigns and declares labels, fields, 
+		 */
+		JLabel firstNameLabel = new JLabel("First name: ");
 			JTextField firstNameField = new JTextField();
 			JLabel lastNameLabel = new JLabel("Last name: ");
 			JTextField lastNameField = new JTextField();
@@ -51,7 +56,7 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 			JTextField phoneNumberField = new JTextField();
 			
 			JLabel passwordLabel = new JLabel("Password: ");
-			JTextField passwordField = new JTextField();
+			JPasswordField passwordField = new JPasswordField();
 
 			JPanel panelCenter = new JPanel(new GridLayout(4,2,5,40));
 
@@ -63,6 +68,10 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 			
 //			panelWest.setBackground(Color.cyan);
 			
+			/**
+			 * Adds the labels and fields to the panel, and then adds
+			 * the panels to the JFrame in a borderlayout 
+			 */
 			panelCenter.add(firstNameLabel);
 			panelCenter.add(firstNameField);
 			panelCenter.add(lastNameLabel);
@@ -89,7 +98,9 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 				 * Failing to register will create a popup telling users what went 
 				 * wrong with registering
 				 * Phone numbers must be all digits and 9 digits in total
-				 * 
+				 * Successful registration creates the user's library card id (their username)
+				 * And a popup will tell the user that they successfully registered, and will
+				 * tell the user their password and username
 				 */
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -102,6 +113,13 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 					boolean invalidNameFirst = false;
 					boolean invalidNameLast = false;
 					
+					/**
+					 * The following for loops check first name, last name,
+					 * and phone numbers
+					 * Checking first name and last name for letters and valid
+					 * other characters in a name
+					 * Checks that phone numbers do not have a non-digit value
+					 */
 					for (Character c: userFirstName.toCharArray()) {
 						if (!Character.isLetter(c) && !c.equals('-') && 
 								!c.equals(' ') && !c.equals('\'') && !c.equals('.')) {
@@ -123,12 +141,14 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 						}
 					}
 					
+					/**
+					 * Sets up exception JFrame and JPanel to display what went wrong when signing up
+					 */
 					JFrame registrationExceptionFrame = new JFrame("Registration Error");
 					registrationExceptionFrame.setSize(new Dimension(600,200));
 					JPanel registrationExceptionPanel = new JPanel();
 					registrationExceptionPanel.add(Box.createRigidArea(new Dimension(0,150)));
 
-					
 					try {
 						
 						if(userFirstName.length() < 1) {
@@ -147,19 +167,48 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 							throw new SignUpException.InvalidLastName();
 						} else if (userPassword.length() < 1) {
 							throw new SignUpException.EmptyPassword();
+						} else if (!userPassword.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")) {
+							// Contributions made by Yelin
+							// 1. At least 8 chars
+							// 2. Contains at least one digit
+							// 3. Contains at least one lower alpha char and one upper alpha char
+							// 4. Contains at least one char within a set of special chars (@#%$^ etc.)
+							// 5. Does not contain space, tab, etc.
+							//
+							// ^                 # start-of-string
+							// (?=.*[0-9])       # a digit must occur at least once
+							// (?=.*[a-z])       # a lower case letter must occur at least once
+							// (?=.*[A-Z])       # an upper case letter must occur at least once
+							// (?=.*[@#$%^&+=])  # a special character must occur at least once
+							// (?=\S+$)          # no whitespace allowed in the entire string
+							// .{8,}             # anything, at least eight places though
+							// $                 # end-of-string
+							throw new SignUpException.InvalidPassword();
 						}
 						
+						/**
+						 * If no exceptions above occur, it creates the user
+						 */
 						User newUser = new User(userFirstName, userLastName, userPhoneNumber, userPassword);
+						
+						/**
+						 * if-else block checks that if the phone number is not already used,
+						 * register the user with the library
+						 * This block has a special condition where if the block is for admin frames,
+						 * it will reopen the previous frame (the list of users for admins)
+						 * Successful registration will open a JFrame telling the user they 
+						 * were able to register, and remind the user of their username/id
+						 * and password
+						 * Failing to provide an unused phone number with the library will throw an
+						 * exception, create a popup with exception message
+						 */
 						if(library.containsNumber(userPhoneNumber)) {
 							throw new SignUpException.PhoneNumberAlreadyUsed();
 						} else {
 
 							library.addUser(newUser);
-							
-							
+							LibraryLoginSignUpFrame.exportLibrary(library, "lib\\library.json");
 
-							
-							
 							JFrame registered = new JFrame("Registered");
 							registered.setSize(new Dimension(600,200));
 							JPanel registeredPanel = new JPanel();
@@ -253,7 +302,14 @@ public class EnterSignUpFrame extends EnterInformationFrame{
 						registrationExceptionFrame.add(registrationExceptionPanel);
 						registrationExceptionFrame.setVisible(true);
 						LibraryGUI.openJFrames.add(registrationExceptionFrame);
-					}
+					} catch(SignUpException.InvalidPassword invalidPassword) {
+						JLabel exceptionMessage = new JLabel(invalidPassword.getMessage());
+						// exceptionMessage.setFont(new Font("Arial", Font.PLAIN, 20);
+						registrationExceptionPanel.add(exceptionMessage);
+						registrationExceptionFrame.add(registrationExceptionPanel);
+						registrationExceptionFrame.setVisible(true);
+						LibraryGUI.openJFrames.add(registrationExceptionFrame);
+					} 	
 					
 				}
 				

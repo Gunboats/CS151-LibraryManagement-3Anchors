@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
 import javax.swing.Box;
@@ -15,13 +18,14 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class LibraryCatalogMenu {
 	
 	/**
-	 * Creates the library catalog for users, allowing them
+	 * Creates the library catalog of their books for users, allowing users
 	 * to borrow books, and access their borrowed books list,
 	 * and then logout, returning them to the main menu
 	 * Users select check boxes to choose which books to borrow
@@ -36,29 +40,49 @@ public class LibraryCatalogMenu {
 		JPanel bookPanel = new JPanel();
 		JScrollPane bookCatalog = new JScrollPane(bookPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		bookCatalog.getVerticalScrollBar().setUnitIncrement(15);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		bookPanel.setPreferredSize(new Dimension(400,600));
 		
-		
+		/**
+		 * Adds alternate way to exit program when users press x so that JDK is not
+		 * running in the background
+		 * Pressing yes should exit the program
+		 */
+		frame.addWindowListener(new WindowAdapter() {
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				JOptionPane closeProgramPane = new JOptionPane("Exting program");
+				int closeValue = closeProgramPane.showConfirmDialog(closeProgramPane, "Ready to exit?");
+				if (closeValue == JOptionPane.YES_OPTION) {
+					LibraryLoginSignUpFrame.exportLibrary(library, "lib\\library.json");
+					System.exit(0);
+				}
+
+
+						
+			}
+		});
+			
+	
+
 		ArrayList<Book> toBorrowList = new ArrayList<Book>();
-		
-		
 		JPanel southPanel = new JPanel();
-		
-		
 		FlowLayout panelLayout = new FlowLayout(FlowLayout.LEFT, 25, 5);
 		bookPanel.setLayout(panelLayout);
 		JButton borrowBooks = new JButton("Borrow");
-		
-		
 		JButton booksBorrowed = new JButton("Books Borrowed");
 		JButton logout = new JButton("Logout");
-		
-		
 		southPanel.add(borrowBooks);
 		southPanel.add(booksBorrowed);
 		southPanel.add(logout);
 		
+
+		/**
+		 * Builds the components of JLabels and JCheckboxes so that books
+		 * can be interacted with, which are then put into bookPanel, which is later
+		 * put in the JFrame for display
+		 */
 		for(Book b: library.getBookList()) {
 			JLabel label = new JLabel("<html>" + b.getBookTitle() + "<br/>" + 
 		b.getAuthor() + "<br/>" + (b.getBorrowed() ? "Borrowed" : "Available") + "<html>");
@@ -82,6 +106,17 @@ public class LibraryCatalogMenu {
 
 		}
 		
+		/**
+		 * For every checked box for a book, it is stored in a list
+		 * that compares to see if the user is borrowing duplicates,
+		 * if the list is empty, or if the user has already borrowed a book
+		 * and is trying to borrow a duplicate copies
+		 * Failing to borrow will create a popup telling the issue
+		 * If successful, it allows the user to borrow
+		 * adding the books to the user's list of borrowed books, updates
+		 * boolean of books to reflect that they are borrowed, reopening the
+		 * LibraryCatalogMenu, and making a popup to show what the user borrowed
+		 */
 		borrowBooks.addActionListener(new ActionListener() {
 
 			@Override
@@ -101,17 +136,44 @@ public class LibraryCatalogMenu {
 					if(toBorrowList.isEmpty()) {
 						throw new BorrowBook.NoBorrowedBooks();
 					}
-					
+
+					if(toBorrowList.size() > 0) {
+						for (Book b: toBorrowList) {
+							if(!user.getBorrowedBooks().isEmpty()) {
+								for(Book c: user.getBorrowedBooks()) {
+									if (b.getAuthor().equals(c.getAuthor()) && b.getBookTitle().equals(c.getBookTitle())) {
+										throw new BorrowBook.BookBorrowedAlready();
+									}
+								}
+							}
+
+
+						}
+					}
+
+					if(toBorrowList.size() > 0) {
+						for(int i = 0; i < toBorrowList.size(); i++) {
+							for (int j = i+1; j < toBorrowList.size(); j++) {
+								if (toBorrowList.get(i).getAuthor().equals(toBorrowList.get(j).getAuthor())) {
+									if (toBorrowList.get(i).getBookTitle().equals(toBorrowList.get(j).getBookTitle())) {
+										throw new BorrowBook.BorrowingDuplicates();
+									}
+								}
+							}
+						}
+					}
+
+
 					for (Book b: toBorrowList) {
-//						ok actually borrow this time
+//						This loop will borrow the books
 						
 						library.checkOutBook(user, b);
 					}
+
+
+					LibraryLoginSignUpFrame.exportLibrary(library, "lib\\library.json");
 					frame.dispose();
 					new LibraryCatalogMenu(library, user);
-					// TO BE ADDED
-					// show user's entire borrowed book list
-					// admin add users
 					
 					JFrame thanksFrame = new JFrame("Thank you");
 					
@@ -152,28 +214,50 @@ public class LibraryCatalogMenu {
 					borrowExceptionFrame.add(borrowFailPanel);
 					borrowExceptionFrame.setVisible(true);
 					LibraryGUI.openJFrames.add(borrowExceptionFrame);
+				} catch (BorrowBook.BookBorrowedAlready borrowedAlready) {
+					JLabel exceptionMessage = new JLabel(borrowedAlready.getMessage());
+					borrowFailPanel.add(exceptionMessage);
+					borrowExceptionFrame.add(borrowFailPanel);
+					borrowExceptionFrame.setVisible(true);
+					LibraryGUI.openJFrames.add(borrowExceptionFrame);
+				} catch (BorrowBook.BorrowingDuplicates duplicateBorrowing) {
+					JLabel exceptionMessage = new JLabel(duplicateBorrowing.getMessage());
+					borrowFailPanel.add(exceptionMessage);
+					borrowExceptionFrame.add(borrowFailPanel);
+					borrowExceptionFrame.setVisible(true);
+					LibraryGUI.openJFrames.add(borrowExceptionFrame);
 				}
 				
 			}
 			
 		});
 		
+		/**
+		 * Opens the JFrame for the list of books the user borrowed, closes
+		 * other frames
+		 */
 		booksBorrowed.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				LibraryBorrowedBooksMenu borrowedBooks = new LibraryBorrowedBooksMenu(user);
+				LibraryGUI.closeJFrames();
+				frame.setVisible(true);
+				LibraryGUI.openJFrames.add(frame);
+				LibraryBorrowedBooksMenu menu = new LibraryBorrowedBooksMenu(user, frame, library);
 				
 			}
 			
 		});
-		
+		/**
+		 * Closes JFrames and reopens the main menu (LibraryLoginSignUpFrame)
+		 */
 		logout.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				LibraryGUI.closeJFrames();
 				new LibraryLoginSignUpFrame(library);
+				
 			}
 			
 		});

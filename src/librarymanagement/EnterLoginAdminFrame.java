@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import librarymanagement.LoginException.IncorrectUsernamePasswordCombo;
@@ -35,10 +36,21 @@ public class EnterLoginAdminFrame extends EnterInformationFrame{
 		JLabel usernameLabel = new JLabel("Username: ");
 		JTextField usernameField = new JTextField();
 		JLabel passwordLabel = new JLabel("Password: ");
-		JTextField passwordField = new JTextField();
+		JPasswordField passwordField = new JPasswordField();
 		JPanel panelCenter = new JPanel(new GridLayout(2,2,5,40));
 	
 		JButton loginButton = new JButton("Login");
+
+
+		/**
+		 * Takes the username and password fields the admin used
+		 * and compares the values to the correct username and password
+		 * needed to login
+		 * Successful login allows the Admin to access LibraryCatalogMenu,
+		 * which shows the list of users
+		 * Failing to login creates a popup notifying the admin of what went
+		 * wrong
+		 */
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -50,6 +62,14 @@ public class EnterLoginAdminFrame extends EnterInformationFrame{
 				incorrectPanel.add(Box.createRigidArea(new Dimension(0,150)));
 				incorrectLogin.setSize(new Dimension(600,200));
 				
+
+
+				/**
+				 * Checks username and password are longer than 0 characters,
+				 * and that the username and password match the admin and password
+				 * values within the library, otherwise it throws errors that will
+				 * open JFrames displaying an exception message
+				 */
 				try {
 					if (copyUsername.length() < 1) {
 						throw new LoginException.EmptyUsername();
@@ -94,6 +114,11 @@ public class EnterLoginAdminFrame extends EnterInformationFrame{
 			}
 			
 		});
+
+		/**
+		 * Adjusting size of the panels, adding labels, button, fields to the panels
+		 * which the panels are then added to the JFrame and displayed
+		 */
 		getPanelWest().setPreferredSize(new Dimension(195,200));
 		getPanelEast().setPreferredSize(new Dimension(195,200));
 		getPanelSouth().setPreferredSize(new Dimension(200,230));

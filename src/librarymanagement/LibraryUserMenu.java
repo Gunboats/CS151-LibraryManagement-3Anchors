@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
@@ -15,6 +17,7 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -57,6 +60,31 @@ public class LibraryUserMenu {
 		ArrayList<User> userList = new ArrayList<User>();
 		FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT, 20,20);
 		
+		/**
+		 * Adds alternate way to exit program when users press x so that JDK is not
+		 * running in the background
+		 * Pressing yes should exit the program
+		 */
+		frame.addWindowListener(new WindowAdapter() {
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				JOptionPane closeProgramPane = new JOptionPane("Exting program");
+				int closeValue = closeProgramPane.showConfirmDialog(closeProgramPane, "Ready to exit?");
+				if (closeValue == JOptionPane.YES_OPTION) {
+					LibraryLoginSignUpFrame.exportLibrary(library, "lib\\library.json");
+					System.exit(0);
+				}
+
+
+						
+			}
+		});
+		
+		/**
+		 * Creates the user text and check boxes next to each other so that admins
+		 * can interact with removing users, 
+		 */
 		panel.setLayout(flowLayout);
 		for(User u: library.getuserList()) {
 			JLabel label = new JLabel("<html>" + u.getName() + "<br/>" + 
@@ -79,6 +107,13 @@ public class LibraryUserMenu {
 			panel.add(selectUser);
 		}
 		
+		/**
+		 * Removes selected users with the checkbox and reopens the JFrame of
+		 * users, reflecting that the removed users are removed
+		 * Does not remove if no users are selected, creates popup to tell the 
+		 * admin
+		 * Writes to library json upon successful removing
+		 */
 		removeUser.addActionListener(new ActionListener() {
 
 			@Override
@@ -97,6 +132,7 @@ public class LibraryUserMenu {
 					for (User u : userList ) {
 						library.removeUser(u);
 					}
+					LibraryLoginSignUpFrame.exportLibrary(library, "lib\\library.json");
 					frame.dispose();
 					new LibraryUserMenu(library);
 					
@@ -115,28 +151,40 @@ public class LibraryUserMenu {
 			
 		});
 		
+		/**
+		 * Opens EnterSignUpFrame so that the user may be added by an admin
+		 * to the library
+		 */
 		addUser.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				new EnterSignUpFrame("Sign up", library, frame, true);
-				
+				// LibraryLoginSignUpFrame.exportLibrary(library, "lib\\library.json");
 			}
 			
 		});
 		
+
+		/**
+		 * Opens the admin perspective of the LibraryCatalogMenu,
+		 * which allows the admin to add, remove books
+		 */
 		openBookCatalog.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				new LibraryAdminCatalogMenu(library);
-				
+				LibraryLoginSignUpFrame.exportLibrary(library, "lib\\library.json");
 			}
 			
 		});
 		
+		/**
+		 * Closes JFrames and reopens the main menu
+		 */
 		logout.addActionListener(new ActionListener() {
 
 			@Override
@@ -148,6 +196,13 @@ public class LibraryUserMenu {
 			
 		});
 
+		/**
+		 * Creates a little window allowing the admin to select a file
+		 * on their computer to be used in the library.
+		 * Does not automatically save to the library json file
+		 * Selecting a file will allow update the library to reflect that
+		 * it is now using the new file's data. 
+		 */
 		importButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -165,6 +220,12 @@ public class LibraryUserMenu {
 
 		});
 
+		/**
+		 * Writes to a file of the library's contents of books, users,
+		 * and the data relevent to both of them
+		 * Creates a file if it does not exist with the name based on the 
+		 * library's name
+		 */
 		exportButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -32,6 +32,8 @@ public class Library {
      * Maps for cards and users, phone numbers and users
      * default admin and password for admin logins, a card
      * prefix for all cards they assign to users
+     * cardPrefix is used to assign the string prefix to a library
+     * card Id as a way of being a unique identifier
      * @param name the library's name
      * @param cardPrefix the library card letters before numbers
      */
@@ -40,10 +42,18 @@ public class Library {
         this.cardPrefix = cardPrefix;
     }
 
+    /**
+     * Adds the book to the library's list of books
+     * @param book The book being added
+     */
     public void addBook(Book book) {
         bookList.add(book);
     }
 
+    /**
+     * Removes a book from a library's list of books
+     * @param book The book being removed
+     */
     public void removeBook(Book book) {
         bookList.remove(book);
     }
@@ -51,8 +61,9 @@ public class Library {
     /**
      * Checks if the phoneNumAndUserMap has the phone number
      * that a user entered when they tried signing up
+     * Return 
      * @param number The phone number the user entered
-     * @return True or false
+     * @return True if number is used or false if not used
      */
     public boolean containsNumber(String number) {
     	if(!phoneNumAndUserMap.containsKey(number)) {
@@ -61,6 +72,10 @@ public class Library {
     	return true;
     }
     
+    /**
+     * Getter that returns the phone number and user map 
+     * @return phoneNumAndUserMap
+     */
     public Map<String, User> getPhoneNumAndUserMap()  {
     	return phoneNumAndUserMap;
     }
@@ -69,8 +84,9 @@ public class Library {
     /**
      * Adds a user to a library if the phone number is not already there
      * Then, it gives the user their library card, which has a string
-     * to allow them to login, which is randomly generated
-     * @param user
+     * to allow them to login, which is randomly generated with a 
+     * random large number as part of the identifier
+     * @param user The user being registered to the library
      */
     public void addUser(User user) {
     	if(!containsNumber(user.getPhoneNumber())) {
@@ -84,6 +100,16 @@ public class Library {
 
     }
 
+    /**
+     * Overloaded method that does not create a credit
+     * card, mainly for writing to file so that it does
+     * not recreate a new random library card
+     * Checks if the user's number is not already added
+     * If not, add it to the card and phone number hashmaps,
+     * and add the user to the user list
+     * @param user
+     * @param f
+     */
     public void addUser(User user, boolean f) {
     	if(!containsNumber(user.getPhoneNumber())) {
             userList.add(user);
@@ -129,10 +155,18 @@ public class Library {
         }
     }
 
+    /**
+     * Returns the book list of a library
+     * @return bookList
+     */
     public List<Book> getBookList() {
     	return bookList;
     }
     
+    /**
+     * Returns the user list of a library
+     * @return userList
+     */
     public List<User> getuserList() {
     	return userList;
     }
@@ -144,9 +178,9 @@ public class Library {
      * can check out the book, and they will receive the 
      * book in their book list, updating the book to now
      * be borrowed (true)
-     * @param user
-     * @param book
-     * @return
+     * @param user The user trying to borrow a book
+     * @param book The book being borrowed
+     * @return Returns the book being borrowed
      */
     public Book checkOutBook(User user, Book book) {
         
@@ -158,17 +192,36 @@ public class Library {
         return book;
     }
     
+    /**
+     * Gets the library's admin username
+     * @return adminUsername
+     */
     public String getAdminUsername() {
     	return adminUsername;
     }
     
+    /**
+     * Gets the library's admin password
+     * @return adminPassword
+     */
     public String getAdminPassword() {
     	return adminPassword;
     }
     
+    /**
+     * Gets the name of the library
+     * @return name
+     */
     public String getName() {
         return this.name;
     }
+
+    /**
+     * Gets the cardPrefix of the library, an identifier
+     * that is specific to a library's library cards to make 
+     * them unique
+     * @return cardPrefix
+     */
     public String getCardPrefix() {
     	return cardPrefix;
     }

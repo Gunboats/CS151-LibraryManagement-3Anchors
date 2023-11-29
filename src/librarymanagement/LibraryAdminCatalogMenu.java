@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 import javax.swing.Box;
@@ -14,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -30,6 +33,13 @@ public class LibraryAdminCatalogMenu {
 	 * @param library The library being accessed
 	 */
 	LibraryAdminCatalogMenu(Library library) {
+		/**
+		 * Declares and assigns JFrame, JPanels, JScrollPane
+		 * Uses a flow layout for the bookPanel, allowing books to
+		 * be displayed from left to right order, and then top to bottom
+		 * Buttons are added to southPanel to put them at the bottom of the
+		 * screen
+		 */
 		JFrame frame = new JFrame("Library Catalog");
 		JPanel bookPanel = new JPanel();
 		JScrollPane bookCatalog = new JScrollPane(bookPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -56,6 +66,35 @@ public class LibraryAdminCatalogMenu {
 		southPanel.add(Box.createRigidArea(new Dimension(150,0)));
 		southPanel.add(logout);
 		
+
+		/**
+		 * Adds alternate way to exit program when users press x so that JDK is not
+		 * running in the background
+		 * Pressing yes should exit the program
+		 */
+		frame.addWindowListener(new WindowAdapter() {
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				JOptionPane closeProgramPane = new JOptionPane("Exting program");
+				int closeValue = closeProgramPane.showConfirmDialog(closeProgramPane, "Ready to exit?");
+				if (closeValue == JOptionPane.YES_OPTION) {
+					LibraryLoginSignUpFrame.exportLibrary(library, "lib\\library.json");
+					System.exit(0);
+				}
+
+
+						
+			}
+		});
+
+
+		/**
+		 * For every book in the library, it creates a label with a checkbox
+		 * so that books are paired with a checkbox, allowing the user to select
+		 * which books to borrow, which are added to a list of books that may be borrowed,
+		 * the labels and check boxes are added to book panel
+		 */
 		for(Book b: library.getBookList()) {
 			JLabel label = new JLabel("<html>" + b.getBookTitle() + "<br/>" + 
 		b.getAuthor() + "<br/>" + (b.getBorrowed() ? "Borrowed" : "Available") + "<html>");
@@ -79,6 +118,15 @@ public class LibraryAdminCatalogMenu {
 			bookPanel.add(removeCheckBox);
 		}
 		
+
+		/**
+		 * Failing to remove a book (no books check mark selected)
+		 * will create a popup notifying the admin that it failed to
+		 * occur
+		 * Prevents admins from removing books that are still borrowed
+		 * Removes book(s) that are selected, updates the file, and reopens 
+		 * the window to reflect the changes made 
+		 */
 		removeBooks.addActionListener(new ActionListener() {
 
 			@Override
@@ -104,6 +152,7 @@ public class LibraryAdminCatalogMenu {
 						
 						library.removeBook(b);;
 					}
+					LibraryLoginSignUpFrame.exportLibrary(library, "lib\\library.json");
 					frame.dispose();
 					new LibraryAdminCatalogMenu(library);
 					
@@ -125,12 +174,14 @@ public class LibraryAdminCatalogMenu {
 		});
 		
 		/**
-		 * Opens a window for admins to add new library users
+		 * Opens a window for admins to add new library users, updates
+		 * the library json file
 		 */
 		addBook.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				LibraryLoginSignUpFrame.exportLibrary(library, "lib\\library.json");
 				new EnterBookFrame(library, frame);
 				
 			}
@@ -146,7 +197,6 @@ public class LibraryAdminCatalogMenu {
 			public void actionPerformed(ActionEvent e) {
 				
 				LibraryGUI.closeJFrames();
-				
 				new LibraryLoginSignUpFrame(library);
 			}
 			

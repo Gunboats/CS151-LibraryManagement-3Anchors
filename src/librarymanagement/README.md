@@ -99,4 +99,14 @@
 // Result: Closes other windows, opens main menu
 
 // Test 7: Importing and exporting
-// 
+// Case 1: Export the library to your computer. Then, make changes to the library
+// Case 2: Using that exported file, import it to the library, it should load up the old library without the changes you made
+// in case 1
+
+// Test 8: Make changes to the library, exit the program using exit on main menu or the library catalog menu, or
+// the library user menu, or the library admin catalog menu
+// The changes should still be there
+
+// Test 9: Try closing the library catalog menu, or
+// the library user menu, or the library admin catalog menu, it should make a popup asking if the person is ready to exit
+// Pressing yes will system.exit(0) the program.

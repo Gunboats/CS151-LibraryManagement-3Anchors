@@ -1,6 +1,7 @@
 ## Team: 3 Anchors
 ## Team members: Willy Tang, Alexander Pham, Yelin Wu
 Link to running the jar, this is just one approach that should work: https://www.youtube.com/watch?v=K0sskws1XS8
+Link to test cases (must be run manually) https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/blob/main/src/librarymanagement/README.md
 ## Contributions to proposal
 ### Willy: Wrote to problem to solve, most of the functionality section, some operations for each class,
 ### some of the High level

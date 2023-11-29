@@ -23,7 +23,7 @@ Link to test cases (must be run manually) https://github.com/Gunboats/CS151-Libr
 
 ### Assumptions / Operating Environments / Intended Usage: Assumptions: 
 * The project of a Library management system will run on Java and the interactable user interface will be implemented using Java Swing to create a GUI. Users will be able to interact with the library, being able to use functions like borrow books, return books. Libraries can manage users and books in their system, adding and removing them. Both libraries and users should be able to interact with the GUI by performing actions like clicking on buttons. The library will have the ability to save and load stored data.
-### Previous works?
+
 ### Diagrams
 # UML Diagrams
 ## UML Class Diagram
@@ -175,7 +175,7 @@ Link to running the jar, this is just one approach that should work: https://www
 
   
 ### References:
-####JSON Library:
+#### JSON Library:
 -Package Used: org.json (from json-20231013.jar)
 -Version: 20231013 release
 -Description: A package with useful operations for reading and writing JSON files. From https://github.com/stleary/JSON-java

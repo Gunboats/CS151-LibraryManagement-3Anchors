@@ -17,7 +17,7 @@
 ### Yelin: Contributed to Libray.java, User.java, LibrayLoginSignUpFrame.java(These were pushed the laurindaaa-patch branch. But it was overrided by the team's code and didn't merge into the final branch). Added the password format checker. Fixed the import path for library.json. Updated the libray.json data inclduing books data and user data. Updated README.md.
 
 ## Members working on Project Report:
-### Problem/Issue: Problem to solve: We have a library that lack a digital system for users to use and store important data such as the books in their catalog and the users that are registered with the library. We want to create a library management system that manages a library’s digital catalog of books and users with their respective information such as borrowed books, their name, and their library card number. This library management system should have a GUI that is intuitive and not difficult to use. Libraries and users need to be able to login to use their respective privileges. This requires us to uniquely identify each user to each library.
+### Problem/Issue: Problem to solve: We have a library that lacks a digital system for users to use and store important data such as the books in their catalog and the users that are registered with the library. We want to create a library management system that manages a library’s digital catalog of books and users with their respective information such as borrowed books, their name, and their library card number. This library management system should have a GUI that is intuitive and not difficult to use. Libraries and users need to be able to login to use their respective privileges. This requires us to uniquely identify each user to each library.
 
 ### Assumptions / Operating Environments / Intended Usage: Assumptions: The project of a Library management system will run on Java and the interactable user interface will be implemented using Java Swing to create a GUI. Users will be able to interact with the library, being able to use functions like borrow books, return books. Libraries can manage users and books in their system, adding and removing them. Both libraries and users should be able to interact with the GUI by performing actions like clicking on buttons. The library will have the ability to save and load stored data.
 ### Previous works?
@@ -44,25 +44,38 @@
 * There will be a login system with different levels of access for libraries and users.
 ### Operations
 * The system supports loading data: loading library data from a file to initialize the system.
+* Library can also export the data of a library to the computer using it
 * The system supports registration/login/logout: users can register and log in to browse/borrow/return books, and log out after completing the operation.
 * The system supports borrowing books: users can borrow books from the library.
 * The system supports checking borrowed books: users can check the currently borrowed books and return them.
 * The system supports catalog browsing: users can browse the library's catalog to view available books.
 * The system supports adding/removing books: librarians can add new books to the catalog or delete books from the catalog.
+* Admins can also manage users by remove or add users
+* 
 ### Solution
+* We have created a GUI that uses a library.json file to store the contents of a library. Inside are the library's books, users, user's borrowed books
+* Admins can login in the Admin login section, allowing them to select check boxes to choose what users to remove, what books to remove.
+* Admins may additional create and add new books and users by filling out the JFrame's form, which will update the JFrame that displays all the users or books
+* Admins may additionally import a library and export the data of the library
+* Users can register and login to the library, which will open the Library's catalog of book
+* Users can select checkboxes to choose what books to borrowed, though they cannot borrow books they already have borrowed or the books are already borrwoed
+* Users may only borrow books available at the library
+* Users can click the books borrowed button to see what books they have borrowed, and return books. Users cannot return if they have selected no books
 
 ### Steps to Run Code
 * Before running the code, make sure you have set up the environment, for example: Make sure you have set up the necessary development environment, including the required programming language (JAVA).
-* Clone repository from github, how to clone project repository to local IDE.
-* Open a terminal and navigate to the project directory.
-* Use a compiler or build tool with the JAVA programming language to compile the source code.
-* The command executes compiled code.
-* Follow the on-screen instructions to interact with the library management system
+* Download the zip file, take out the folder in side (CS151-LibraryManagement-3Anchors file)
+* Add the contents of the CS151-LibraryManagement-3Anchors file into a new project
+* The src folder's content's should go into the src folder of the new project, and the other files should be outside of the source folder
+* Here is how the Package Explorer should look:
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/d20fa74f-0997-4606-9918-62852ed1f0bc)
+* We see bin, diagrams, lib, and proposal are not in the src folder, etc but next to it
+
   
 ### Steps to Run JAR
 * Clone the project repository to your local computer.
 * Assuming you have download the Zip file, take the CS151-LibraryManagement-3Anchors file out of the zip
-* Run the JAR from inside the CS151-LibraryManagement-3Anchors file that you took out 
+* Run the JAR from inside the CS151-LibraryManagement-3Anchors file (not the compressed folder) that you took out 
 * It should say "TestLib" on the main menu when you run it, not "a"
 
   
@@ -130,6 +143,8 @@
 * ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/39c5913f-7f2e-46bc-8909-def0bf7303f1)
 * Occurs when user tries to return 0 books selected
 * ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/fc89d09c-5ed2-4d83-862b-fbe12ef4a2a4)
+* Opens when pressing x button to close on the LibraryCatalogMenu, LibraryUserMenu, and LibraryAdminCatalogMenu frames
+* ![image](https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/assets/30137980/0812d034-4203-4b9d-84aa-3cf4a4dff13b)
 
 
 

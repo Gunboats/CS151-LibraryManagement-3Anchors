@@ -83,7 +83,7 @@
   
 ### Steps to Run JAR
 * Clone the project repository to your local computer.
-* Assuming you have download the Zip file, take the CS151-LibraryManagement-3Anchors file out of the zip
+* Assuming you have download the Zip file, take the CS151-LibraryManagement-3Anchors file out of the zip or extract the file outside of the zip
 * Run the JAR from inside the CS151-LibraryManagement-3Anchors file (not the compressed folder) that you took out 
 * It should say "TestLib" on the main menu when you run it, not "a"
 

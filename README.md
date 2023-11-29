@@ -43,15 +43,24 @@
 * The system will have functions to manage user’s borrowing fees.
 * There will be a login system with different levels of access for libraries and users.
 ### Operations
-* The system supports loading data: loading library data from a file to initialize the system.
-* Library can also export the data of a library to the computer using it
-* The system supports registration/login/logout: users can register and log in to browse/borrow/return books, and log out after completing the operation.
-* The system supports borrowing books: users can borrow books from the library.
-* The system supports checking borrowed books: users can check the currently borrowed books and return them.
-* The system supports catalog browsing: users can browse the library's catalog to view available books.
-* The system supports adding/removing books: librarians can add new books to the catalog or delete books from the catalog.
-* Admins can also manage users by remove or add users
-* 
+#### Admin operations:
+* Import: Imports a library file's data to the GUI, which will allow the admin to use that data of books and users for removing, adding. The admin may choose what file to be imported, and only valid files work
+* Export: Exports the library's data to a file, and the admin may choose where to place the file. It will create the file with a name based on the library's name
+* Add user: Admins may add users to the library, but they must fill out the sign up fields of the user's first name, last name, phone number(must be unused with library), and their password
+* Remove user: Select a user for removel, and removes a user from the library on pressing the remove button, and reopens the library's list of users to reflect that the selected user was removed
+* Add book: Adds a book to the library, admins must fill out the book form, which requires a title and author, which will update the list of books in the library. Changes made will update the library.json file
+* Remove book: Removes a book from the library if it is not already borrowed (we still want the book back for tracking before removing from catalog), changes made will update the library.json file
+* Logout: Admins may logout of the GUI, returning them to the main menu (LibraryLoginSignUpFrame)
+* Exit: Admins can exit the program, which will save the changes made to the library to the library.json file
+* Login: Admins can login, requiring them to enter the proper username and password combination to access the next JFrame: The list of users in the library
+#### User operations
+* Sign up: Users can sign up, filling out their first name and last name with valid characters, unused phone number with library, a password with specific requirements for password strength
+* Login: Users can login to the library, which checks for correct password and username combination: Prevents users from logging in if they enter incorrect information, and successful login allows the user to view the library's list of books for borrowing
+* Borrow: Users may select checkboxes of books they wish to borrow, and upon pressing the borrow button, it will add the books to the user's list of borrowed books, updating that the books are borrowed. Borrowing fails when the user has already borrowed a copy of the book with exact casing and same title and author. Borrowing also fails when user tries to borrow 2 copies of the same book. Changes made will update the library.json file
+* Books Borrowed: Displays the books the user has borrowed
+* Return books: In the JFrame displaying the books the user has borrowed, the books borrowed can be returned by the user. By selecting the checkboxes of books and pressing the return book button, it will make the books available again at the library, and take out the books from the user's list of borrowed books. Changes made will be saved to the library
+* Logout: Users may logout of the GUI, returning them to the main menu (LibraryLoginSignUpFrame)
+* Exit: Exits the GUI, shutting down the components and saving the changes made to thel ibrary
 ### Solution
 * We have created a GUI that uses a library.json file to store the contents of a library. Inside are the library's books, users, user's borrowed books
 * Admins can login in the Admin login section, allowing them to select check boxes to choose what users to remove, what books to remove.

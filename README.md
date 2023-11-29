@@ -18,7 +18,7 @@ Link to test cases (must be run manually) https://github.com/Gunboats/CS151-Libr
 * Yelin: Contributed to Libray.java, User.java, LibrayLoginSignUpFrame.java(These were pushed the laurindaaa-patch branch. But it was overrided by the team's code and didn't merge into the final branch). Added the password format checker. Fixed the import path for library.json. Updated the libray.json data inclduing books data and user data. Updated README.md.
 
 ## Members working on Project Report: Alex, Willy, Yelin
-### Problem/Issue: Problem to solve: 
+### Problem to solve: 
 * We have a library that lacks a digital system for users to use and store important data such as the books in their catalog and the users that are registered with the library. We want to create a library management system that manages a library’s digital catalog of books and users with their respective information such as borrowed books, their name, and their library card number. This library management system should have a GUI that is intuitive and not difficult to use. Libraries and users need to be able to login to use their respective privileges. This requires us to uniquely identify each user to each library.
 
 ### Assumptions / Operating Environments / Intended Usage: Assumptions: 

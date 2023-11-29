@@ -3,8 +3,7 @@
 Link to running the jar, this is just one approach that should work: https://www.youtube.com/watch?v=K0sskws1XS8
 Link to test cases (must be run manually) https://github.com/Gunboats/CS151-LibraryManagement-3Anchors/blob/main/src/librarymanagement/README.md
 ## Contributions to proposal
-### Willy: Wrote to problem to solve, most of the functionality section, some operations for each class,
-### some of the High level
+### Willy: Wrote to problem to solve, most of the functionality section, some operations for each class, some of the High level
 ### Alex: Added some of the high level description of the solution, operations for library, half of functions
 ### Yelin: Wrote in a separate document but was not really used much in the shared document final proposal 
 
@@ -179,7 +178,7 @@ Link to running the jar, this is just one approach that should work: https://www
 -Version: 20231013 release
 -Description: A package with useful operations for reading and writing JSON files. From https://github.com/stleary/JSON-java
 
-####Frame:
+#### Frame:
 * 1.Enter BookFrame:
 -Source code location: src/librarymanagement/EnterBookFrame.java
 -Description: The EnterBookFrame class allows administrators to enter the title and author information of a book and interact with other components that manage book information to add new book information to the system.

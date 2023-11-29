@@ -87,7 +87,7 @@
 * Run the JAR from inside the CS151-LibraryManagement-3Anchors file (not the compressed folder) that you took out 
 * It should say "TestLib" on the main menu when you run it, not "a"
 
-  
+Link to running the jar, this is just one approach that should work: https://www.youtube.com/watch?v=K0sskws1XS8
 
 ### Snapshot of running program
 * When the user runs the program, the loginSignup interface will appear first.
